@@ -31,8 +31,8 @@ export default function Home() {
     <>
       <div className="flex">
         <div className="w-1/4 h-screen p-4">
-          <h1 className="font-bold">THE MOSCOW COMPANY©</h1>
-          <p className="text-sm">We help brands create exceptional real-life experiences that leave lasting memories people love to share.</p>
+          <h1 className="font-[700] [font-stretch:semi-condensed]">THE MOSCOW COMPANY©</h1>
+          <p className="text-sm uppercase tracking-widest [word-spacing:0.3em]">We help brands create exceptional real-life experiences that leave lasting memories people love to share.</p>
           <Navigation
             items={projectsData}
             className="custom-nav-styles"

@@ -19,7 +19,7 @@ interface NavigationItem {
             <li key={item.id}>
               <Link 
                 href={item.href}
-                className="hover:underline transition-all duration-200 underline-offset-2"
+                className="hover:underline transition-all duration-200 underline-offset-4 [word-spacing:0.3em] tracking-widest font-[600] text-[14px] uppercase"
               >
                 {item.label}
               </Link>
