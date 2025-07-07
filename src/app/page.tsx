@@ -1,6 +1,5 @@
-import Images from "@/components/images";
+import SupabaseImages from "@/components/images";
 import Navigation from "@/components/navigation";
-
 
 export const projectsData = [
   { id: 'glavstroy', label: 'главстрой 2024', href: '/projects/glavstroy' },
@@ -12,20 +11,6 @@ export const projectsData = [
   { id: 'lamoda', label: 'lamoda 2024', href: '/projects/lamoda' },
   { id: 'blueprint-1', label: 'The Blueprint 2024', href: '/projects/blueprint' },
   { id: 'blueprint-2', label: 'Blueprint 2024', href: '/projects/blueprint-2' },
-];
-
-const images = [
-  ,
-  '/images/section1/121.jpg',
-  '/images/antiglyanec/01.jpg',
-  '/images/section1/124.jpg',
-
-  '/images/section1/125.jpg',
-  '/images/section1/126.jpg',
-  '/images/section1/121.jpg',
-  '/images/section1/123.jpg',
-  '/images/section1/121.jpg',
-  '/images/section1/123.jpg',
 ];
 
 export default function Home() {
@@ -42,7 +27,7 @@ export default function Home() {
         </div>
 
         <div className="w-3/4 h-screen p-4">
-          <Images src={images} projectsData={projectsData} />
+          <SupabaseImages bucketName="public-images" projectsData={projectsData} />
         </div>
       </div>
     </>
