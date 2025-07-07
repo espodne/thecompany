@@ -2,7 +2,7 @@ import Images from "@/components/images";
 import Navigation from "@/components/navigation";
 
 
-const projectsData = [
+export const projectsData = [
   { id: 'glavstroy', label: 'главстрой 2024', href: '/projects/glavstroy' },
   { id: 'beregovoy', label: 'Береговой & Kenguru 2024', href: '/projects/beregovoy' },
   { id: 'antiglyanec', label: 'Антиглянец 2024', href: '/projects/antiglyanec' },
@@ -15,9 +15,11 @@ const projectsData = [
 ];
 
 const images = [
-  '/images/section1/123.jpg',
+  ,
   '/images/section1/121.jpg',
+  '/images/antiglyanec/01.jpg',
   '/images/section1/124.jpg',
+
   '/images/section1/125.jpg',
   '/images/section1/126.jpg',
   '/images/section1/121.jpg',
@@ -40,7 +42,7 @@ export default function Home() {
         </div>
 
         <div className="w-3/4 h-screen p-4">
-          <Images src={images} />
+          <Images src={images} projectsData={projectsData} />
         </div>
       </div>
     </>

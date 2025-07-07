@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-function Images({ src }: { src: string[] }) {
+function Images({ src, projectsData }: { src: string[], projectsData: { label: string, description?: string, href: string }[] }) {
     const [positions, setPositions] = useState<{ top: string; left: string; size: string }[]>([]);
 
     useEffect(() => {
@@ -46,26 +46,26 @@ function Images({ src }: { src: string[] }) {
         <div className="relative w-full h-full">
             {positions.map((pos: { top: string; left: string; size: string }, index: number) => (
                 <div
-                key={index}
-                className="absolute"
-                style={{
-                  top: pos.top,
-                  left: pos.left,
-                  width: pos.size,
-                  height: pos.size, // или другая логика для высоты
-                  opacity: 0,
-                  animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
-                }}
-              >
-                <Image
-                  src={src[index]}
-                  alt={`Image ${index + 1}`}
-                  fill
-                  className="parallax-image object-cover"
-                  data-speed={Math.random() * 2 + 1}
-                  sizes="(max-width: 768px) 100px, 200px"
-                />
-              </div>
+                    key={index}
+                    className="absolute cursor-pointer"
+                    style={{
+                        top: pos.top,
+                        left: pos.left,
+                        width: pos.size,
+                        opacity: 0,
+                        animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
+                    }}
+                    onClick={() => window.location.href = projectsData[index]?.href}
+                >
+                    <Image
+                        src={src[index]}
+                        alt={`Image ${index + 1}`}
+                        width={200}
+                        height={200}
+                        className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto"
+                        data-speed={Math.random() * 2 + 1}
+                    />
+                </div>
             ))}
         </div>
     );
