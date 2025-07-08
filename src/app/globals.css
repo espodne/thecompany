@@ -93,7 +93,6 @@ section {
 }
 
 .parallax-image {
-    width: 100px;
     height: auto;
     will-change: transform;
 }

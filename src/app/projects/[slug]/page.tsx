@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div className="w-1/4 h-screen p-4 flex flex-col justify-between">
                 <h1 className="heading-style">THE MOSCOW COMPANY©</h1>
                 <div>
-                    <h1 className="font-[700] [font-stretch:semi-condensed] text-2xl">{project.label}</h1>
+                    <h1 className="font-[700] [font-stretch:semi-condensed] text-xl mb-2">{project.label}</h1>
                     <p className="text-sm uppercase tracking-widest [word-spacing:0.3em]">{project.description}</p>
                 </div>
             </div>

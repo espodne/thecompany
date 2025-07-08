@@ -31,7 +31,7 @@ export default function Home() {
         </div>
 
         <div className="w-3/4 h-screen p-4">
-          <SupabaseImages bucketName="project-images" projectsData={projectsData} />
+          <SupabaseImages bucketName="project-images" />
         </div>
       </div>
     </>

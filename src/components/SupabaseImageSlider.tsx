@@ -68,9 +68,10 @@ export default function SupabaseImageSlider({
       <Image
         src={images[currentIndex]?.url || images[0]?.url}
         alt={alt}
-        width={1200}
-        height={800}
-        className="max-w-full max-h-full object-contain transition-opacity duration-150 cursor-pointer"
+        width={2400}
+        height={1600}
+        quality={90}
+        className="w-full h-full object-cover transition-opacity duration-150 cursor-pointer"
         onMouseMove={handleMouseMove}
         priority
       />
