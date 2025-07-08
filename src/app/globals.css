@@ -23,10 +23,10 @@
 
 @font-face {
   font-family: 'ABCOracle';
-  src: url('/font/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2'),
-       url('/font/ABCOracleCyrillicPlusVariable-Trial.woff') format('woff'),
-       url('/font/greed.woff2') format('woff2'),
-       url('/font/greed.woff') format('woff');
+  src: url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2'),
+url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff') format('woff'),
+url('/fonts/greed.woff2') format('woff2'),
+url('/fonts/greed.woff') format('woff');
   font-weight: 100 900; 
   font-style: normal;
   font-display: swap;

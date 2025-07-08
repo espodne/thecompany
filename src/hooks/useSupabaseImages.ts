@@ -18,21 +18,9 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
       try {
         setLoading(true)
         
-        const { data: rootFiles } = await supabase.storage
-          .from(bucketName)
-          .list('', { limit: 100 })
-          
-        console.log('🔍 Root contents:', rootFiles) 
-        console.log('EEEEEEE', bucketName)
-        
-        
-        console.log('Fetching from bucket:', bucketName, 'path:', folderPath || 'root')
-        
         const { data: files, error: listError } = await supabase.storage
           .from(bucketName)
           .list(folderPath || '', { limit: 100 })
-
-        console.log('Files response:', files, 'Error:', listError)
 
         if (listError) throw listError
 
@@ -51,10 +39,8 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
             }
           }) || []
 
-        console.log('Final image URLs:', imageUrls)
         setImages(imageUrls)
       } catch (err) {
-        console.error('Error fetching images:', err)
         setError(err instanceof Error ? err.message : 'Unknown error')
       } finally {
         setLoading(false)

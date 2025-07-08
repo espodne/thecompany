@@ -99,6 +99,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
     const { slug } = await params;
 
+
     const project = projectsData.find(p => p.name === slug);
     if (!project) {
         notFound();
