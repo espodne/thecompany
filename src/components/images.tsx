@@ -72,7 +72,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             opacity: 0,
                             animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
                         }}
-                        onClick={() => window.location.href = projectsData[index]?.href}
+                        // onClick={() => window.location.href = projectsData[index]?.href}
                     >
                         <Image
                             src={image.url}
