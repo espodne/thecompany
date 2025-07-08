@@ -18,14 +18,14 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
       try {
         setLoading(true)
         
-        // СНАЧАЛА ПОСМОТРИМ ЧТО ЕСТЬ В КОРНЕ
-        const { data: rootFiles, error: rootError } = await supabase.storage
+        const { data: rootFiles } = await supabase.storage
           .from(bucketName)
           .list('', { limit: 100 })
           
-        console.log('🔍 Root contents:', rootFiles) // ← ЭТО ПОКАЖЕТ ВСЁ В КОРНЕ
+        console.log('🔍 Root contents:', rootFiles) 
+        console.log('EEEEEEE', bucketName)
         
-        // ТЕПЕРЬ ИЩЕМ В УКАЗАННОЙ ПАПКЕ
+        
         console.log('Fetching from bucket:', bucketName, 'path:', folderPath || 'root')
         
         const { data: files, error: listError } = await supabase.storage
