@@ -28,7 +28,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                 return {
                     top,
                     left,
-                    size: Math.random() * 100 + 50 + 'px',
+                    size: Math.random() * 300 + 250 + 'px',
                 };
             });
             setPositions(newPositions);
@@ -77,8 +77,8 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                         <Image
                             src={image.url}
                             alt={image.name}
-                            width={200}
-                            height={200}
+                            width={500}
+                            height={500}
                             className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto"
                             data-speed={Math.random() * 2 + 1}
                         />
