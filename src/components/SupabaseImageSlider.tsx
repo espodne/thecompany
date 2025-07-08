@@ -68,13 +68,31 @@ export default function SupabaseImageSlider({
       <Image
         src={images[currentIndex]?.url || images[0]?.url}
         alt={alt}
-        width={2400}
-        height={1600}
+        width={800}
+        height={600}
         quality={90}
-        className="w-full h-full object-cover transition-opacity duration-150 cursor-pointer"
+        className="w-[600px] h-full object-contain transition-opacity duration-150 cursor-pointer"
         onMouseMove={handleMouseMove}
         priority
       />
+
+      {/* Progress Indicator */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          <div className="flex gap-[5px] h-[0.5px]" style={{ width: '400px' }}>
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`flex-1 transition-colors duration-200 ${
+                  index === currentIndex 
+                    ? 'bg-white' 
+                    : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 } 

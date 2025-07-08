@@ -38,15 +38,16 @@ export default function ImageSlider({
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden inline-block ${className}`}
       onMouseMove={handleMouseMove}
-      style={{ width, height }}
+      style={{ maxWidth: width, maxHeight: height }}
     >
       <Image
         src={images[currentIndex] || images[0]}
         alt={alt}
-        fill
-        className="object-cover transition-opacity duration-150"
+        width={800}
+        height={600}
+        className="max-w-full max-h-full object-contain transition-opacity duration-150"
         priority
       />
     </div>

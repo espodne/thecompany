@@ -3,18 +3,20 @@ import Navigation from "@/components/navigation";
 
 export const projectsData = [
   { id: 'glavstroy', label: 'главстрой 2024', href: '/projects/glavstroy' },
-  { id: 'beregovoy', label: 'Береговой & Kenguru 2024', href: '/projects/beregovoy' },
+
   { id: 'antiglyanec', label: 'Антиглянец 2024', href: '/projects/antiglyanec' },
   { id: 'tsum', label: 'TSUM Fashion Show 2024', href: '/projects/tsum' },
   { id: 'start-dff', label: 'Start & DFF 2024', href: '/projects/start-dff' },
   { id: 'finflare', label: 'Finflare x manneken 2024', href: '/projects/finflare' },
-  { id: 'lamoda', label: 'lamoda 2024', href: '/projects/lamoda' },
   { id: 'blueprint-1', label: 'The Blueprint 2024', href: '/projects/blueprint' },
   { id: 'mela', label: 'Mela', href: '/projects/mela' },
+  {id: '12Storeez', label: '12Storeez', href: '/projects/12Storeez'},
   { id: '1811', label: '1811', href: '/projects/1811' },
+  { id: 'beregovoy', label: 'Береговой & Kenguru 2024', href: '/projects/beregovoy' },
   { id: 'ostav', label: 'Оставь это ветру', href: '/projects/ostav' },
   { id: 'csum', label: 'ЦУМ Елка', href: '/projects/csum' },
-  { id: 'csum-pokaz', label: 'ЦУМ Новогодний показ', href: '/projects/csum-pokaz' },
+
+
 ];
 
 export default function Home() {
@@ -22,8 +24,8 @@ export default function Home() {
     <>
       <div className="flex">
         <div className="w-1/4 h-screen p-4">
-          <h1 className="heading-style">THE MOSCOW COMPANY©</h1>
-          <p className="text-sm uppercase tracking-widest [word-spacing:0.3em]">We help brands create exceptional real-life experiences that leave lasting memories people love to share.</p>
+          <h1 className="heading-style">COMPANY MOSCOW</h1>
+          <p className="text-sm w-[400px] uppercase tracking-widest [word-spacing:0.3em] indent-10">We help brands create exceptional real-life experiences that leave lasting memories people love to share.</p>
           <Navigation
             items={projectsData}
             className="custom-nav-styles"
@@ -31,7 +33,7 @@ export default function Home() {
         </div>
 
         <div className="w-3/4 h-screen p-4">
-          <SupabaseImages bucketName="project-images" />
+          <SupabaseImages bucketName="project-images" projectsData={projectsData} />
         </div>
       </div>
     </>

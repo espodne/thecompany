@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import SupabaseImageSlider from '../../../components/SupabaseImageSlider';
+import SupabaseImageSlider from '@/components/SupabaseImageSlider';
 
 export const projectsData = [
     {
@@ -88,6 +88,14 @@ export const projectsData = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         href: '/projects/csum-pokaz',
     },
+    {
+        id: 13,
+        name: '12Storeez',
+        label: '12Storeez',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        href: '/projects/12Storeez',
+
+    }
 ];
 
 
@@ -108,10 +116,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return (
         <div className="flex h-screen">
             <div className="w-1/4 h-screen p-4 flex flex-col justify-between">
-                <h1 className="heading-style">THE MOSCOW COMPANY©</h1>
+                <h1 className="heading-style">COMPANY MOSCOW</h1>
                 <div>
-                    <h1 className="font-[700] [font-stretch:semi-condensed] text-xl mb-2">{project.label}</h1>
-                    <p className="text-sm uppercase tracking-widest [word-spacing:0.3em]">{project.description}</p>
+                    <h1 className="font-[700] [font-stretch:semi-condensed] uppercase text-[14px] mb-2">{project.label}</h1>
+                    <p className="text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10">{project.description}</p>
                 </div>
             </div>
             <div className="w-3/4 h-screen p-4">

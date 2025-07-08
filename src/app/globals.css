@@ -41,6 +41,7 @@ body {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 12px;
 }
 
 main {
@@ -87,9 +88,6 @@ section {
   line-height: 2;
   font-weight: 750;
   font-variation-settings: 'wght' 900;
-  letter-spacing: -0.1em;
-  transform: scaleX(0.8);
-  transform-origin: left center;
 }
 
 .parallax-image {
