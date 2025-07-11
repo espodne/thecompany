@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useSupabaseImages } from '@/hooks/useSupabaseImages';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface SupabaseImagesProps {
   bucketName: string;
@@ -13,10 +14,14 @@ interface SupabaseImagesProps {
 function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImagesProps) {
     const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string }[]>([]);
+    const isMobile = useIsMobile();
 
     useEffect(() => {
         if (images.length > 0) {
-            const newPositions = images.map(() => {
+        
+            const imagesToUse = isMobile ? images.slice(0, 6) : images;
+            
+            const newPositions = imagesToUse.map(() => {
                 let top, left;
                 do {
                     top = Math.random() * 80 + '%';
@@ -33,24 +38,8 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
             });
             setPositions(newPositions);
         }
-    }, [images]);
+    }, [images, isMobile]); 
 
-    const handleMouseMove = (e: MouseEvent) => {
-        const imageElements = document.querySelectorAll('.parallax-image');
-        imageElements.forEach((image: Element) => {
-            const speed = image.getAttribute('data-speed');
-            const x = (window.innerWidth - e.pageX * Number(speed)) / 100;
-            const y = (window.innerHeight - e.pageY * Number(speed)) / 100;
-            (image as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
-        });
-    };
-
-    useEffect(() => {
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
 
     if (loading) return <div className="flex items-center justify-center h-full">Загрузка изображений...</div>;
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
@@ -58,7 +47,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
     return (
         <div className="relative w-full h-full">
             {positions.map((pos: { top: string; left: string; size: string }, index: number) => {
-                const image = images[index];
+                const image = (isMobile ? images.slice(0, 6) : images)[index];
                 if (!image) return null;
                 
                 return (
@@ -71,15 +60,16 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             width: pos.size,
                             opacity: 0,
                             animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
+                        
                         }}
-                        // onClick={() => window.location.href = projectsData[index]?.href}
+                        onClick={() => window.location.href = projectsData[index]?.href}
                     >
                         <Image
                             src={image.url}
                             alt={image.name}
                             width={500}
                             height={500}
-                            className="parallax-image  object-cover hover:scale-105 transition-transform duration-300 w-full h-auto"
+                            className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto"
                             data-speed={Math.random() * 2 + 1}
                         />
                     </div>
