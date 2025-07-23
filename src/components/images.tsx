@@ -54,7 +54,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
             let top = 0, left = 0, size = 0;
 
             do {
-                size = Math.random() * 100 + 100; // from 100 to 200 px
+                size = Math.random() * 100 + 150; // from 100 to 200 px
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 
