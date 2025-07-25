@@ -8,7 +8,7 @@ export const MobileLayout = () => {
                 <h1 className="heading-style">COMPANY MOSCOW</h1>
                 <p className="text-sm w-[400px] uppercase tracking-widest [word-spacing:0.3em] indent-10">We help brands create exceptional real-life experiences that leave lasting memories people love to share.</p>
                 <div className="w-full h-screen p-4">
-                    <SupabaseImages bucketName="project-images" projectsData={projectsData} />
+                    <SupabaseImages bucketName="project-images" width={40} heigth={100} projectsData={projectsData} />
                 </div>
             </div>
         </div>

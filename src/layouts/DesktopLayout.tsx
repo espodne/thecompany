@@ -16,7 +16,7 @@ export const DesktopLayout = () => {
                 </div>
 
                 <div className="w-3/4 h-screen p-4">
-                    <SupabaseImages bucketName="project-images" projectsData={projectsData} />
+                    <SupabaseImages bucketName="project-images" width={60} heigth={130} projectsData={projectsData} />
                 </div>
             </div>
         </>

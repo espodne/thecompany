@@ -8,10 +8,12 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 interface SupabaseImagesProps {
     bucketName: string;
     folderPath?: string;
+    width: number;
+    heigth: number; 
     projectsData: { label: string, description?: string, href: string }[];
 }
 
-function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImagesProps) {
+function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }: SupabaseImagesProps) {
     const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const isMobile = useIsMobile();
@@ -56,7 +58,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
             let top = 0, left = 0, size = 0;
 
             do {
-                size = Math.random() * 100 + 150; // from 150 to 250 px
+                size = Math.random() * width + heigth; // from 150 to 250 px
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 
