@@ -107,7 +107,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             alt={image.name}
                             width={500}
                             height={500}
-                            className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto"
+                            className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto border-2 border-black"
                             data-speed={Math.random() * 2 + 1}
                         />
                     </div>
