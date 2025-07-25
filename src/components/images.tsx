@@ -13,7 +13,7 @@ interface SupabaseImagesProps {
 
 function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImagesProps) {
     const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
-    const [positions, setPositions] = useState<{ top: string; left: string; size: string }[]>([]);
+    const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const isMobile = useIsMobile();
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -24,8 +24,10 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
         const containerWidth = container.width;
         const containerHeight = container.height;
 
-        const imagesToUse = isMobile ? images.slice(0, 6) : images;
-        const newPositions: { top: number; left: number; size: number }[] = [];
+        const MAX_IMAGES = 8;
+
+        const imagesToUse = isMobile ? images.slice(0, 6) : images.slice(0, MAX_IMAGES);
+        const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
 
         const MAX_ATTEMPTS = 100;
 
@@ -54,7 +56,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
             let top = 0, left = 0, size = 0;
 
             do {
-                size = Math.random() * 100 + 150; // from 100 to 200 px
+                size = Math.random() * 100 + 150; // from 150 to 250 px
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 
@@ -64,13 +66,16 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                 attempt++;
             } while (isOverlapping(top, left, size) && attempt < MAX_ATTEMPTS);
 
-            newPositions.push({ top, left, size });
+            const rotation = Math.random() * 20 - 10; // random angle from -10 to +10 degrees
+
+            newPositions.push({ top, left, size, rotation });
         }
 
         setPositions(newPositions.map(pos => ({
             top: `${pos.top}px`,
             left: `${pos.left}px`,
             size: `${pos.size}px`,
+            rotation: `${pos.rotation}deg`,
         })));
     }, [images, isMobile]);
 
@@ -92,6 +97,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             left: pos.left,
                             width: pos.size,
                             opacity: 0,
+                            transform: `rotate(${pos.rotation})`,
                             animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
                         }}
                         onClick={() => window.location.href = projectsData[index]?.href}
