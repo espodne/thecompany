@@ -43,8 +43,8 @@ interface SectionProps {
 
 const Section1 = ({ scrollYProgress }: SectionProps) => {
 
-    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
-    const rotate = useTransform(scrollYProgress, [0, 0.2], [0, -5])
+    const scale = useTransform(scrollYProgress, [0, 0.15, 0.19], [1, 1, 0.8]);
+    const rotate = useTransform(scrollYProgress, [0.15, 0.19], [0, -5])
 
     return (
         <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen text-[3.5vw] flex flex-col items-center justify-center pb-[10vh]">
@@ -82,11 +82,11 @@ const Section1 = ({ scrollYProgress }: SectionProps) => {
 
 const Section2 = ({ scrollYProgress }: SectionProps) => {
 
-    const scale = useTransform(scrollYProgress, [0.2, 0.4], [0.8, 1]);
-    const rotate = useTransform(scrollYProgress, [0.2, 0.4], [5, 0])
+    const scale = useTransform(scrollYProgress, [0.21, 0.25, 0.35, 0.39], [0.8, 1, 1, 0.8]);
+    const rotate = useTransform(scrollYProgress, [0.21, 0.25], [5, 0])
 
     return (
-        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen bg-[#482110] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+        <motion.div style={{ scale, rotate }} className="sticky top-0  h-screen text-[3.5vw] flex flex-col items-center justify-center text-white">
 
             <div className="w-full flex flex-col items-center justify-center bg-[#E5E1DD] text-white py-5 px-4 space-y-6">
                 <div>
@@ -116,11 +116,11 @@ const Section2 = ({ scrollYProgress }: SectionProps) => {
 
 const Section3 = ({ scrollYProgress }: SectionProps) => {
 
-    const scale = useTransform(scrollYProgress, [0.4, 0.6], [0.8, 1]);
-    const rotate = useTransform(scrollYProgress, [0.4, 0.6], [-3, 0])
+    const scale = useTransform(scrollYProgress, [0.41, 0.45, 0.55, 0.59], [0.8, 1, 1, 0.8]);
+    const rotate = useTransform(scrollYProgress, [0.41, 0.45], [-3, 0])
 
     return (
-        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen bg-[#E5E1DD] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen text-[3.5vw] flex flex-col items-center justify-center text-white">
 
             <div className="w-full flex flex-col items-center justify-center bg-[#482110] text-white py-5 px-4 space-y-6">
                 <div>
@@ -145,11 +145,11 @@ const Section3 = ({ scrollYProgress }: SectionProps) => {
 
 const Section4 = ({ scrollYProgress }: SectionProps) => {
 
-    const scale = useTransform(scrollYProgress, [0.6, 0.8], [0.8, 1]);
-    const rotate = useTransform(scrollYProgress, [0.6, 0.8], [4, 0])
+    const scale = useTransform(scrollYProgress, [0.61, 0.65, 0.75, 0.79], [0.8, 1, 1, 0.8]);
+    const rotate = useTransform(scrollYProgress, [0.61, 0.65], [4, 0])
 
     return (
-        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen bg-[#664609] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen text-[3.5vw] flex flex-col items-center justify-center text-white">
             <div className="w-full flex flex-col items-center justify-center bg-[#664609] text-white py-5 px-4 space-y-6">
                 <div>
                     <h1 className="text-2xl font-bold text-center text-[#F0CF12] leading-tight">COMPANY MOSCOW</h1>
@@ -174,11 +174,11 @@ const Section4 = ({ scrollYProgress }: SectionProps) => {
 
 const Section5 = ({ scrollYProgress }: SectionProps) => {
 
-    const scale = useTransform(scrollYProgress, [0.8, 1], [0.8, 1]);
-    const rotate = useTransform(scrollYProgress, [0.8, 1], [-2, 0])
+    const scale = useTransform(scrollYProgress, [0.81, 0.85, 1], [0.8, 1, 1]);
+    const rotate = useTransform(scrollYProgress, [0.81, 0.85], [-2, 0])
 
     return (
-        <motion.div style={{ scale, rotate }} className="relative h-screen bg-[#6B4A8B] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+        <motion.div style={{ scale, rotate }} className="relative h-screen text-[3.5vw] bg-[#6B4A8B] flex flex-col items-center justify-center text-white"> 
             <p>Final Section</p>
             <div className="flex gap-4">
                
