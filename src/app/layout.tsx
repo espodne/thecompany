@@ -1,6 +1,12 @@
 import "./globals.css";
+import localFont from 'next/font/local'
 
 
+export const greed = localFont({
+  src: '../../public/fonts/greed.woff', // или .woff, .ttf — смотри по расширению
+  display: 'swap',
+  variable: '--font-greed',
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -9,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={greed.variable}>
       <body
 
       >

@@ -7,11 +7,11 @@ interface ImageSliderProps {
   images: string[];
   alt: string;
   className?: string;
-  width?: number | string;
-  height?: number | string;
+  width?: number;
+  height?: number;
 }
 
-export default function Slider({ 
+export default function ImageSlider({ 
   images, 
   alt, 
   className = "", 
@@ -29,27 +29,32 @@ export default function Slider({
     const x = e.clientX - rect.left;
     const containerWidth = rect.width;
     
+    // Вычисляем индекс картинки на основе позиции мыши
     const index = Math.floor((x / containerWidth) * images.length);
     const clampedIndex = Math.max(0, Math.min(index, images.length - 1));
     
     setCurrentIndex(clampedIndex);
   };
 
+
+
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-hidden inline-block ${className}`}
+      className={`relative overflow-hidden cursor-pointer ${className}`}
       onMouseMove={handleMouseMove}
-      style={{ maxWidth: width, maxHeight: height }}
+   
+      style={{ width, height }}
     >
+      {/* Основная картинка */}
       <Image
         src={images[currentIndex] || images[0]}
         alt={alt}
-        width={800}
-        height={600}
-        className="max-w-full max-h-full object-contain transition-opacity duration-150"
+        fill
+        className="object-cover transition-opacity duration-150"
         priority
       />
+     
     </div>
   );
 }

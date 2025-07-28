@@ -5,29 +5,25 @@ import { useEffect, useState } from 'react';
 export default function DeviceDetector({
     desktop,
     mobile,
-    projectsData,
 }: {
     desktop: React.ReactNode;
     mobile: React.ReactNode;
-    projectsData: any[];
 }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth <= 450);
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+        const handleResize = () => {
+            setIsMobile(mediaQuery.matches);
         };
 
-        checkIfMobile();
+        handleResize(); // Initial check
 
-        window.addEventListener('resize', checkIfMobile);
+        mediaQuery.addEventListener('change', handleResize);
 
-        return () => window.removeEventListener('resize', checkIfMobile);
+        return () => mediaQuery.removeEventListener('change', handleResize);
     }, []);
 
-    if (isMobile) {
-        return <>{mobile}</>;
-    }
-
-    return <>{desktop}</>;
+    return <>{isMobile ? mobile : desktop}</>;
 }

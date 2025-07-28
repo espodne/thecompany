@@ -1,6 +1,6 @@
 import { DesktopLayout } from "@/layouts/DesktopLayout";
 import DeviceDetector from "@/components/DeviceDetector";
-import { MobileLayout } from "@/layouts/MobileLayout";
+import MobileLayout2 from "@/layouts/MobileLayout2";
 
 export const projectsData = [
   { id: 'glavstroy', label: 'главстрой 2024', href: '/projects/glavstroy' },
@@ -19,6 +19,6 @@ export const projectsData = [
 
 export default function Home() {
   return (
-    <DeviceDetector desktop={<DesktopLayout />} mobile={<MobileLayout />} projectsData={projectsData} />
+    <DeviceDetector desktop={<DesktopLayout />} mobile={<MobileLayout2 />} projectsData={projectsData} />
   );
 }

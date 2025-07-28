@@ -1,38 +1,93 @@
 'use client';
 
-import { projectsData } from "@/app/page";
+import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Lenis from 'lenis';
 import SupabaseImages from "@/components/images";
+import { projectsData } from "@/app/page";
 import SupabaseImageSlider from "@/components/SupabaseImageSlider";
 
-export const MobileLayout = () => {
+export default function Home() {
 
-   
+    const container = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ["start start", "end end"]
+    })
+
+    useEffect(() => {
+        const lenis = new Lenis()
+
+        function raf(time: number): void {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+    }, [])
 
     return (
-        <div className="flex flex-col items-center  min-h-screen w-full">
-            {/* Screen 1 */}
-            <div className="w-full flex flex-col items-center px-4 py-6">
-                <h1 className="text-2xl font-bold text-center mb-4">COMPANY MOSCOW</h1>
+        <main ref={container} className="scroll-animation relative h-[500vh]">
+            <Section1 scrollYProgress={scrollYProgress} />
+            <Section2 scrollYProgress={scrollYProgress} />
+            <Section3 scrollYProgress={scrollYProgress} />
+            <Section4 scrollYProgress={scrollYProgress} />
+            <Section5 scrollYProgress={scrollYProgress} />
+        </main>
+    );
+}
 
-                <p className="text-sm uppercase tracking-widest text-center indent-5 max-w-[90%] mb-6">
-                    We help brands create exceptional real-life experiences that leave lasting memories people love to share.
-                </p>
+interface SectionProps {
+    scrollYProgress: MotionValue<number>;
+}
 
-                <div className="w-full mb-10 h-[400px]">
-                    <SupabaseImages
-                        bucketName="project-images"
-                        width={60}
-                        heigth={60}
-                        projectsData={projectsData}
-                    />
+const Section1 = ({ scrollYProgress }: SectionProps) => {
+
+    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+    const rotate = useTransform(scrollYProgress, [0, 0.2], [0, -5])
+
+    return (
+        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen text-[3.5vw] flex flex-col items-center justify-center pb-[10vh]">
+
+            <div className="flex gap-4">
+
+                <div className="w-full flex flex-col px-4 items-center">
+                    <div className="mb-10">
+                        <h1 className="text-2xl font-bold text-center mt-10">COMPANY MOSCOW</h1>
+
+                        <p className="text-sm uppercase tracking-widest text-center indent-5 max-w-[90%] mb-6">
+                            We help brands create exceptional real-life experiences that leave lasting memories people love to share.
+                        </p>
+                    </div>
+
+                    <div className="w-full  h-[450px]">
+                        <SupabaseImages
+                            bucketName="project-images"
+                            width={60}
+                            heigth={60}
+                            projectsData={projectsData}
+                        />
+                    </div>
+
+                    <button className="w-24 rounded-full  uppercase bg-black text-white py-2">
+                        menu
+                    </button>
                 </div>
 
-                <button className="w-24 rounded-full mt-30 uppercase bg-black text-white  py-2">
-                    menu
-                </button>
-            </div>
 
-            {/* Screen 2 */}
+            </div>
+        </motion.div>
+    )
+}
+
+const Section2 = ({ scrollYProgress }: SectionProps) => {
+
+    const scale = useTransform(scrollYProgress, [0.2, 0.4], [0.8, 1]);
+    const rotate = useTransform(scrollYProgress, [0.2, 0.4], [5, 0])
+
+    return (
+        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen bg-[#482110] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+
             <div className="w-full flex flex-col items-center justify-center bg-[#E5E1DD] text-white py-5 px-4 space-y-6">
                 <div>
                     <h1 className="text-2xl font-bold text-center text-[#13A0E9]">
@@ -55,8 +110,18 @@ export const MobileLayout = () => {
                 </p>
             </div>
 
+        </motion.div>
+    )
+}
 
-            {/* Screen 3 */}
+const Section3 = ({ scrollYProgress }: SectionProps) => {
+
+    const scale = useTransform(scrollYProgress, [0.4, 0.6], [0.8, 1]);
+    const rotate = useTransform(scrollYProgress, [0.4, 0.6], [-3, 0])
+
+    return (
+        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen bg-[#E5E1DD] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+
             <div className="w-full flex flex-col items-center justify-center bg-[#482110] text-white py-5 px-4 space-y-6">
                 <div>
                     <h1 className="text-2xl font-bold text-center text-[#F1424A] leading-tight">COMPANY MOSCOW</h1>
@@ -74,8 +139,17 @@ export const MobileLayout = () => {
                     Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
                 </p>
             </div>
+        </motion.div>
+    )
+}
 
-            {/* Screen 4 */}
+const Section4 = ({ scrollYProgress }: SectionProps) => {
+
+    const scale = useTransform(scrollYProgress, [0.6, 0.8], [0.8, 1]);
+    const rotate = useTransform(scrollYProgress, [0.6, 0.8], [4, 0])
+
+    return (
+        <motion.div style={{ scale, rotate }} className="sticky top-0 h-screen bg-[#664609] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
             <div className="w-full flex flex-col items-center justify-center bg-[#664609] text-white py-5 px-4 space-y-6">
                 <div>
                     <h1 className="text-2xl font-bold text-center text-[#F0CF12] leading-tight">COMPANY MOSCOW</h1>
@@ -94,6 +168,21 @@ export const MobileLayout = () => {
                 </p>
             </div>
 
-        </div>
-    );
-};
+        </motion.div>
+    )
+}
+
+const Section5 = ({ scrollYProgress }: SectionProps) => {
+
+    const scale = useTransform(scrollYProgress, [0.8, 1], [0.8, 1]);
+    const rotate = useTransform(scrollYProgress, [0.8, 1], [-2, 0])
+
+    return (
+        <motion.div style={{ scale, rotate }} className="relative h-screen bg-[#6B4A8B] text-[3.5vw] flex flex-col items-center justify-center text-white pb-[10vh]">
+            <p>Final Section</p>
+            <div className="flex gap-4">
+               
+            </div>
+        </motion.div>
+    )
+}
