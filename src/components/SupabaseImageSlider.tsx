@@ -22,13 +22,33 @@ export default function SupabaseImageSlider({
 
   // Swipe handling
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     touchStartX.current = e.changedTouches[0].clientX;
+    touchStartY.current = e.changedTouches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    
+    const currentX = e.changedTouches[0].clientX;
+    const currentY = e.changedTouches[0].clientY;
+    
+    const deltaX = Math.abs(currentX - touchStartX.current);
+    const deltaY = Math.abs(currentY - touchStartY.current);
+    
+    // Если горизонтальное движение больше вертикального - блокируем вертикальный скролл
+    if (deltaX > deltaY && deltaX > 10) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     touchEndX.current = e.changedTouches[0].clientX;
 
     if (touchStartX.current === null || touchEndX.current === null) return;
@@ -36,6 +56,7 @@ export default function SupabaseImageSlider({
     const distance = touchStartX.current - touchEndX.current;
 
     if (Math.abs(distance) > 50) {
+      e.preventDefault();
       if (distance > 0) {
         // swipe left
         setCurrentIndex((prev) => Math.min(prev + 1, images.length - 1));
@@ -46,6 +67,7 @@ export default function SupabaseImageSlider({
     }
 
     touchStartX.current = null;
+    touchStartY.current = null;
     touchEndX.current = null;
   };
 
@@ -82,8 +104,10 @@ export default function SupabaseImageSlider({
   return (
     <div
       className={`relative flex items-center justify-center overflow-hidden w-[99%] h-[350px] ${className}`}
+      style={{ touchAction: 'pan-x pinch-zoom' }}
       onMouseMove={handleMouseMove}
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       <Image
