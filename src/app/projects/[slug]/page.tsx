@@ -2,6 +2,7 @@
 import { projectsData } from '@/data/projectsData';
 import SupabaseImages from '@/components/images'
 import { notFound } from 'next/navigation';
+import SupabaseImageSlider from '@/components/SupabaseImageSlider';
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -26,7 +27,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <SupabaseImages
             bucketName="project-images"
             folderPath={project.name}
-            projectsData={[project]} // только один проект
+            projectHref={project.href}
           />
         </div>
 
@@ -53,10 +54,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="w-3/4 h-screen p-4">
-          <SupabaseImages
+          <SupabaseImageSlider
             bucketName="project-images"
             folderPath={project.name}
-            projectsData={[project]} // только один проект
+            alt={`${project.label} gallery`}
           />
         </div>
       </div>

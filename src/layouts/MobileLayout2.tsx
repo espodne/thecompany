@@ -1,17 +1,112 @@
 'use client';
 
 import SupabaseImages from "@/components/images";
-import { projectsData } from "@/app/page";
+import { projectsData as projectsData2 } from "@/data/projectsData";    
 import SupabaseImageSlider from "@/components/SupabaseImageSlider";
+
+// Типы
+interface Project {
+    id: number;
+    name: string;
+    label: string;
+    description: string;
+    href: string;
+}
+
+interface ProjectSectionProps {
+    project: Project;
+    bgColor: string;
+    titleColor: string;
+    subtitleColor: string;
+    textColor: string;
+}
+
+// Получаем данные проектов
+const finflareProject = projectsData2.find(p => p.name === 'finflare');
+const antiglyanecProject = projectsData2.find(p => p.name === 'antiglyanec');
+const storeezProject = projectsData2.find(p => p.name === '12Storeez');
+const glavstroyProject = projectsData2.find(p => p.name === 'glavstroy');
+const beregovoyProject = projectsData2.find(p => p.name === 'beregovoy');
+const tsumProject = projectsData2.find(p => p.name === 'tsum');
+const blueprintProject = projectsData2.find(p => p.name === 'blueprint');
+const melaProject = projectsData2.find(p => p.name === 'mela');
 
 export default function Home() {
     return (
         <main className="scroll-animation h-screen overflow-y-scroll snap-y snap-mandatory m-0 p-0">
             <Section1 />
-            <Section2 />
-            <Section3 />
-            <Section4 />
-            <Section5 />
+            {finflareProject && (
+                <ProjectSection 
+                    project={finflareProject}
+                    bgColor="#E5E1DD"
+                    titleColor="#13A0E9"
+                    subtitleColor="#B7A797"
+                    textColor="text-black"
+                />
+            )}
+            {antiglyanecProject && (
+                <ProjectSection 
+                    project={antiglyanecProject}
+                    bgColor="#482110"
+                    titleColor="#F1424A"
+                    subtitleColor="#E4CCC1"
+                    textColor="text-[#E4CCC1]"
+                />
+            )}
+            {storeezProject && (
+                <ProjectSection 
+                    project={storeezProject}
+                    bgColor="#664609"
+                    titleColor="#F0CF12"
+                    subtitleColor="#B7A797"
+                    textColor="text-[#E4CCC1]"
+                />
+            )}
+            {/* {glavstroyProject && (
+                <ProjectSection 
+                    project={glavstroyProject}
+                    bgColor="#2D3A3A"
+                    titleColor="#A8E6CF"
+                    subtitleColor="#FFD93D"
+                    textColor="text-[#C7CEDB]"
+                />
+            )}
+            {beregovoyProject && (
+                <ProjectSection 
+                    project={beregovoyProject}
+                    bgColor="#1A365D"
+                    titleColor="#63B3ED"
+                    subtitleColor="#F687B3"
+                    textColor="text-[#E2E8F0]"
+                />
+            )}
+            {tsumProject && (
+                <ProjectSection 
+                    project={tsumProject}
+                    bgColor="#553C9A"
+                    titleColor="#E53E3E"
+                    subtitleColor="#FBB6CE"
+                    textColor="text-[#F7FAFC]"
+                />
+            )}
+            {blueprintProject && (
+                <ProjectSection 
+                    project={blueprintProject}
+                    bgColor="#1A202C"
+                    titleColor="#48BB78"
+                    subtitleColor="#F6E05E"
+                    textColor="text-[#CBD5E0]"
+                />
+            )}
+            {melaProject && (
+                <ProjectSection 
+                    project={melaProject}
+                    bgColor="#742A2A"
+                    titleColor="#FED7D7"
+                    subtitleColor="#68D391"
+                    textColor="text-[#F7FAFC]"
+                />
+            )} */}
         </main>
     );
 }
@@ -34,7 +129,7 @@ const Section1 = () => {
                         bucketName="project-images"
                         width={60}
                         heigth={60}
-                        projectsData={projectsData}
+                        projectsData={projectsData2}
                     />
                 </div>
             </div>
@@ -49,91 +144,30 @@ const Section1 = () => {
     )
 }
 
-const Section2 = () => {
+const ProjectSection = ({ project, bgColor, titleColor, subtitleColor, textColor }: ProjectSectionProps) => {
     return (
         <div className="min-h-screen snap-start text-[3.5vw] flex flex-col items-center justify-start text-white py-8">
-            <div className="w-full flex flex-col items-center bg-[#E5E1DD] text-white py-8 px-4 space-y-8">
+            <div className="w-full flex flex-col items-center py-8 px-4 space-y-8" style={{ backgroundColor: bgColor }}>
                 <div>
-                    <h1 className="text-2xl font-bold text-center text-[#13A0E9]">
+                    <h1 className="text-2xl font-bold text-center leading-tight" style={{ color: titleColor }}>
                         COMPANY MOSCOW
                     </h1>
-                    <h1 className="text-2xl font-bold text-center text-[#B7A797]">
-                        & FINFLARE
+                    <h1 className="text-2xl font-bold text-center leading-tight" style={{ color: subtitleColor }}>
+                        & {project.label.toUpperCase()}
                     </h1>
                 </div>
 
                 <div className="w-full h-[350px]">
                     <SupabaseImageSlider
                         bucketName="project-images"
-                        folderPath="finflare"
+                        folderPath={project.name}
                         alt="Project Images"
                     />
                 </div>
 
-                <p className="text-black text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl">
-                    Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
+                <p className={`${textColor} text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl`}>
+                    {project.description}
                 </p>
-            </div>
-        </div>
-    )
-}
-
-const Section3 = () => {
-    return (
-        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col items-center justify-start text-white py-8">
-            <div className="w-full flex flex-col items-center bg-[#482110] text-white py-8 px-4 space-y-8">
-                <div>
-                    <h1 className="text-2xl font-bold text-center text-[#F1424A] leading-tight">COMPANY MOSCOW</h1>
-                    <h1 className="text-2xl font-bold text-center text-[#E4CCC1] leading-tight">& BEHIND THE ROOF</h1>
-                </div>
-
-                <div className="w-full h-[350px]">
-                    <SupabaseImageSlider
-                        bucketName="project-images"
-                        folderPath="antiglyanec"
-                        alt="Project Images"
-                    />
-                </div>
-
-                <p className="text-[#E4CCC1] text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl">
-                    Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
-                </p>
-            </div>
-        </div>
-    )
-}
-
-const Section4 = () => {
-    return (
-        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col items-center justify-start text-white py-8">
-            <div className="w-full flex flex-col items-center bg-[#664609] text-white py-8 px-4 space-y-8">
-                <div>
-                    <h1 className="text-2xl font-bold text-center text-[#F0CF12] leading-tight">COMPANY MOSCOW</h1>
-                    <h1 className="text-2xl font-bold text-center text-[#B7A797] leading-tight">& 12 STOREEZ</h1>
-                </div>
-
-                <div className="w-full h-[350px]">
-                    <SupabaseImageSlider
-                        bucketName="project-images"
-                        folderPath="12Storeez"
-                        alt="Project Images"
-                    />
-                </div>
-
-                <p className="text-[#E4CCC1] text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl">
-                    Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
-                </p>
-            </div>
-        </div>
-    )
-}
-
-const Section5 = () => {
-    return (
-        <div className="min-h-screen snap-start text-[3.5vw] bg-[#6B4A8B] flex flex-col items-center justify-center text-white"> 
-            <p>Final Section</p>
-            <div className="flex gap-4">
-               
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 'use client';
 
-import { projectsData } from "@/app/page";
+import { projectsData } from "@/data/projectsData";
 import SupabaseImages from "@/components/images";
 import SupabaseImageSlider from "@/components/SupabaseImageSlider";
 

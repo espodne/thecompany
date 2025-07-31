@@ -8,9 +8,9 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 interface SupabaseImagesProps {
     bucketName: string;
     folderPath?: string;
-    width: number;
-    heigth: number; 
-    projectsData: { label: string, description?: string, href: string }[];
+    width?: number;
+    heigth?: number; 
+    projectsData: { id: number, name: string, label: string, description?: string, href: string }[];
 }
 
 function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }: SupabaseImagesProps) {
@@ -18,6 +18,10 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const isMobile = useIsMobile();
     const containerRef = useRef<HTMLDivElement>(null);
+    
+    // Автоматические размеры в зависимости от устройства
+    const imageWidth = width ?? (isMobile ? 30 : 60);
+    const imageHeight = heigth ?? (isMobile ? 40 : 60);
 
     useEffect(() => {
         if (images.length === 0 || !containerRef.current) return;
@@ -58,7 +62,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             let top = 0, left = 0, size = 0;
 
             do {
-                size = Math.random() * width + heigth; // from 150 to 250 px
+                size = Math.random() * imageWidth + imageHeight;
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 
@@ -79,7 +83,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             size: `${pos.size}px`,
             rotation: `${pos.rotation}deg`,
         })));
-    }, [images, isMobile]);
+    }, [images, isMobile, imageWidth, imageHeight]);
 
     if (loading) return <div className="flex items-center justify-center h-full">Загрузка изображений...</div>;
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;

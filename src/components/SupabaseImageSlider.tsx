@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { useSupabaseImages } from '@/hooks/useSupabaseImages';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface SupabaseImageSliderProps {
   bucketName: string;
@@ -19,6 +20,10 @@ export default function SupabaseImageSlider({
 }: SupabaseImageSliderProps) {
   const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isMobile = useIsMobile();
+  
+  // Динамическая высота: 350px для мобильного, 1050px для десктопа
+  const containerHeight = isMobile ? '350px' : '700px';
 
   // Swipe handling
   const touchStartX = useRef<number | null>(null);
@@ -87,7 +92,10 @@ export default function SupabaseImageSlider({
 
   if (loading) {
     return (
-      <div className={`flex items-center justify-center bg-gray-100 w-screen h-screen ${className}`}>
+      <div 
+        className={`flex items-center justify-center bg-gray-100 w-[99%] ${className}`}
+        style={{ height: containerHeight }}
+      >
         <span className="text-gray-500">Загрузка изображений...</span>
       </div>
     );
@@ -95,7 +103,10 @@ export default function SupabaseImageSlider({
 
   if (error || images.length === 0) {
     return (
-      <div className={`flex items-center justify-center bg-gray-100 w-screen h-screen ${className}`}>
+      <div 
+        className={`flex items-center justify-center bg-gray-100 w-[99%] ${className}`}
+        style={{ height: containerHeight }}
+      >
         <span className="text-gray-500">Изображения не найдены</span>
       </div>
     );
@@ -103,8 +114,11 @@ export default function SupabaseImageSlider({
 
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden w-[99%] h-[350px] ${className}`}
-      style={{ touchAction: 'pan-x pinch-zoom' }}
+      className={`relative flex items-center justify-center overflow-hidden w-[99%] ${className}`}
+      style={{ 
+        touchAction: 'pan-x pinch-zoom',
+        height: containerHeight
+      }}
       onMouseMove={handleMouseMove}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
