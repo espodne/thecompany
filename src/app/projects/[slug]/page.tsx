@@ -27,7 +27,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <SupabaseImages
             bucketName="project-images"
             folderPath={project.name}
-            projectHref={project.href}
+            projectsData={[project]} // только один проект
           />
         </div>
 

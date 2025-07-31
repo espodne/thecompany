@@ -16,6 +16,7 @@ interface SupabaseImagesProps {
 function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }: SupabaseImagesProps) {
     const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
+    const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();
     const containerRef = useRef<HTMLDivElement>(null);
     
@@ -24,15 +25,38 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
     const imageHeight = heigth ?? (isMobile ? 40 : 60);
 
     useEffect(() => {
-        if (images.length === 0 || !containerRef.current) return;
+        if (images.length === 0) return;
+
+        const MAX_IMAGES = 8;
+
+        // Если передан один проект (страница проекта) - показываем все изображения
+        if (projectsData.length === 1) {
+            setImagesToUse(images);
+        } else {
+            // Группируем изображения по проектам и берем по одному из каждого
+            const imagesByProject = images.reduce((acc, image) => {
+                if (image.folderName && !acc[image.folderName]) {
+                    acc[image.folderName] = image;
+                }
+                return acc;
+            }, {} as Record<string, typeof images[0]>);
+
+            const uniqueProjectImages = Object.values(imagesByProject);
+            const finalImages = isMobile 
+                ? uniqueProjectImages.slice(0, 6) 
+                : uniqueProjectImages.slice(0, MAX_IMAGES);
+            
+            setImagesToUse(finalImages);
+        }
+    }, [images, isMobile, projectsData.length]);
+
+    useEffect(() => {
+        if (imagesToUse.length === 0 || !containerRef.current) return;
 
         const container = containerRef.current.getBoundingClientRect();
         const containerWidth = container.width;
         const containerHeight = container.height;
 
-        const MAX_IMAGES = 8;
-
-        const imagesToUse = isMobile ? images.slice(0, 6) : images.slice(0, MAX_IMAGES);
         const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
 
         const MAX_ATTEMPTS = 100;
@@ -83,7 +107,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             size: `${pos.size}px`,
             rotation: `${pos.rotation}deg`,
         })));
-    }, [images, isMobile, imageWidth, imageHeight]);
+    }, [imagesToUse, imageWidth, imageHeight]);
 
     if (loading) return <div className="flex items-center justify-center h-full">Загрузка изображений...</div>;
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
@@ -91,7 +115,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
     return (
         <div ref={containerRef} className="relative w-full h-full">
             {positions.map((pos, index) => {
-                const image = (isMobile ? images.slice(0, 6) : images)[index];
+                const image = imagesToUse[index];
                 if (!image) return null;
 
                 return (
@@ -106,7 +130,14 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                             transform: `rotate(${pos.rotation})`,
                             animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
                         }}
-                        onClick={() => window.location.href = projectsData[index]?.href}
+                        onClick={() => {
+                            const targetProject = image.folderName 
+                                ? projectsData.find(p => p.name === image.folderName)
+                                : projectsData[index];
+                            if (targetProject) {
+                                window.location.href = targetProject.href;
+                            }
+                        }}
                     >
                         <Image
                             src={image.url}
