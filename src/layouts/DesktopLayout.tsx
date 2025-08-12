@@ -4,11 +4,14 @@ import { projectsData } from "@/data/projectsData"
 import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
 import SupabaseImages from "@/components/images"
+import { useActiveSection } from "@/hooks/useActiveSection"
 
 export const DesktopLayout = () => {
+    const activeSection = useActiveSection();
+    
     // Адаптируем данные для Navigation компонента
     const navigationItems = projectsData.map(project => ({
-        id: project.name, // используем name как id для Navigation
+        id: project.href.replace('#', ''), // используем ID из ссылки
         label: project.label,
         href: project.href
     }));
@@ -38,6 +41,7 @@ export const DesktopLayout = () => {
                         <Navigation
                             items={navigationItems}
                             className="mb-8"
+                            activeSection={activeSection}
                         />
                         
                         <div className="flex flex-col gap-4">

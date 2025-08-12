@@ -18,7 +18,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
   
   return (
     <section 
-      id={project.name}
+      id={project.href.replace('#', '')}
       className="snap-section"
     >
       <div className="flex justify-center mb-8">
@@ -49,7 +49,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
 
 export default function ProjectSliders() {
   return (
-    <div className="space-y-32">
+    <div className="space-y-32 snap-section">
       {projectsData.map((project) => (
         <ProjectSlider key={project.id} project={project} />
       ))}

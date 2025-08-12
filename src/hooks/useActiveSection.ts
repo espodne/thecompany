@@ -6,34 +6,28 @@ export const useActiveSection = () => {
   const [activeSection, setActiveSection] = useState<string>('main');
 
   useEffect(() => {
-    console.log('useActiveSection hook initialized');
-    
     const handleScroll = () => {
       const sections = document.querySelectorAll('.snap-section');
-      console.log('Found sections:', sections.length);
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
       
-      // Выводим информацию о всех секциях
-      sections.forEach((section, index) => {
-        console.log(`Section ${index}: id="${section.id}", class="${section.className}"`);
-      });
-      
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      console.log('Scroll detected, sections found:', sections.length);
       console.log('Scroll position:', scrollPosition);
+      
+      // Простой счетчик: определяем номер секции по позиции скролла
+      const sectionIndex = Math.round(scrollPosition / windowHeight);
+      
+      console.log('Section index:', sectionIndex);
       
       let currentSection = 'main';
       
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const sectionBottom = sectionTop + rect.height;
-        
-        console.log(`Section ${section.id}: top=${sectionTop}, bottom=${sectionBottom}`);
-        
-        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-          currentSection = section.id || 'main';
-          console.log(`Found active section: ${currentSection}`);
-        }
-      });
+      if (sectionIndex === 0) {
+        currentSection = 'main';
+      } else if (sectionIndex > 0 && sectionIndex <= sections.length) {
+        // Получаем секцию по индексу (минус 1, так как первая секция - главная)
+        const section = sections[sectionIndex - 1];
+        currentSection = section.id || 'main';
+      }
       
       console.log('Setting active section to:', currentSection);
       setActiveSection(currentSection);

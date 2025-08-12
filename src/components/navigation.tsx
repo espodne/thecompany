@@ -15,27 +15,33 @@ interface NavigationItem {
   export default function Navigation({ items, className = '', activeSection = 'main' }: NavigationProps) {
     const [clickedSection, setClickedSection] = useState<string>('glavstroy');
     
+    console.log('Navigation received activeSection:', activeSection);
+    
+    // Простая логика: используем скролл, если не кликали недавно
+    const [lastClickTime, setLastClickTime] = useState<number>(0);
+    const isRecentlyClicked = Date.now() - lastClickTime < 1000; // 1 секунда
+    
+    // Определяем активную секцию
+    let finalActiveSection = 'glavstroy'; // по умолчанию
+    
+    if (isRecentlyClicked) {
+      finalActiveSection = clickedSection;
+    } else if (activeSection === 'main') {
+      finalActiveSection = 'glavstroy'; // главный экран = первый проект
+    } else {
+      finalActiveSection = activeSection;
+    }
+    
+    console.log('Final active section:', finalActiveSection);
+    
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, itemId: string) => {
       e.preventDefault();
       
-      // Устанавливаем активную секцию при клике
       setClickedSection(itemId);
+      setLastClickTime(Date.now());
       
-      // Извлекаем ID из href (убираем #)
       const id = href.replace('#', '');
-      
-      // Пробуем разные способы найти элемент
-      let element = document.getElementById(id);
-      
-      if (!element) {
-        // Если getElementById не сработал, пробуем querySelector с экранированием
-        try {
-          element = document.querySelector(href);
-        } catch (error) {
-          console.error('Invalid selector:', href);
-          return;
-        }
-      }
+      const element = document.getElementById(id);
       
       if (element) {
         element.scrollIntoView({ 
@@ -49,22 +55,20 @@ interface NavigationItem {
         <nav className={`mb-4 ${className}`}>
         <ul className="flex flex-col gap-2">
           {items.map((item) => {
-            // Простая логика: активна если это кликнутая секция
-            const isActive = clickedSection === item.id;
+            const itemId = item.href.replace('#', '');
+            const isActive = finalActiveSection === itemId;
             
             return (
-              <li key={item.id} className="flex items-center gap-3">
+              <li key={itemId} className="flex items-center gap-3">
                 {isActive && (
-                  <div 
-                    className="w-1 h-1 rounded-full bg-black transition-all duration-300"
-                  />
+                  <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
                 )}
                 {!isActive && (
                   <div className="w-1 h-1" />
                 )}
                 <a 
                   href={item.href}
-                  onClick={(e) => handleClick(e, item.href, item.id)}
+                  onClick={(e) => handleClick(e, item.href, itemId)}
                   className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[600] text-[14px] uppercase cursor-pointer ${
                     isActive ? 'text-black' : 'text-gray-600'
                   }`}
