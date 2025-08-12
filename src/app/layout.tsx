@@ -2,10 +2,10 @@ import "./globals.css";
 import localFont from 'next/font/local'
 
 
-export const greed = localFont({
-  src: '../../public/fonts/greed.woff', // или .woff, .ttf — смотри по расширению
+const oracle = localFont({
+  src: '../../public/fonts/ABCOracleCyrillicPlusVariable-Trial.woff',
   display: 'swap',
-  variable: '--font-greed',
+  variable: '--font-oracle',
 })
 
 export const metadata = {
@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={greed.variable}>
+    <html lang="en" className={oracle.variable}>
       <body
 
       >

@@ -19,19 +19,19 @@ function ProjectSlider({ project }: ProjectSliderProps) {
   return (
     <section 
       id={project.href.replace('#', '')}
-      className="snap-section"
+      className="snap-section pt-4 pb-4"
     >
       <div className="flex justify-center mb-8">
         {imageUrls.length > 0 ? (
           <Slider 
             images={imageUrls}
             alt={project.label}
-            width={800}
-            height={600}
-            className="w-full max-w-4xl"
+            width="100vw"
+            height="100vh"
+            className="w-screen h-full"
           />
         ) : (
-          <div className="w-full max-w-4xl h-96 bg-gray-100 flex items-center justify-center">
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
             <p className="text-gray-500">Изображения не найдены</p>
           </div>
         )}

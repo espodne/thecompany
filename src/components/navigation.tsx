@@ -10,9 +10,10 @@ interface NavigationItem {
     items: NavigationItem[];
     className?: string;
     activeSection?: string;
+    projectsCount?: number;
   }
   
-  export default function Navigation({ items, className = '', activeSection = 'main' }: NavigationProps) {
+  export default function Navigation({ items, className = '', activeSection = 'main', projectsCount = 0 }: NavigationProps) {
     const [clickedSection, setClickedSection] = useState<string>('glavstroy');
     
     console.log('Navigation received activeSection:', activeSection);
@@ -54,27 +55,33 @@ interface NavigationItem {
     return (
         <nav className={`mb-4 ${className}`}>
         <ul className="flex flex-col gap-2">
-          {items.map((item) => {
+          {items.map((item, index) => {
             const itemId = item.href.replace('#', '');
             const isActive = finalActiveSection === itemId;
+            const isProject = index < projectsCount;
             
             return (
-              <li key={itemId} className="flex items-center gap-3">
-                {isActive && (
-                  <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
+              <li key={itemId}>
+                {index === projectsCount && (
+                  <div className="mb-4 mt-6">
+                    <p className="text-[8px] uppercase font-bold text-[#838383] indent-4">ПРОЕКТЫ</p>
+                  </div>
                 )}
-                {!isActive && (
-                  <div className="w-1 h-1" />
-                )}
-                <a 
-                  href={item.href}
-                  onClick={(e) => handleClick(e, item.href, itemId)}
-                  className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[600] text-[14px] uppercase cursor-pointer ${
-                    isActive ? 'text-black' : 'text-gray-600'
-                  }`}
-                >
-                  {item.label}
-                </a>
+                <div className="flex items-center gap-3">
+                  {isActive && (
+                    <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
+                  )}
+                  {!isActive && (
+                    <div className="w-1 h-1" />
+                  )}
+                  <a 
+                    href={item.href}
+                    onClick={(e) => handleClick(e, item.href, itemId)}
+                    className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[700] text-[14px] uppercase cursor-pointer text-[#141414]`}
+                  >
+                    {item.label}
+                  </a>
+                </div>
               </li>
             );
           })}

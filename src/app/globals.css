@@ -3,14 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-greed: 'Greed', Arial, sans-serif; }
+  --font-oracle: 'ABCOracleCyrillicPlusVariable', Arial, sans-serif; }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-oracle: var(--font-greed);}
+  --font-oracle: var(--font-oracle);}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -20,9 +20,9 @@
 }
 
 @font-face {
-  font-family: 'Greed';
-  src: url('/fonts/greed.woff2') format('woff2'),
-       url('/fonts/greed.woff') format('woff');
+  font-family: 'ABCOracleCyrillicPlusVariable';
+  src: url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2'),
+       url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff') format('woff');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -35,7 +35,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-greed);
+  font-family: var(--font-oracle);
   margin: 0;
   height: 100vh;
 
@@ -62,7 +62,7 @@ body {
 
 .text-style {
   font-size: 16px;
-  font-family: 'Greed', Arial, sans-serif;
+  font-family: var(--font-oracle);
   font-weight: 450;
   font-size: 32px;
   line-height: 36px;
@@ -73,7 +73,7 @@ body {
 .small-style {
   font-size: 12px;
   text-transform: uppercase;
-  font-family: 'Greed', Arial, sans-serif;
+  font-family: var(--font-oracle);
   font-weight: 750;
   font-size: 12px;
   line-height: 1;
@@ -85,7 +85,7 @@ body {
 .heading-style {
   font-size: 20px;
   text-transform: uppercase;
-  font-family: 'Greed', Arial, sans-serif;
+  font-family: var(--font-oracle);
   line-height: 2;
   font-weight: 750;
   font-variation-settings: 'wght' 900;

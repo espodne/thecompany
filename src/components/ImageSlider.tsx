@@ -45,9 +45,9 @@ export default function Slider({
       <Image
         src={images[currentIndex] || images[0]}
         alt={alt}
-        width={800}
-        height={600}
-        className="max-w-full max-h-full object-contain transition-opacity duration-150"
+        width={1920}
+        height={1080}
+        className="w-full h-full object-cover transition-opacity duration-150"
         priority
       />
     </div>
