@@ -10,6 +10,7 @@ interface SupabaseImageSliderProps {
   folderPath: string;
   alt: string;
   className?: string;
+  height?: string; // кастомная высота
 }
 
 export default function SupabaseImageSlider({
@@ -17,13 +18,14 @@ export default function SupabaseImageSlider({
   folderPath,
   alt,
   className = "",
+  height,
 }: SupabaseImageSliderProps) {
   const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = useIsMobile();
   
-  // Динамическая высота: 350px для мобильного, 1050px для десктопа
-  const containerHeight = isMobile ? '350px' : '700px';
+  // Динамическая высота: используем кастомную высоту если передана, иначе дефолтную
+  const containerHeight = height || (isMobile ? '350px' : '700px');
 
   // Swipe handling
   const touchStartX = useRef<number | null>(null);

@@ -146,9 +146,9 @@ const Section1 = () => {
 
 const ProjectSection = ({ project, bgColor, titleColor, subtitleColor, textColor }: ProjectSectionProps) => {
     return (
-        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col items-center justify-start text-white py-8">
-            <div className="w-full flex flex-col items-center py-8 px-4 space-y-8" style={{ backgroundColor: bgColor }}>
-                <div>
+        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col items-center justify-start text-white">
+            <div className="w-full min-h-screen flex flex-col items-center py-8 px-4" style={{ backgroundColor: bgColor }}>
+                <div className="mb-8">
                     <h1 className="text-2xl font-bold text-center leading-tight" style={{ color: titleColor }}>
                         COMPANY MOSCOW
                     </h1>
@@ -157,15 +157,16 @@ const ProjectSection = ({ project, bgColor, titleColor, subtitleColor, textColor
                     </h1>
                 </div>
 
-                <div className="w-full h-[350px]">
+                <div className="w-full flex-1 mb-8">
                     <SupabaseImageSlider
                         bucketName="project-images"
                         folderPath={project.name}
                         alt="Project Images"
+                        className="h-full"
                     />
                 </div>
 
-                <p className={`${textColor} text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl`}>
+                <p className={`${textColor} text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl mb-8`}>
                     {project.description}
                 </p>
             </div>

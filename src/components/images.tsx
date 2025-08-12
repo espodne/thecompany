@@ -135,7 +135,28 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                                 ? projectsData.find(p => p.name === image.folderName)
                                 : projectsData[index];
                             if (targetProject) {
-                                window.location.href = targetProject.href;
+                                // Извлекаем ID из href (убираем #)
+                                const id = targetProject.href.replace('#', '');
+                                
+                                // Пробуем разные способы найти элемент
+                                let element = document.getElementById(id);
+                                
+                                if (!element) {
+                                    // Если getElementById не сработал, пробуем querySelector с экранированием
+                                    try {
+                                        element = document.querySelector(targetProject.href);
+                                    } catch (error) {
+                                        console.error('Invalid selector:', targetProject.href);
+                                        return;
+                                    }
+                                }
+                                
+                                if (element) {
+                                    element.scrollIntoView({ 
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }
                             }
                         }}
                     >
