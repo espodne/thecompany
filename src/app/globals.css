@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-oracle: 'ABCOracleCyrillicPlusVariable', Arial, sans-serif; }
+  --font-oracle: var(--font-oracle), Arial, sans-serif; }
 
 @theme inline {
   --color-background: var(--background);
@@ -19,14 +19,7 @@
   }
 }
 
-@font-face {
-  font-family: 'ABCOracleCyrillicPlusVariable';
-  src: url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2'),
-       url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff') format('woff');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 html {
   scroll-behavior: smooth;

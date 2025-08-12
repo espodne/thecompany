@@ -86,7 +86,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             let top = 0, left = 0, size = 0;
 
             do {
-                size = Math.random() * imageWidth + imageHeight;
+                size = 150; // Фиксированный размер для всех изображений
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 

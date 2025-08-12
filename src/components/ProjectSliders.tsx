@@ -37,9 +37,9 @@ function ProjectSlider({ project }: ProjectSliderProps) {
         )}
       </div>
       
-      <div className="text-center">
-        <h2 className="text-3xl font-bold mb-4">{project.label}</h2>
-        <p className="text-lg leading-relaxed max-w-2xl mx-auto whitespace-pre-line">
+      <div className="text-left">
+        <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">{project.label}</h2>
+        <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
           {project.description}
         </p>
       </div>

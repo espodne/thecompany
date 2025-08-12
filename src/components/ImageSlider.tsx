@@ -47,7 +47,7 @@ export default function Slider({
         alt={alt}
         width={1920}
         height={1080}
-        className="w-full h-full object-cover transition-opacity duration-150"
+        className="w-full h-full object-cover border-2 border-black transition-opacity duration-150"
         priority
       />
     </div>

@@ -37,7 +37,6 @@ interface NavigationItem {
     
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, itemId: string) => {
       e.preventDefault();
-      
       setClickedSection(itemId);
       setLastClickTime(Date.now());
       
@@ -63,7 +62,7 @@ interface NavigationItem {
             return (
               <li key={itemId}>
                 {index === projectsCount && (
-                  <div className="mb-4 mt-6">
+                  <div className="mb-2 mt-6">
                     <p className="text-[8px] uppercase font-bold text-[#838383] indent-4">ПРОЕКТЫ</p>
                   </div>
                 )}
