@@ -98,12 +98,12 @@ body {
 /* Отступ для навигации на больших экранах */
 @media (min-width: 1024px) {
   .desktop-navigation {
-    margin-top: 10rem;
+    margin-top: 6rem;
   }
 }
 
 @media (min-width: 1440px) {
   .desktop-navigation {
-    margin-top: 10rem;
+    margin-top: 6rem;
   }
 }
