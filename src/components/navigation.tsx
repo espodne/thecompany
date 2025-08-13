@@ -57,7 +57,7 @@ interface NavigationItem {
           {items.map((item, index) => {
             const itemId = item.href.replace('#', '');
             const isActive = finalActiveSection === itemId;
-            const isProject = index < projectsCount;
+            // const isProject = index < projectsCount;
             
             return (
               <li key={itemId}>
@@ -78,7 +78,7 @@ interface NavigationItem {
                     onClick={(e) => handleClick(e, item.href, itemId)}
                     className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[700] text-[14px] uppercase cursor-pointer text-[#141414]`}
                   >
-                    {item.label}
+                    {item.label} <span className="text-[#A6A6A6] ml-3">2024</span>
                   </a>
                 </div>
               </li>

@@ -50,8 +50,8 @@ export const DesktopLayout = () => {
                     <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
                     {/* Навигация и кнопки внизу */}
-                    <div className="mt-auto overflow-y-auto">
-                        <p className="text-[8px] uppercase font-bold text-[#838383] mb-2 indent-4"
+                    <div className="mt-auto overflow-y-auto desktop-navigation">
+                        <p className="text-[8px] h-6 uppercase font-bold text-[#838383] indent-4 sticky top-0 bg-white z-10"
                         >Проекты</p>
                         <Navigation
                             items={navigationItems}
