@@ -48,6 +48,15 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             
             setImagesToUse(finalImages);
         }
+
+        // Предзагружаем изображения
+        images.forEach(image => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = image.url;
+            document.head.appendChild(link);
+        });
     }, [images, isMobile, projectsData.length]);
 
     useEffect(() => {
@@ -86,7 +95,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             let top = 0, left = 0, size = 0;
 
             do {
-                size = 150; // Фиксированный размер для всех изображений
+                size = isMobile ? 60 : 150; // Размер в зависимости от устройства
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 
@@ -96,7 +105,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                 attempt++;
             } while (isOverlapping(top, left, size) && attempt < MAX_ATTEMPTS);
 
-            const rotation = Math.random() * 20 - 10; // random angle from -10 to +10 degrees
+            const rotation = 0; // Убираем наклон
 
             newPositions.push({ top, left, size, rotation });
         }
@@ -109,7 +118,6 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
         })));
     }, [imagesToUse, imageWidth, imageHeight]);
 
-    if (loading) return <div className="flex items-center justify-center h-full">Загрузка изображений...</div>;
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
 
     return (
@@ -165,7 +173,10 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                             alt={image.name}
                             width={500}
                             height={500}
-                            className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto border-2 border-black"
+                            priority={true}
+                            loading="eager"
+                            unoptimized={true}
+                            className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto border-1 border-black"
                             data-speed={Math.random() * 2 + 1}
                         />
                     </div>

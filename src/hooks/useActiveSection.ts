@@ -11,13 +11,8 @@ export const useActiveSection = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       
-      console.log('Scroll detected, sections found:', sections.length);
-      console.log('Scroll position:', scrollPosition);
-      
       // Простой счетчик: определяем номер секции по позиции скролла
       const sectionIndex = Math.round(scrollPosition / windowHeight);
-      
-      console.log('Section index:', sectionIndex);
       
       let currentSection = 'main';
       
@@ -29,7 +24,6 @@ export const useActiveSection = () => {
         currentSection = section.id || 'main';
       }
       
-      console.log('Setting active section to:', currentSection);
       setActiveSection(currentSection);
     };
 
@@ -44,6 +38,5 @@ export const useActiveSection = () => {
     };
   }, []);
 
-  console.log('Current active section:', activeSection);
   return activeSection;
 };

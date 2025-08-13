@@ -1,99 +1,192 @@
 'use client';
 
-import { projectsData } from "@/data/projectsData";
 import SupabaseImages from "@/components/images";
+import { projectsData as projectsData2 } from "@/data/projectsData";    
 import SupabaseImageSlider from "@/components/SupabaseImageSlider";
+import MobileNavigation from "@/components/MobileNavigation";
+import Image from "next/image";
 
-export const MobileLayout = () => {
+// Типы
+interface Project {
+    id: number;
+    name: string;
+    label: string;
+    description: string;
+    href: string;
+}
 
-   
+interface ProjectSectionProps {
+    project: Project;
+    bgColor: string;
+    titleColor: string;
+    subtitleColor: string;
+    textColor: string;
+}
 
+// Получаем данные проектов
+const finflareProject = projectsData2.find(p => p.name === 'finflare');
+const antiglyanecProject = projectsData2.find(p => p.name === 'antiglyanec');
+const storeezProject = projectsData2.find(p => p.name === '12Storeez');
+const glavstroyProject = projectsData2.find(p => p.name === 'glavstroy');
+const beregovoyProject = projectsData2.find(p => p.name === 'beregovoy');
+const tsumProject = projectsData2.find(p => p.name === 'tsum');
+const blueprintProject = projectsData2.find(p => p.name === 'blueprint');
+const melaProject = projectsData2.find(p => p.name === 'mela');
+
+export default function Home() {
     return (
-        <div className="flex flex-col items-center  min-h-screen w-full">
-            {/* Screen 1 */}
-            <div className="w-full flex flex-col items-center px-4 py-6">
-                <h1 className="text-2xl font-bold text-center mb-4">COMPANY MOSCOW</h1>
+        <main className="scroll-animation h-screen overflow-y-scroll snap-y snap-mandatory m-0 p-0">
+            <Section1 />
+            {finflareProject && (
+                <ProjectSection 
+                    project={finflareProject}
+                    bgColor="#E5E1DD"
+                    titleColor="#13A0E9"
+                    subtitleColor="#B7A797"
+                    textColor="text-black"
+                />
+            )}
+            {antiglyanecProject && (
+                <ProjectSection 
+                    project={antiglyanecProject}
+                    bgColor="#482110"
+                    titleColor="#F1424A"
+                    subtitleColor="#E4CCC1"
+                    textColor="text-[#E4CCC1]"
+                />
+            )}
+            {storeezProject && (
+                <ProjectSection 
+                    project={storeezProject}
+                    bgColor="#664609"
+                    titleColor="#F0CF12"
+                    subtitleColor="#B7A797"
+                    textColor="text-[#E4CCC1]"
+                />
+            )}
+            {/* {glavstroyProject && (
+                <ProjectSection 
+                    project={glavstroyProject}
+                    bgColor="#2D3A3A"
+                    titleColor="#A8E6CF"
+                    subtitleColor="#FFD93D"
+                    textColor="text-[#C7CEDB]"
+                />
+            )}
+            {beregovoyProject && (
+                <ProjectSection 
+                    project={beregovoyProject}
+                    bgColor="#1A365D"
+                    titleColor="#63B3ED"
+                    subtitleColor="#F687B3"
+                    textColor="text-[#E2E8F0]"
+                />
+            )}
+            {tsumProject && (
+                <ProjectSection 
+                    project={tsumProject}
+                    bgColor="#553C9A"
+                    titleColor="#E53E3E"
+                    subtitleColor="#FBB6CE"
+                    textColor="text-[#F7FAFC]"
+                />
+            )}
+            {blueprintProject && (
+                <ProjectSection 
+                    project={blueprintProject}
+                    bgColor="#1A202C"
+                    titleColor="#48BB78"
+                    subtitleColor="#F6E05E"
+                    textColor="text-[#CBD5E0]"
+                />
+            )}
+            {melaProject && (
+                <ProjectSection 
+                    project={melaProject}
+                    bgColor="#742A2A"
+                    titleColor="#FED7D7"
+                    subtitleColor="#68D391"
+                    textColor="text-[#F7FAFC]"
+                />
+            )} */}
+        </main>
+    );
+}
 
-                <p className="text-sm uppercase tracking-widest text-center indent-5 max-w-[90%] mb-6">
-                    We help brands create exceptional real-life experiences that leave lasting memories people love to share.
-                </p>
+const Section1 = () => {
+    return (
+        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-6">
+            {/* Заголовок - верхняя зона */}
+            <div
+                        className="heading-style mb-3 cursor-pointer"
+                        onClick={() => {
+                            const firstSection = document.querySelector('.snap-section');
+                            if (firstSection) {
+                                firstSection.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        }}
+                    >
+                        <Image src="/MOSCOW.svg" alt="logo" width={180} height={180} />
+                    </div>
+                    <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
-                <div className="w-full mb-10 h-[400px]">
+            {/* Картинки - средняя зона */}
+            <div className=" px-4 py-4 flex items-center justify-center">
+                <div className="w-full h-[350px]">
                     <SupabaseImages
                         bucketName="project-images"
                         width={60}
                         heigth={60}
-                        projectsData={projectsData}
+                        projectsData={projectsData2}
+                    />
+                </div>
+            </div>
+
+                         {/* Кнопка - нижняя зона */}
+             <div className="mt-10 px-4 flex items-end justify-center pb-8">
+                 <MobileNavigation 
+                     items={[
+                         { id: 'glavstroy', label: 'Главстрой', href: '#glavstroy' },
+                         { id: 'finflare', label: 'Finn Flare', href: '#finflare' },
+                         { id: 'antiglyanec', label: 'Behind the Roof', href: '#antiglyanec' },
+                         { id: '12Storeez', label: '12 STOREEZ', href: '#12Storeez' },
+                     ]}
+                     projectsCount={projectsData2.length}
+                 />
+             </div>
+        </div>
+    )
+}
+
+const ProjectSection = ({ project, bgColor, titleColor, subtitleColor, textColor }: ProjectSectionProps) => {
+    return (
+        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col items-center justify-start text-white">
+            <div className="w-full min-h-screen flex flex-col items-center py-8 px-4" style={{ backgroundColor: bgColor }}>
+                <div className="mb-8">
+                    <h1 className="text-2xl font-bold text-center leading-tight" style={{ color: titleColor }}>
+                        COMPANY MOSCOW
+                    </h1>
+                    <h1 className="text-2xl font-bold text-center leading-tight" style={{ color: subtitleColor }}>
+                        & {project.label.toUpperCase()}
+                    </h1>
+                </div>
+
+                <div className="w-full flex-1 mb-8">
+                    <SupabaseImageSlider
+                        bucketName="project-images"
+                        folderPath={project.name}
+                        alt="Project Images"
+                        className="h-full"
                     />
                 </div>
 
-                <button className="w-24 rounded-full mt-30 uppercase bg-black text-white  py-2">
-                    menu
-                </button>
-            </div>
-
-            {/* Screen 2 */}
-            <div className="w-full flex flex-col items-center justify-center bg-[#E5E1DD] text-white py-5 px-4 space-y-6">
-                <div>
-                    <h1 className="text-2xl font-bold text-center text-[#13A0E9]">
-                        COMPANY MOSCOW
-                    </h1>
-                    <h1 className="text-2xl font-bold text-center text-[#B7A797]">
-                        & FINFLARE
-                    </h1>
-                </div>
-
-                <SupabaseImageSlider
-                    bucketName="project-images"
-                    folderPath="finflare"
-                    alt="Project Images"
-
-                />
-
-                <p className="text-black text-sm uppercase tracking-widest [word-spacing:0.3em]  indent-10 text-center">
-                    Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
+                <p className={`${textColor} text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center max-w-4xl mb-8`}>
+                    {project.description}
                 </p>
             </div>
-
-
-            {/* Screen 3 */}
-            <div className="w-full flex flex-col items-center justify-center bg-[#482110] text-white py-5 px-4 space-y-6">
-                <div>
-                    <h1 className="text-2xl font-bold text-center text-[#F1424A] leading-tight">COMPANY MOSCOW</h1>
-                    <h1 className="text-2xl font-bold text-center text-[#E4CCC1] leading-tight">& BEHIND THE ROOF</h1>
-                </div>
-
-                <SupabaseImageSlider
-                    bucketName="project-images"
-                    folderPath="antiglyanec"
-                    alt="Project Images"
-
-                />
-
-                <p className="text-[#E4CCC1] text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center">
-                    Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
-                </p>
-            </div>
-
-            {/* Screen 4 */}
-            <div className="w-full flex flex-col items-center justify-center bg-[#664609] text-white py-5 px-4 space-y-6">
-                <div>
-                    <h1 className="text-2xl font-bold text-center text-[#F0CF12] leading-tight">COMPANY MOSCOW</h1>
-                    <h1 className="text-2xl font-bold text-center text-[#B7A797] leading-tight">& 12 STOREEZ</h1>
-                </div>
-
-                <SupabaseImageSlider
-                    bucketName="project-images"
-                    folderPath="12Storeez"
-                    alt="Project Images"
-
-                />
-
-                <p className="text-[#E4CCC1] text-sm uppercase tracking-widest [word-spacing:0.3em] indent-10 text-center">
-                    Для презентации совместной коллекции брендов Finn Flare и Maneken мы оформили пространство в минималистичной, но выразительной стилистике, отразив главные идеи коллаборации. Центральное место заняли гардеробные шкафы в синем цвете с образами из новой коллекции. Пространство дополнила неоновая инсталляция с логотипом Finn Flare x Maneken, ставшая фотогеничным акцентом. Атмосфера урбанистического уюта поддерживалась деталями, напоминающими школьную или спортивную раздевалку: скамейки, шкафчики и текстиль с меховыми элементами создавали ощущение комфорта и тепла. Витрина с еловыми ветками и снегом добавила зимнего настроения и напомнила об идее утепления, заложенной в коллекции.
-                </p>
-            </div>
-
         </div>
-    );
-};
+    )
+}

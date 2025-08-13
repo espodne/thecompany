@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { projectsData } from "@/data/projectsData"
 import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
@@ -9,6 +10,7 @@ import Image from "next/image"
 
 export const DesktopLayout = () => {
     const activeSection = useActiveSection();
+    const [hideIndicator, setHideIndicator] = useState(false);
 
     // Адаптируем данные для Navigation компонента
     const navigationItems = [
@@ -32,9 +34,9 @@ export const DesktopLayout = () => {
     return (
         <>
             <div className="flex">
-                <div className="w-96 h-screen p-4 flex flex-col fixed left-0 top-0 bg-white">
+                <div className="w-120 h-screen p-4 flex flex-col fixed left-0 top-0 bg-white">
                     <div
-                        className="heading-style mb-3 cursor-pointer"
+                        className="heading-style mb-3 ml-4 mt-4 cursor-pointer"
                         onClick={() => {
                             const firstSection = document.querySelector('.snap-section');
                             if (firstSection) {
@@ -43,11 +45,12 @@ export const DesktopLayout = () => {
                                     block: 'start'
                                 });
                             }
+                            setHideIndicator(true);
                         }}
                     >
                         <Image src="/MOSCOW.svg" alt="logo" width={180} height={180} />
                     </div>
-                    <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
+                    <p className="text-[12px] ml-4 uppercase tracking-widest mb-[100px] [word-spacing:0.3em] indent-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
                     {/* Навигация и кнопки внизу */}
                     <div className="mt-auto overflow-y-auto desktop-navigation">
@@ -55,16 +58,17 @@ export const DesktopLayout = () => {
                         >Проекты</p>
                         <Navigation
                             items={navigationItems}
-                            className="mb-8"
                             activeSection={activeSection}
                             projectsCount={projectsData.length}
+                            hideIndicator={hideIndicator}
+                            onNavigationClick={() => setHideIndicator(false)}
                         />
 
 
                     </div>
                 </div>
 
-                <div className="flex-1 p-4 ml-96 content-container">
+                <div className="flex-1 p-4 ml-120 content-container">
                     {/* Главный экран с сеткой изображений */}
                     <div className="snap-section h-screen" id="main">
                         <SupabaseImages
