@@ -28,26 +28,26 @@ interface Section1Props {
 
 const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
     return (
-        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-6">
+        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-4">
             {/* Заголовок - верхняя зона */}
             <div
-                className="heading-style mb-3 cursor-pointer"
+                className="heading-style mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 bg-white p-4"
                 onClick={() => {
-                    const firstSection = document.querySelector('.snap-section');
-                    if (firstSection) {
-                        firstSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
+                    const mainElement = document.querySelector('main');
+                    if (mainElement) {
+                        mainElement.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
                         });
                     }
                 }}
             >
                 <Image src="/MOSCOW.svg" alt="logo" width={180} height={180} />
             </div>
-            <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
+            <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10 mt-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
             {/* Картинки - средняя зона */}
-            <div className=" px-4 py-4 flex items-center justify-center">
+            <div className="mt-[100px] px-4 py-4 flex items-center justify-center">
                 <div className="w-full h-[350px]">
                     <SupabaseImages
                         bucketName="project-images"
