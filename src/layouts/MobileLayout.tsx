@@ -48,7 +48,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
 
             {/* Картинки - средняя зона */}
             <div className="mt-[100px] px-4 py-4 flex items-center justify-center">
-                <div className="w-full h-[350px]">
+                <div className="w-full h-[250px]">
                     <SupabaseImages
                         bucketName="project-images"
                         width={60}

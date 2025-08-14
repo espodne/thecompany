@@ -52,18 +52,20 @@ export default function Slider({
       />
       
       {/* Progress Indicator */}
-      <div className="absolute bottom-4 left-0 right-0 mx-4 flex gap-1">
-        {images.map((_, index) => (
-          <div
-            key={index}
-            className={`h-px flex-1 transition-all duration-200 ${
-              index === currentIndex 
-                ? 'bg-white' 
-                : 'bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-0 right-0 mx-4 flex gap-1">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              className={`h-px flex-1 transition-all duration-200 ${
+                index === currentIndex 
+                  ? 'bg-white' 
+                  : 'bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
