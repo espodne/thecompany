@@ -47,9 +47,23 @@ export default function Slider({
         alt={alt}
         width={1920}
         height={1080}
-        className="w-full h-full object-cover border-2 border-black transition-opacity duration-150"
+        className="w-full h-full object-cover border-[1px] border-black transition-opacity duration-150"
         priority
       />
+      
+      {/* Progress Indicator */}
+      <div className="absolute bottom-4 left-0 right-0 mx-4 flex gap-1">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className={`h-px flex-1 transition-all duration-200 ${
+              index === currentIndex 
+                ? 'bg-white' 
+                : 'bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

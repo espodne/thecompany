@@ -31,15 +31,15 @@ function MobileProjectSlider({ project }: ProjectSliderProps) {
             className="w-screen h-full"
           />
         ) : (
-          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-            <p className="text-gray-500">Изображения не найдены</p>
+          <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+            <p style={{ color: 'var(--text-secondary)' }}>Изображения не найдены</p>
           </div>
         )}
       </div>
       
       <div className="text-left px-4">
-        <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[12px] uppercase cursor-pointer text-[#141414]">{project.title}</h2>
-        <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[12px] uppercase cursor-pointer text-[#141414] mt-2 indent-8">
+        <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[12px] uppercase cursor-pointer" style={{ color: 'var(--text-primary)' }}>{project.title}</h2>
+        <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[12px] uppercase cursor-pointer mt-2 indent-8" style={{ color: 'var(--text-primary)' }}>
           {project.description}
         </p>
       </div>
