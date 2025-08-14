@@ -81,6 +81,7 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
 
               allImages.push(...folderImages)
             } catch (err) {
+              console.error('Error fetching images:', err)
               // Игнорируем ошибки для отдельных папок
               continue
             }

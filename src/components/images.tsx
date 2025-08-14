@@ -109,7 +109,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             size: `${pos.size}px`,
             rotation: `${pos.rotation}deg`,
         })));
-    }, [imagesToUse, imageWidth, imageHeight]);
+    }, [imagesToUse, imageWidth, imageHeight, isMobile]);
 
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
 
@@ -147,7 +147,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                                     try {
                                         element = document.querySelector(targetProject.href);
                                     } catch (error) {
-                                        console.error('Invalid selector:', targetProject.href);
+                                        console.error('Invalid selector:', targetProject.href, error);
                                         return;
                                     }
                                 }
