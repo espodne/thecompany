@@ -39,7 +39,7 @@ export default function MobileMenu({ items, projectsCount = 0, onLogoClick, isOp
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
             <div className="bg-white w-full h-full flex flex-col">
                 {/* Навигация */}
-                <div className="flex-1 p-6 flex flex-col">
+                <div className="flex-1  flex flex-col">
                     <nav className="flex flex-col h-full">
                         <MobileLogo onLogoClick={onLogoClick} onClose={onClose} />
                         <MobileNavigation 

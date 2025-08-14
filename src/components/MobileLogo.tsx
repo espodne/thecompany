@@ -20,7 +20,7 @@ export default function MobileLogo({ onLogoClick, onClose }: MobileLogoProps) {
                     onLogoClick();
                 }
             }}
-            className="cursor-pointer mb-4"
+            className="cursor-pointer m-4"
         />
     );
 }
