@@ -14,7 +14,7 @@ interface SupabaseImagesProps {
 }
 
 function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }: SupabaseImagesProps) {
-    const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
+    const { images, error } = useSupabaseImages(bucketName, folderPath);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();
@@ -43,20 +43,13 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
 
             const uniqueProjectImages = Object.values(imagesByProject);
             const finalImages = isMobile 
-                ? uniqueProjectImages.slice(0, 6) 
+                ? uniqueProjectImages.slice(0, 7) 
                 : uniqueProjectImages.slice(0, MAX_IMAGES);
             
             setImagesToUse(finalImages);
         }
 
-        // Предзагружаем изображения
-        images.forEach(image => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = 'image';
-            link.href = image.url;
-            document.head.appendChild(link);
-        });
+
     }, [images, isMobile, projectsData.length]);
 
     useEffect(() => {
@@ -176,7 +169,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                             priority={true}
                             loading="eager"
                             unoptimized={true}
-                            className="parallax-image object-cover hover:scale-105 transition-transform duration-300 w-full h-auto border-1 border-black"
+                            className="parallax-image object-cover w-full h-auto border-1 border-black"
                             data-speed={Math.random() * 2 + 1}
                         />
                     </div>

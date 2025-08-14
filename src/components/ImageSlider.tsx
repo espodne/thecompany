@@ -40,7 +40,7 @@ export default function Slider({
       ref={containerRef}
       className={`relative overflow-hidden inline-block ${className}`}
       onMouseMove={handleMouseMove}
-      style={{ maxWidth: width, maxHeight: height }}
+      style={{ width, height }}
     >
       <Image
         src={images[currentIndex] || images[0]}

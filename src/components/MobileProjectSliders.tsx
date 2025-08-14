@@ -8,7 +8,7 @@ interface ProjectSliderProps {
   project: typeof projectsData[0];
 }
 
-function ProjectSlider({ project }: ProjectSliderProps) {
+function MobileProjectSlider({ project }: ProjectSliderProps) {
   const { images, loading, error } = useSupabaseImages("project-images", project.name);
   
   if (loading) return <div className="flex items-center justify-center h-96">Загрузка изображений...</div>;
@@ -19,15 +19,15 @@ function ProjectSlider({ project }: ProjectSliderProps) {
   return (
     <section 
       id={project.href.replace('#', '')}
-      className="snap-section pt-4 pb-4"
+      className="min-h-screen snap-start flex flex-col justify-center"
     >
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-4">
         {imageUrls.length > 0 ? (
           <Slider 
             images={imageUrls}
             alt={project.label}
-            width="100vw"
-            height="100vh"
+            width="90vw"
+            height="90vw"
             className="w-screen h-full"
           />
         ) : (
@@ -37,9 +37,9 @@ function ProjectSlider({ project }: ProjectSliderProps) {
         )}
       </div>
       
-      <div className="text-left">
-        <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">{project.title}</h2>
-        <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
+      <div className="text-left px-4">
+        <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[12px] uppercase cursor-pointer text-[#141414]">{project.title}</h2>
+        <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[12px] uppercase cursor-pointer text-[#141414] mt-2 indent-8">
           {project.description}
         </p>
       </div>
@@ -47,11 +47,11 @@ function ProjectSlider({ project }: ProjectSliderProps) {
   );
 }
 
-export default function ProjectSliders() {
+export default function MobileProjectSliders() {
   return (
-    <div className="space-y-2 snap-section">
+    <div className="snap-y snap-mandatory">
       {projectsData.map((project) => (
-        <ProjectSlider key={project.id} project={project} />
+        <MobileProjectSlider key={project.id} project={project} />
       ))}
     </div>
   );
