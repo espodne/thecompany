@@ -38,7 +38,7 @@ export default function Slider({
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-hidden inline-block ${className}`}
+      className={`relative overflow-hidden inline-block ${className} mt-[60px]`}
       onMouseMove={handleMouseMove}
       style={{ width, height }}
     >
