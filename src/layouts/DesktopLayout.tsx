@@ -34,7 +34,7 @@ export const DesktopLayout = () => {
     return (
         <>
             <div className="flex">
-                <div className="w-120 h-screen p-4 flex flex-col fixed left-0 top-0 bg-white">
+                <div className="w-120 h-screen flex flex-col fixed left-0 top-0 bg-white">
                     <div
                         className="heading-style mb-3 ml-4 mt-4 cursor-pointer"
                         onClick={() => {
@@ -50,7 +50,19 @@ export const DesktopLayout = () => {
                     >
                         <Image src="/MOSCOW.svg" alt="logo" width={180} height={180} />
                     </div>
-                    <p className="text-[12px] ml-4 uppercase tracking-widest mb-[100px] [word-spacing:0.3em] indent-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
+                    <p className={`
+                                font-[400]
+                                text-[12px]
+                                leading-[16px]
+                                [letter-spacing:0em]
+                                w-[300px]
+                                indent-10
+                                ml-4
+                                mb-10
+                                uppercase
+                                font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
+                                transition-all duration-200 ml-1 text-[#141414] cursor-pointer
+                            `}>        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
                     {/* Навигация и кнопки внизу */}
                     <div className="mt-auto overflow-y-auto desktop-navigation">

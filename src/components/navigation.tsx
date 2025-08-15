@@ -83,7 +83,16 @@ interface NavigationItem {
                   <a 
                     href={item.href}
                     onClick={(e) => handleClick(e, item.href, itemId)}
-                    className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[700] text-[14px] uppercase cursor-pointer text-[#141414] ml-1`}
+                    className={`
+                      font-[700]
+                      text-[12px]
+                      leading-[20px]                     /* увеличенное межстрочное */
+                      [letter-spacing:0em]
+                      [word-spacing:0.3em]              /* увеличенное межсловное */
+                      uppercase
+                      font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
+                      transition-all duration-200 text-[#141414] cursor-pointer
+                    `}
                   >
                     {item.label} <span className="text-[#A6A6A6] ml-3">2024</span>
                   </a>

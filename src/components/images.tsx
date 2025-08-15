@@ -169,7 +169,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                             priority={true}
                             loading="eager"
                             unoptimized={true}
-                            className="parallax-image object-cover w-full h-auto border-1 border-black"
+                            className="parallax-image object-cover w-full h-auto"
                             data-speed={Math.random() * 2 + 1}
                         />
                     </div>

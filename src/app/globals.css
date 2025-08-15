@@ -5,6 +5,13 @@
   --foreground: #171717;
   --font-oracle: var(--font-oracle), Arial, sans-serif; }
 
+  @font-face {
+    font-family: 'ABC Oracle Cyrillic Plus Variable Unlicensed Trial';
+    src: url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2');
+    font-weight: 100 900; /* если variable font */
+    font-style: normal;
+  }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
