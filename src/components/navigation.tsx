@@ -73,7 +73,7 @@ interface NavigationItem {
                     <p className="text-[8px] uppercase font-bold text-[#838383] indent-4">ПРОЕКТЫ</p>
                   </div>
                 )}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 ml-1.5">
                   {isActive && !hideIndicator && (activeSection !== 'main' || isRecentlyClicked) && (
                     <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
                   )}
