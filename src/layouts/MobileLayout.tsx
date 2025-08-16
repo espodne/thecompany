@@ -5,7 +5,6 @@ import SupabaseImages from "@/components/images";
 import { projectsData as projectsData2 } from "@/data/projectsData";
 import MenuButton from "@/components/MenuButton";
 import MobileMenu from "@/components/MobileMenu";
-import Image from "next/image";
 import MobileProjectSliders from "@/components/MobileProjectSliders";
 
 
@@ -31,7 +30,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
         <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-4">
             {/* Заголовок - верхняя зона */}
             <div
-                className="heading-style mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 bg-white p-4"
+                className="mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 p-2 bg-white dark:bg-black text-black dark:text-white font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
                 onClick={() => {
                     const mainElement = document.querySelector('main');
                     if (mainElement) {
@@ -42,7 +41,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                     }
                 }}
             >
-                <Image src="/MOSCOW.svg" alt="logo" width={180} height={180} />
+                COMPANY MOSCOW
             </div>
             <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10 mt-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
@@ -70,15 +69,6 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                     projectsCount={projectsData2.length}
                     isOpen={isMenuOpen}
                     onClose={() => setIsMenuOpen(false)}
-                    onLogoClick={() => {
-                        const firstSection = document.querySelector('.snap-section');
-                        if (firstSection) {
-                            firstSection.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    }}
                 />
             </div>
         </div>

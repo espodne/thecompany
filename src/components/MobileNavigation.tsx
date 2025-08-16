@@ -32,7 +32,7 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                     <a 
                                         href={item.href}
                                         onClick={(e) => onItemClick(e, item.href)}
-                                        className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[700] text-[14px] uppercase cursor-pointer text-[#141414] ml-1`}
+                                        className={`transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[700] text-[14px] uppercase cursor-pointer text-[#141414] dark:text-white ml-1`}
                                     >
                                         {item.label} <span className="text-[#A6A6A6] ml-3">2024</span>
                                     </a>

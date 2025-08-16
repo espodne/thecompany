@@ -34,9 +34,9 @@ export const DesktopLayout = () => {
     return (
         <>
             <div className="flex">
-                <div className="w-120 h-screen flex flex-col fixed left-0 top-0 bg-white">
+                <div className="w-120 h-screen flex flex-col fixed left-0 top-0">
                     <div
-                        className="heading-style mb-3 ml-4 mt-4 cursor-pointer"
+                        className="mb-3 ml-4 mt-4 cursor-pointer font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
                         onClick={() => {
                             const firstSection = document.querySelector('.snap-section');
                             if (firstSection) {
@@ -48,7 +48,7 @@ export const DesktopLayout = () => {
                             setHideIndicator(true);
                         }}
                     >
-                        <Image src="/MOSCOW.svg" alt="logo" width={180} height={180} />
+                        COMPANY MOSCOW
                     </div>
                     <p className={`
                                 font-[400]

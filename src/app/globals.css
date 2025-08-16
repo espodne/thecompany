@@ -12,6 +12,14 @@
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'Greed VF-TRIAL';
+    src: url('/fonts/greed.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: condensed;
+  }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
