@@ -27,7 +27,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
             images={imageUrls}
             alt={project.label}
             width="100vw"
-            height="100vh"
+            height="97vh"
             className="w-screen h-full"
           />
         ) : (

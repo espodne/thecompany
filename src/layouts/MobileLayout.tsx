@@ -30,7 +30,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
         <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-4">
             {/* Заголовок - верхняя зона */}
             <div
-                className="mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 p-2 bg-white dark:bg-black text-black dark:text-white font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
+                className="mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 p-4 bg-white dark:bg-black text-black dark:text-white font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
                 onClick={() => {
                     const mainElement = document.querySelector('main');
                     if (mainElement) {
