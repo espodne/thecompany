@@ -85,8 +85,7 @@ export const DesktopLayout = () => {
                     <div className="snap-section h-screen" id="main">
                         <SupabaseImages
                             bucketName="project-images"
-                            width={60}
-                            heigth={130}
+                            folderPath="main"
                             projectsData={projectsData}
                         />
                     </div>
