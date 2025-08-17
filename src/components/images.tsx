@@ -8,21 +8,15 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 interface SupabaseImagesProps {
     bucketName: string;
     folderPath?: string;
-    width?: number;
-    heigth?: number; 
     projectsData: { id: number, name: string, label: string, description?: string, href: string }[];
 }
 
-function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }: SupabaseImagesProps) {
+function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImagesProps) {
     const { images, error } = useSupabaseImages(bucketName, folderPath);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();
     const containerRef = useRef<HTMLDivElement>(null);
-    
-    // Автоматические размеры в зависимости от устройства
-    const imageWidth = width ?? (isMobile ? 30 : 60);
-    const imageHeight = heigth ?? (isMobile ? 40 : 60);
 
     useEffect(() => {
         if (images.length === 0) return;
@@ -53,11 +47,11 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
     }, [images, isMobile, projectsData.length]);
 
     useEffect(() => {
-        if (imagesToUse.length === 0 || !containerRef.current) return;
+        if (imagesToUse.length === 0) return;
 
-        const container = containerRef.current.getBoundingClientRect();
-        const containerWidth = container.width;
-        const containerHeight = container.height;
+        // Фиксированные размеры контейнера для предотвращения дерганья
+        const containerWidth = isMobile ? 350 : 800;
+        const containerHeight = isMobile ? 500 : 600;
 
         const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
 
@@ -88,7 +82,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             let top = 0, left = 0, size = 0;
 
             do {
-                size = isMobile ? 60 : 150; // Размер в зависимости от устройства
+                size = isMobile ? 60 : 150;
                 const maxTop = containerHeight - size;
                 const maxLeft = containerWidth - size;
 
@@ -98,7 +92,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
                 attempt++;
             } while (isOverlapping(top, left, size) && attempt < MAX_ATTEMPTS);
 
-            const rotation = 0; // Убираем наклон
+            const rotation = 0;
 
             newPositions.push({ top, left, size, rotation });
         }
@@ -109,7 +103,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width, heigth }:
             size: `${pos.size}px`,
             rotation: `${pos.rotation}deg`,
         })));
-    }, [imagesToUse, imageWidth, imageHeight, isMobile]);
+    }, [imagesToUse, isMobile]);
 
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
 
