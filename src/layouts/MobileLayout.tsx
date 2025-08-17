@@ -30,7 +30,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
         <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-4">
             {/* Заголовок - верхняя зона */}
             <div
-                className="mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 p-4 bg-white dark:bg-black text-black dark:text-white font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
+                className="mb-3 cursor-pointer fixed top-0 left-0 right-0 z-19 p-4 bg-[var(--background)] text-[var(--foreground)] font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
                 onClick={() => {
                     const mainElement = document.querySelector('main');
                     if (mainElement) {
@@ -46,19 +46,20 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
             <p className="text-[12px] uppercase tracking-widest mb-4 [word-spacing:0.3em] indent-10 mt-10">        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
             {/* Картинки - средняя зона */}
-            <div className="mt-[100px] px-4 py-4 flex items-center justify-center">
-                <div className="w-full h-[250px]">
+            <div className="flex items-center justify-center mb-8">
+                <div className="w-full h-[270px]">
                     <SupabaseImages
                         bucketName="project-images"
                         width={60}
                         heigth={60}
                         projectsData={projectsData2}
+                        folderPath="main"
                     />
                 </div>
             </div>
 
             {/* Кнопка - нижняя зона */}
-            <div className="mt-10 px-4 flex items-end justify-start pb-8">
+            <div className="mt-auto px-4 flex items-end justify-start pb-8">
                 <MenuButton onClick={() => setIsMenuOpen(true)} />
                 <MobileMenu
                     items={projectsData2.map(project => ({

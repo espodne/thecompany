@@ -34,7 +34,7 @@ export const DesktopLayout = () => {
     return (
         <>
             <div className="flex">
-                <div className="w-120 h-screen flex flex-col fixed left-0 top-0">
+                <div className="w-90 h-screen flex flex-col fixed left-0 top-0">
                     <div
                         className="mb-3 ml-4 mt-4 cursor-pointer font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
                         onClick={() => {
@@ -96,39 +96,18 @@ export const DesktopLayout = () => {
                     {/* Секция "О нас" */}
                     <section id="about" className="snap-section pt-4 pb-4">
                         <div className="flex justify-center mb-8">
-                            <Image src="/footer.jpg" alt="О нас" width={1000} height={1000} />
+                            <Image src="/footer.jpg" alt="О нас" width={800} height={800} />
                         </div>
 
                         <div className="flex justify-between text-left">
                             <div>
                                 <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">О НАС</h2>
-                                <p className="transition-all w-[600px] duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
-                                    Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
+                                <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
+                                Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
                                 </p>
-                                <p className="transition-all w-[650px] duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4">
-                                    Пишите нам если хотите поработать или познакомиться.
-                                </p>
+                               
                             </div>
-                            <div>
-                                <div>
-                                    <div className="w-[32px] h-[32px] bg-[#B5B0B0] mb-2"></div>
-                                    <div className="text-[12px] uppercase font-[400] leading-relaxed space-y-2">
-                                        <p>света мухина</p>
-                                        <p>telegram</p>
-                                        <p>телефон</p>
-                                        <p>инст</p>
-                                    </div>
-                                </div>
-                                <div className="mt-4">
-                                    <div className="w-[32px] h-[32px] bg-[#B5B0B0] mb-2"></div>
-                                    <div className="text-[12px] uppercase font-[400] leading-relaxed space-y-2">
-                                        <p>даша леднева</p>
-                                        <p>telegram</p>
-                                        <p>телефон</p>
-                                        <p>инст</p>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                         </div>
                         <h1 className="mt-[500px] font-[350] uppercase text-[50px]">

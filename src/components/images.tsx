@@ -58,7 +58,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
         const MAX_ATTEMPTS = 100;
 
         const isOverlapping = (top: number, left: number, size: number) => {
-            const buffer = 20;
+            const buffer = 10;
             return newPositions.some(pos => {
                 const rect1 = { top, left, bottom: top + size, right: left + size };
                 const rect2 = {
@@ -91,6 +91,8 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
 
                 attempt++;
             } while (isOverlapping(top, left, size) && attempt < MAX_ATTEMPTS);
+
+
 
             const rotation = 0;
 
@@ -126,9 +128,19 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
                         }}
                         onClick={() => {
-                            const targetProject = image.folderName 
-                                ? projectsData.find(p => p.name === image.folderName)
-                                : projectsData[index];
+                            let targetProject;
+                            
+                            if (folderPath === 'main') {
+                                // Для папки main ищем проект по имени файла (без расширения)
+                                const fileName = image.name.replace(/\.[^/.]+$/, ""); // убираем расширение
+                                targetProject = projectsData.find(p => p.name === fileName);
+                            } else {
+                                // Для других папок используем старую логику
+                                targetProject = image.folderName 
+                                    ? projectsData.find(p => p.name === image.folderName)
+                                    : projectsData[index];
+                            }
+                            
                             if (targetProject) {
                                 // Извлекаем ID из href (убираем #)
                                 const id = targetProject.href.replace('#', '');

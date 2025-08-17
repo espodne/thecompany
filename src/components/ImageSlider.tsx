@@ -16,7 +16,7 @@ export default function Slider({
   alt, 
   className = "", 
   width = 300, 
-  height = 200 
+  height = 300 
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,7 @@ export default function Slider({
         alt={alt}
         width={1080}
         height={1080}
-        className="w-full h-full object-cover  transition-opacity duration-150"
+        className="w-full h-full object-cover transition-opacity duration-150"
         priority
       />
       
