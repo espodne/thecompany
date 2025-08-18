@@ -20,17 +20,15 @@ interface NavigationItem {
     
     console.log('Navigation received activeSection:', activeSection);
     
-    // Простая логика: используем скролл, если не кликали недавно
     const [lastClickTime, setLastClickTime] = useState<number>(0);
-    const isRecentlyClicked = Date.now() - lastClickTime < 1000; // 1 секунда
+    const isRecentlyClicked = Date.now() - lastClickTime < 1000; 
     
-    // Определяем активную секцию
-    let finalActiveSection = 'glavstroy'; // по умолчанию
+    let finalActiveSection = 'glavstroy'; 
     
     if (isRecentlyClicked) {
       finalActiveSection = clickedSection;
     } else if (activeSection === 'main') {
-      finalActiveSection = 'glavstroy'; // главный экран = первый проект
+      finalActiveSection = 'glavstroy'; 
     } else {
       finalActiveSection = activeSection;
     }
@@ -42,7 +40,6 @@ interface NavigationItem {
       setClickedSection(itemId);
       setLastClickTime(Date.now());
       
-      // Показываем индикатор при клике на навигацию
       if (onNavigationClick) {
         onNavigationClick();
       }
@@ -64,7 +61,6 @@ interface NavigationItem {
           {items.map((item, index) => {
             const itemId = item.href.replace('#', '');
             const isActive = finalActiveSection === itemId;
-            // const isProject = index < projectsCount;
             
             return (
               <li key={itemId}>
@@ -86,9 +82,9 @@ interface NavigationItem {
                     className={`
                       font-[700]
                       text-[12px]
-                      leading-[20px]                     /* увеличенное межстрочное */
+                      leading-[20px]                     
                       [letter-spacing:0em]
-                      [word-spacing:0.3em]              /* увеличенное межсловное */
+                      [word-spacing:0.3em]     
                       uppercase
                       font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
                       transition-all duration-200 text-[#141414] cursor-pointer
