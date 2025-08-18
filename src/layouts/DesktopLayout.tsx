@@ -6,14 +6,15 @@ import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
 import SupabaseImages from "@/components/images"
 import { useActiveSection } from "@/hooks/useActiveSection"
+import { useScreenHeight } from '@/hooks/useScreenHeight';
 // import Image from "next/image"
 // import { useScreenHeight } from '@/hooks/useScreenHeight';
 
 export const DesktopLayout = () => {
     const activeSection = useActiveSection();
     const [hideIndicator, setHideIndicator] = useState(false);
-    // const screenHeight = useScreenHeight();
-
+    const screenHeight = useScreenHeight();
+    const isSmallHeight = screenHeight < 800;
 
     const navigationItems = [
         ...projectsData.map(project => ({
@@ -82,14 +83,24 @@ export const DesktopLayout = () => {
                     </div>
                 </div>
 
-                <div className="flex-1  ml-100 content-container">
+                <div className="flex-1 ml-100 content-container">
                     {/* Главный экран с сеткой изображений */}
-                    <div className="snap-section h-screen" id="main">
-                        <SupabaseImages
-                            bucketName="project-images"
-                            folderPath="main"
-                            projectsData={projectsData}
-                        />
+                    <div className="snap-section h-[100vh]" id="main">
+                        <div className="flex justify-end w-full h-full">
+                            <div 
+                                className="relative"
+                                style={{
+                                    width: isSmallHeight ? "min(100vw, 665px)" : "min(100vw, 100vh)",
+                                    height: isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"
+                                }}
+                            >
+                                <SupabaseImages
+                                    bucketName="project-images"
+                                    folderPath="main"
+                                    projectsData={projectsData}
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     {/* Секции с проектами */}

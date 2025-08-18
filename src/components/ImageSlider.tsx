@@ -57,7 +57,7 @@ export default function Slider({
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-hidden inline-block touch-none select-none ${className}`}
+      className={`relative overflow-hidden w-full inline-block touch-none select-none ${className}`}
       onMouseMove={handleMouseMove}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
