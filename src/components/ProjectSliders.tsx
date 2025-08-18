@@ -43,7 +43,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
       </div>
       
       <div className={`text-left ${isSmallHeight ? 'flex justify-end' : ''}`}>
-        <div className={isSmallHeight ? 'w-[665px]' : 'w-full'}>
+        <div className={`${isSmallHeight ? 'w-[665px] -mr-1.5' : 'w-full'}`}>
           <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">{project.title}</h2>
           <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
             {project.description}

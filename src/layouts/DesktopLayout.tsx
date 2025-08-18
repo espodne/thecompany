@@ -109,7 +109,7 @@ export const DesktopLayout = () => {
                         </div>
 
                         <div className={`text-left ${screenHeight < 800 ? 'flex justify-end' : ''}`}>
-                            <div className={screenHeight < 800 ? 'w-[665px]' : 'w-full'}>
+                            <div className={`${screenHeight < 800 ? 'w-[665px] -mr-1.5' : 'w-full'}`}>
                                 <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">О НАС</h2>
                                 <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
                                 Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
