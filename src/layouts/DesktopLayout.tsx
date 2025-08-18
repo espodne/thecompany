@@ -35,7 +35,7 @@ export const DesktopLayout = () => {
 
     return (
         <>
-            <div className="flex">
+            <div className="flex p-2.5">
                 <div className="w-90 h-screen flex flex-col fixed left-0 top-0">
                     <div
                         className="mb-3 ml-4 mt-4 cursor-pointer font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
@@ -82,7 +82,7 @@ export const DesktopLayout = () => {
                     </div>
                 </div>
 
-                <div className="flex-1 p-4 ml-120 content-container">
+                <div className="flex-1  ml-100 content-container">
                     {/* Главный экран с сеткой изображений */}
                     <div className="snap-section h-screen" id="main">
                         <SupabaseImages
@@ -93,10 +93,11 @@ export const DesktopLayout = () => {
                     </div>
 
                     {/* Секции с проектами */}
+                    
                     <ProjectSliders />
 
                     {/* Секция "О нас" */}
-                    <section id="about" className="snap-section pt-2.5 pb-2.5">
+                    <section id="about" className="snap-section ">
                         <div className={`flex ${screenHeight < 800 ? 'justify-end' : 'justify-center'} mb-2.5`}>
                             <Image 
                                 src="/footer.jpg" 
