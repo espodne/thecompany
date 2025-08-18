@@ -19,6 +19,7 @@ export default function Slider({
   height = 300 
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageLoading, setImageLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
@@ -33,7 +34,10 @@ export default function Slider({
     const index = Math.floor((x / containerWidth) * images.length);
     const clampedIndex = Math.max(0, Math.min(index, images.length - 1));
     
-    setCurrentIndex(clampedIndex);
+    if (clampedIndex !== currentIndex) {
+      setCurrentIndex(clampedIndex);
+      setImageLoading(true);
+    }
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -51,8 +55,21 @@ export default function Slider({
     const index = Math.floor((currentX / containerWidth) * images.length);
     const clampedIndex = Math.max(0, Math.min(index, images.length - 1));
 
-    setCurrentIndex(clampedIndex);
+    if (clampedIndex !== currentIndex) {
+      setCurrentIndex(clampedIndex);
+      setImageLoading(true);
+    }
   };
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
+  const handleImageError = () => {
+    setImageLoading(false);
+  };
+
+  const currentImage = images[currentIndex] || images[0];
 
   return (
     <div 
@@ -63,13 +80,34 @@ export default function Slider({
       onTouchMove={handleTouchMove}
       style={{ width, height }}
     >
+      {/* Blurred version of the same image as placeholder - only during loading */}
+      {imageLoading && currentImage && (
+        <div className="absolute inset-0">
+          <Image
+            src={currentImage}
+            alt={`${alt} placeholder`}
+            fill
+            className="object-cover"
+            style={{
+              filter: 'blur(12px) contrast(1.1) saturate(0.9) brightness(0.95)',
+              transform: 'scale(1.2)',
+            }}
+            priority
+          />
+        </div>
+      )}
+      
       <Image
-        src={images[currentIndex] || images[0]}
+        src={currentImage}
         alt={alt}
         width={1080}
         height={1080}
-        className="w-full h-full object-cover transition-opacity duration-150"
+        className={`w-full h-full object-cover transition-opacity duration-500 ease-out ${
+          imageLoading ? 'opacity-0' : 'opacity-100'
+        }`}
         priority
+        onLoad={handleImageLoad}
+        onError={handleImageError}
       />
       
       {/* Progress Indicator */}
