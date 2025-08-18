@@ -27,7 +27,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
         id={project.href.replace('#', '')}
         className="snap-section pt-[10px]"
       >
-        <div className="flex justify-end w-full mb-10">
+        <div className="flex justify-end w-full mb-4">
           {imageUrls.length > 0 ? (
             <Slider
               images={imageUrls}
@@ -44,8 +44,8 @@ function ProjectSlider({ project }: ProjectSliderProps) {
         </div>
         <div className={`text-left flex justify-end`}>
            <div className={`${isSmallHeight ? 'w-[665px]' : 'w-[min(100vw,100vh)]'}`}>
-            <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">{project.title}</h2>
-            <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
+            <h2 className="font-[800] text-[14px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">{project.title}</h2>
+            <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
               {project.description}
             </p>
           </div>
