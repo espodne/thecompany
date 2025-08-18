@@ -20,6 +20,7 @@ export default function Slider({
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -35,11 +36,31 @@ export default function Slider({
     setCurrentIndex(clampedIndex);
   };
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null || !containerRef.current) return;
+
+    const container = containerRef.current;
+    const rect = container.getBoundingClientRect();
+    const currentX = e.touches[0].clientX - rect.left;
+    const containerWidth = rect.width;
+
+    const index = Math.floor((currentX / containerWidth) * images.length);
+    const clampedIndex = Math.max(0, Math.min(index, images.length - 1));
+
+    setCurrentIndex(clampedIndex);
+  };
+
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-hidden inline-block ${className} md:mt-0 mt-[60px]`}
+      className={`relative overflow-hidden inline-block touch-none select-none ${className} md:mt-0 mt-[60px]`}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       style={{ width, height }}
     >
       <Image
