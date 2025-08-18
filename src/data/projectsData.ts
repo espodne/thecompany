@@ -26,7 +26,7 @@ export const projectsData = [
     {
         id: 4,
         name: 'finflare',
-        label: 'вечиринка Finflare x manneken',
+        label: 'вечеринка Finflare x manneken',
         title: 'Вечеринка в честь запуска коллаборации Finn Flare & Maneken brand',
         description: 'Мы придумали концепцию мероприятия Apres-ski, нашли площадку\nСделали сет-дизайн и декор, разработали меню и всю программу мероприятия, организовали техническое обеспечение.',
         href: '#finflare',
