@@ -26,15 +26,13 @@ function ProjectSlider({ project }: ProjectSliderProps) {
     >
       <div className={`flex ${isSmallHeight ? 'justify-end' : 'justify-center'} mb-2.5`}>
         {imageUrls.length > 0 ? (
-          <div className={isSmallHeight ? '-mr-1.5' : ''}>
-            <Slider 
-              images={imageUrls}
-              alt={project.label}
-              width={isSmallHeight ? "min(100vw, 665px)" : "100vw"}
-              height={isSmallHeight ? "min(97vh, 665px)" : "97vh"}
-              className="w-screen h-full"
-            />
-          </div>
+          <Slider 
+            images={imageUrls}
+            alt={project.label}
+            width={isSmallHeight ? "min(100vw, 665px)" : "100vw"}
+            height={isSmallHeight ? "min(97vh, 665px)" : "97vh"}
+            className={`w-screen h-full ${isSmallHeight ? '-mr-1.5' : ''}`}
+          />
         ) : (
           <div className="w-full h-full bg-gray-100 flex items-center justify-center">
             <p className="text-gray-500">Изображения не найдены</p>

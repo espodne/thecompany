@@ -98,14 +98,13 @@ export const DesktopLayout = () => {
                     {/* Секция "О нас" */}
                     <section id="about" className="snap-section pt-2.5 pb-2.5">
                         <div className={`flex ${screenHeight < 800 ? 'justify-end' : 'justify-center'} mb-2.5`}>
-                            <div className={screenHeight < 800 ? '-mr-8' : ''}>
-                                <Image 
-                                    src="/footer.jpg" 
-                                    alt="О нас" 
-                                    width={screenHeight < 800 ? 665 : 800} 
-                                    height={screenHeight < 800 ? 665 : 800} 
-                                />
-                            </div>
+                            <Image 
+                                src="/footer.jpg" 
+                                alt="О нас" 
+                                width={screenHeight < 800 ? 665 : 800} 
+                                height={screenHeight < 800 ? 665 : 800} 
+                                className={screenHeight < 800 ? '-mr-1.5' : ''}
+                            />
                         </div>
 
                         <div className={`text-left ${screenHeight < 800 ? 'flex justify-end' : ''}`}>
