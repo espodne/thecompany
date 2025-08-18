@@ -97,7 +97,7 @@ export const DesktopLayout = () => {
                     <ProjectSliders />
 
                     {/* Секция "О нас" */}
-                    <section id="about" className="snap-section ">
+                    {/* <section id="about" className="snap-section ">
                         <div className={`flex ${screenHeight < 800 ? 'justify-end' : 'justify-center'} mb-2.5`}>
                             <Image 
                                 src="/footer.jpg" 
@@ -120,7 +120,7 @@ export const DesktopLayout = () => {
                             hello@moscowcompany.ru
                         </h1>
                         <p className="font-[400] uppercase text-[12px] mb-4">© Московская компания 2025</p>
-                    </section>
+                    </section> */}
 
                     {/* Секция "Контакты" */}
                     {/* <section id="contacts" className="snap-section pt-4 pb-4">
