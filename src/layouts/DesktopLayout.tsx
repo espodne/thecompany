@@ -22,16 +22,16 @@ export const DesktopLayout = () => {
             label: project.label,
             href: project.href
         })),
-        {
-            id: 'about',
-            label: 'О нас',
-            href: '#about'
-        },
-        {
-            id: 'contacts',
-            label: 'Контакты',
-            href: '#contacts'
-        }
+        // {
+        //     id: 'about',
+        //     label: 'О нас',
+        //     href: '#about'
+        // },
+        // {
+        //     id: 'contacts',
+        //     label: 'Контакты',
+        //     href: '#contacts'
+        // }
     ];
 
     return (

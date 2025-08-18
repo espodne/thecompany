@@ -124,6 +124,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             opacity: 0,
                             transform: `rotate(${pos.rotation})`,
                             animation: `fadeIn ${Math.random() * 2 + 1}s forwards ${index * 0.5}s`,
+                            paddingTop: "60px"
                         }}
                         onClick={() => {
                             let targetProject;
