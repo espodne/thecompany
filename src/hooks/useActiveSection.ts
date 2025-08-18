@@ -3,37 +3,66 @@
 import { useState, useEffect } from 'react';
 
 export const useActiveSection = () => {
-  const [activeSection, setActiveSection] = useState<string>('main');
+  const [activeSection, setActiveSection] = useState('main');
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('.snap-section');
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-      const sectionIndex = Math.round(scrollPosition / windowHeight);
-      
-      let currentSection = 'main';
-      
-      if (sectionIndex === 0) {
-        currentSection = 'main';
-      } else if (sectionIndex > 0 && sectionIndex <= sections.length) {
+      sections.forEach((section) => {
+        const element = section as HTMLElement;
+        const sectionTop = element.offsetTop;
+        const sectionHeight = element.offsetHeight;
 
-        const section = sections[sectionIndex - 1];
-        currentSection = section.id || 'main';
-      }
-      
-      setActiveSection(currentSection);
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          const id = element.id || 'main';
+          setActiveSection(id);
+        }
+      });
     };
 
+    // Более агрессивный snap-scroll
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      
+      const sections = document.querySelectorAll('.snap-section');
+      const currentScroll = window.scrollY;
+      const direction = e.deltaY > 0 ? 1 : -1;
+      
+      let targetSection: Element | null = null;
+      
+      if (direction > 0) {
+        // Прокрутка вниз
+        for (let i = 0; i < sections.length; i++) {
+          const section = sections[i] as HTMLElement;
+          if (section.offsetTop > currentScroll + 50) {
+            targetSection = section;
+            break;
+          }
+        }
+      } else {
+        // Прокрутка вверх
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i] as HTMLElement;
+          if (section.offsetTop < currentScroll - 50) {
+            targetSection = section;
+            break;
+          }
+        }
+      }
+      
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
-    
-
-    setTimeout(handleScroll, 100);
+    window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', handleWheel);
     };
   }, []);
 

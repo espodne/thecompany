@@ -60,12 +60,14 @@ body {
 /* Snap scroll для контентной части */
 .content-container {
   scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
   overflow-y: auto;
   height: 100vh;
 }
 
 .snap-section {
-  scroll-snap-align: start;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
