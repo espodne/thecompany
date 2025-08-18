@@ -6,13 +6,13 @@ import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
 import SupabaseImages from "@/components/images"
 import { useActiveSection } from "@/hooks/useActiveSection"
-import Image from "next/image"
-import { useScreenHeight } from '@/hooks/useScreenHeight';
+// import Image from "next/image"
+// import { useScreenHeight } from '@/hooks/useScreenHeight';
 
 export const DesktopLayout = () => {
     const activeSection = useActiveSection();
     const [hideIndicator, setHideIndicator] = useState(false);
-    const screenHeight = useScreenHeight();
+    // const screenHeight = useScreenHeight();
 
 
     const navigationItems = [
