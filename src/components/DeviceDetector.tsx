@@ -20,7 +20,7 @@ export default function DeviceDetector({
             setIsLoaded(true);
         };
 
-        handleResize(); // Initial check
+        handleResize();
 
         mediaQuery.addEventListener('change', handleResize);
 
@@ -28,7 +28,7 @@ export default function DeviceDetector({
     }, []);
 
     if (!isLoaded) {
-        return null; // Показываем пустой экран до определения устройства
+        return null; 
     }
 
     return <>{isMobile ? mobile : desktop}</>;

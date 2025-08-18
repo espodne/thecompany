@@ -49,9 +49,9 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
     useEffect(() => {
         if (imagesToUse.length === 0) return;
 
-        // Фиксированные размеры контейнера для предотвращения дерганья
+
         const containerWidth = isMobile ? 350 : 800;
-        const containerHeight = isMobile ? 500 : 600;
+        const containerHeight = isMobile ? 380 : 600;
 
         const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
 
@@ -131,25 +131,25 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
                             let targetProject;
                             
                             if (folderPath === 'main') {
-                                // Для папки main ищем проект по имени файла (без расширения)
-                                const fileName = image.name.replace(/\.[^/.]+$/, ""); // убираем расширение
+                     
+                                const fileName = image.name.replace(/\.[^/.]+$/, ""); 
                                 targetProject = projectsData.find(p => p.name === fileName);
                             } else {
-                                // Для других папок используем старую логику
+                              
                                 targetProject = image.folderName 
                                     ? projectsData.find(p => p.name === image.folderName)
                                     : projectsData[index];
                             }
                             
                             if (targetProject) {
-                                // Извлекаем ID из href (убираем #)
+                               
                                 const id = targetProject.href.replace('#', '');
                                 
-                                // Пробуем разные способы найти элемент
+                            
                                 let element = document.getElementById(id);
                                 
                                 if (!element) {
-                                    // Если getElementById не сработал, пробуем querySelector с экранированием
+                                 
                                     try {
                                         element = document.querySelector(targetProject.href);
                                     } catch (error) {
