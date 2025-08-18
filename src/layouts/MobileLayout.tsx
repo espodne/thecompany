@@ -50,8 +50,6 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                 <div className="w-full h-[170px]">
                     <SupabaseImages
                         bucketName="project-images"
-                        width={60}
-                        heigth={60}
                         projectsData={projectsData2}
                         folderPath="main"
                     />
