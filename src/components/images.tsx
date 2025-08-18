@@ -23,11 +23,9 @@ function SupabaseImages({ bucketName, folderPath, projectsData }: SupabaseImages
 
         const MAX_IMAGES = 8;
 
-        // Если передан один проект (страница проекта) или папка main - показываем все изображения
         if (projectsData.length === 1 || folderPath === 'main') {
             setImagesToUse(images);
         } else {
-            // Группируем изображения по проектам и берем по одному из каждого
             const imagesByProject = images.reduce((acc, image) => {
                 if (image.folderName && !acc[image.folderName]) {
                     acc[image.folderName] = image;

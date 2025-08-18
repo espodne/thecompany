@@ -20,7 +20,7 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
         setLoading(true)
         
         if (folderPath) {
-          // Загружаем изображения из конкретной папки
+          
           const { data: files, error: listError } = await supabase.storage
             .from(bucketName)
             .list(folderPath, { limit: 100 })
@@ -45,10 +45,10 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
 
           setImages(imageUrls)
         } else {
-          // Загружаем изображения из всех папок
+          
           const allImages: ImageData[] = []
           
-          // Список известных папок проектов
+          
           const projectFolders = [
             'glavstroy', 'beregovoy', 'antiglyanec', 'tsum', 'start-dff', 
             'finflare', 'blueprint', 'mela', '1811', 'ostav', 'csum', 
@@ -82,7 +82,7 @@ export function useSupabaseImages(bucketName: string, folderPath?: string) {
               allImages.push(...folderImages)
             } catch (err) {
               console.error('Error fetching images:', err)
-              // Игнорируем ошибки для отдельных папок
+              
               continue
             }
           }

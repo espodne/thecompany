@@ -12,10 +12,10 @@ export const DesktopLayout = () => {
     const activeSection = useActiveSection();
     const [hideIndicator, setHideIndicator] = useState(false);
 
-    // Адаптируем данные для Navigation компонента
+
     const navigationItems = [
         ...projectsData.map(project => ({
-            id: project.href.replace('#', ''), // используем ID из ссылки
+            id: project.href.replace('#', ''), 
             label: project.label,
             href: project.href
         })),

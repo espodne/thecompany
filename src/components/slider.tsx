@@ -29,7 +29,6 @@ export default function ImageSlider({
     const x = e.clientX - rect.left;
     const containerWidth = rect.width;
     
-    // Вычисляем индекс картинки на основе позиции мыши
     const index = Math.floor((x / containerWidth) * images.length);
     const clampedIndex = Math.max(0, Math.min(index, images.length - 1));
     

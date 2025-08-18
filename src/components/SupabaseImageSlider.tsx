@@ -10,7 +10,7 @@ interface SupabaseImageSliderProps {
   folderPath: string;
   alt: string;
   className?: string;
-  height?: string; // кастомная высота
+  height?: string; 
 }
 
 export default function SupabaseImageSlider({
@@ -24,10 +24,9 @@ export default function SupabaseImageSlider({
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = useIsMobile();
   
-  // Динамическая высота: используем кастомную высоту если передана, иначе дефолтную
   const containerHeight = height || (isMobile ? '350px' : '700px');
 
-  // Swipe handling
+
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -47,7 +46,7 @@ export default function SupabaseImageSlider({
     const deltaX = Math.abs(currentX - touchStartX.current);
     const deltaY = Math.abs(currentY - touchStartY.current);
     
-    // Если горизонтальное движение больше вертикального - блокируем вертикальный скролл
+
     if (deltaX > deltaY && deltaX > 10) {
       e.preventDefault();
       e.stopPropagation();
@@ -65,10 +64,10 @@ export default function SupabaseImageSlider({
     if (Math.abs(distance) > 50) {
       e.preventDefault();
       if (distance > 0) {
-        // swipe left
+       
         setCurrentIndex((prev) => Math.min(prev + 1, images.length - 1));
       } else {
-        // swipe right
+       
         setCurrentIndex((prev) => Math.max(prev - 1, 0));
       }
     }
@@ -78,7 +77,7 @@ export default function SupabaseImageSlider({
     touchEndX.current = null;
   };
 
-  // Mouse movement for desktop
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (images.length === 0) return;
 
