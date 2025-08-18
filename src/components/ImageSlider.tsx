@@ -20,6 +20,7 @@ export default function Slider({
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
@@ -36,7 +37,8 @@ export default function Slider({
     
     if (clampedIndex !== currentIndex) {
       setCurrentIndex(clampedIndex);
-      setImageLoading(true);
+      const newImage = images[clampedIndex];
+      setImageLoading(!loadedImages.has(newImage));
     }
   };
 
@@ -57,17 +59,40 @@ export default function Slider({
 
     if (clampedIndex !== currentIndex) {
       setCurrentIndex(clampedIndex);
-      setImageLoading(true);
+      const newImage = images[clampedIndex];
+      setImageLoading(!loadedImages.has(newImage));
     }
   };
 
   const handleImageLoad = () => {
     setImageLoading(false);
+    setLoadedImages(prev => new Set(prev).add(currentImage));
   };
 
   const handleImageError = () => {
     setImageLoading(false);
   };
+
+  // Preload next and previous images
+  React.useEffect(() => {
+    const preloadImage = (src: string) => {
+      if (!loadedImages.has(src)) {
+        const img = new window.Image();
+        img.onload = () => {
+          setLoadedImages(prev => new Set(prev).add(src));
+        };
+        img.src = src;
+      }
+    };
+
+    // Preload next image
+    const nextIndex = (currentIndex + 1) % images.length;
+    preloadImage(images[nextIndex]);
+
+    // Preload previous image
+    const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    preloadImage(images[prevIndex]);
+  }, [currentIndex, images, loadedImages]);
 
   const currentImage = images[currentIndex] || images[0];
 
@@ -87,12 +112,12 @@ export default function Slider({
             src={currentImage}
             alt={`${alt} placeholder`}
             fill
+            priority={currentIndex === 0}
             className="object-cover"
             style={{
               filter: 'blur(12px) contrast(1.1) saturate(0.9) brightness(0.95)',
               transform: 'scale(1.2)',
             }}
-            priority
           />
         </div>
       )}
@@ -105,9 +130,9 @@ export default function Slider({
         className={`w-full h-full object-cover transition-opacity duration-500 ease-out ${
           imageLoading ? 'opacity-0' : 'opacity-100'
         }`}
-        priority
         onLoad={handleImageLoad}
         onError={handleImageError}
+        loading="lazy"
       />
       
       {/* Progress Indicator */}
