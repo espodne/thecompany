@@ -7,8 +7,8 @@ interface ImageSliderProps {
   images: string[];
   alt: string;
   className?: string;
-  width?: number;
-  height?: number;
+  width?: string | number;
+  height?: string | number;
 }
 
 export default function ImageSlider({ 
@@ -35,15 +35,15 @@ export default function ImageSlider({
     setCurrentIndex(clampedIndex);
   };
 
-
-
   return (
     <div 
       ref={containerRef}
       className={`relative overflow-hidden cursor-pointer ${className}`}
       onMouseMove={handleMouseMove}
-   
-      style={{ width, height }}
+      style={{ 
+        width: typeof width === 'number' ? `${width}px` : width, 
+        height: typeof height === 'number' ? `${height}px` : height 
+      }}
     >
       {/* Основная картинка */}
       <Image

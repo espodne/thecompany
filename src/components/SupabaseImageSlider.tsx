@@ -10,6 +10,7 @@ interface SupabaseImageSliderProps {
   folderPath: string;
   alt: string;
   className?: string;
+  width?: string;
   height?: string; 
 }
 
@@ -18,6 +19,7 @@ export default function SupabaseImageSlider({
   folderPath,
   alt,
   className = "",
+  width,
   height,
 }: SupabaseImageSliderProps) {
   const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
@@ -25,6 +27,7 @@ export default function SupabaseImageSlider({
   const isMobile = useIsMobile();
   
   const containerHeight = height || (isMobile ? '350px' : '700px');
+  const containerWidth = width || '99%';
 
 
   const touchStartX = useRef<number | null>(null);
@@ -94,8 +97,8 @@ export default function SupabaseImageSlider({
   if (loading) {
     return (
       <div 
-        className={`flex items-center justify-center bg-gray-100 w-[99%] ${className}`}
-        style={{ height: containerHeight }}
+        className={`flex items-center justify-center bg-gray-100 ${className}`}
+        style={{ width: containerWidth, height: containerHeight }}
       >
         <span className="text-gray-500">Загрузка изображений...</span>
       </div>
@@ -105,8 +108,8 @@ export default function SupabaseImageSlider({
   if (error || images.length === 0) {
     return (
       <div 
-        className={`flex items-center justify-center bg-gray-100 w-[99%] ${className}`}
-        style={{ height: containerHeight }}
+        className={`flex items-center justify-center bg-gray-100 ${className}`}
+        style={{ width: containerWidth, height: containerHeight }}
       >
         <span className="text-gray-500">Изображения не найдены</span>
       </div>
@@ -115,9 +118,10 @@ export default function SupabaseImageSlider({
 
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden w-[99%] ${className}`}
+      className={`relative flex items-center justify-center overflow-hidden ${className}`}
       style={{ 
         touchAction: 'pan-x pinch-zoom',
+        width: containerWidth,
         height: containerHeight
       }}
       onMouseMove={handleMouseMove}

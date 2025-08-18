@@ -7,10 +7,12 @@ import ProjectSliders from "@/components/ProjectSliders"
 import SupabaseImages from "@/components/images"
 import { useActiveSection } from "@/hooks/useActiveSection"
 import Image from "next/image"
+import { useScreenHeight } from '@/hooks/useScreenHeight';
 
 export const DesktopLayout = () => {
     const activeSection = useActiveSection();
     const [hideIndicator, setHideIndicator] = useState(false);
+    const screenHeight = useScreenHeight();
 
 
     const navigationItems = [
@@ -94,21 +96,25 @@ export const DesktopLayout = () => {
                     <ProjectSliders />
 
                     {/* Секция "О нас" */}
-                    <section id="about" className="snap-section pt-4 pb-4">
-                        <div className="flex justify-center mb-8">
-                            <Image src="/footer.jpg" alt="О нас" width={800} height={800} />
+                    <section id="about" className="snap-section pt-2.5 pb-2.5">
+                        <div className={`flex ${screenHeight < 800 ? 'justify-end' : 'justify-center'} mb-2.5`}>
+                            <div className={screenHeight < 800 ? '-mr-8' : ''}>
+                                <Image 
+                                    src="/footer.jpg" 
+                                    alt="О нас" 
+                                    width={screenHeight < 800 ? 665 : 800} 
+                                    height={screenHeight < 800 ? 665 : 800} 
+                                />
+                            </div>
                         </div>
 
-                        <div className="flex justify-between text-left">
-                            <div>
+                        <div className={`text-left ${screenHeight < 800 ? 'flex justify-end' : ''}`}>
+                            <div className={screenHeight < 800 ? 'w-[665px]' : 'w-full'}>
                                 <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[14px] uppercase cursor-pointer text-[#141414]">О НАС</h2>
                                 <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[14px] uppercase cursor-pointer text-[#141414] mt-4 indent-12">
                                 Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
                                 </p>
-                               
                             </div>
-                           
-
                         </div>
                         <h1 className="mt-[500px] font-[350] uppercase text-[50px]">
                             hello@moscowcompany.ru
