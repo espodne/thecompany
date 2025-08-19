@@ -1,14 +1,20 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useActiveSection = () => {
   const [activeSection, setActiveSection] = useState('main');
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const handleScroll = () => {
-      const sections = document.querySelectorAll('.snap-section');
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const sections = container.querySelectorAll('.snap-section');
+      const scrollTop = container.scrollTop;
+      const containerHeight = container.clientHeight;
+      const scrollPosition = scrollTop + containerHeight / 2;
 
       sections.forEach((section) => {
         const element = section as HTMLElement;
@@ -22,12 +28,9 @@ export const useActiveSection = () => {
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return activeSection;
+  return { activeSection, containerRef };
 };

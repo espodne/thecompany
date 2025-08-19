@@ -16,21 +16,21 @@ interface NavigationItem {
   }
   
   export default function Navigation({ items, className = '', activeSection = 'main', projectsCount = 0, hideIndicator = false, onNavigationClick }: NavigationProps) {
-    const [clickedSection, setClickedSection] = useState<string>('glavstroy');
+    const [clickedSection, setClickedSection] = useState<string>('');
+    const [lastClickTime, setLastClickTime] = useState<number>(0);
     
     console.log('Navigation received activeSection:', activeSection);
     
-    const [lastClickTime, setLastClickTime] = useState<number>(0);
-    const isRecentlyClicked = Date.now() - lastClickTime < 1000; 
+    // Используем clickedSection только если клик был недавно (1 секунда)
+    const isRecentlyClicked = Date.now() - lastClickTime < 1000;
     
-    let finalActiveSection = 'glavstroy'; 
+    // Определяем финальную активную секцию
+    let finalActiveSection = activeSection;
     
-    if (isRecentlyClicked) {
+    if (isRecentlyClicked && clickedSection) {
       finalActiveSection = clickedSection;
     } else if (activeSection === 'main') {
-      finalActiveSection = 'glavstroy'; 
-    } else {
-      finalActiveSection = activeSection;
+      finalActiveSection = 'glavstroy'; // дефолтная секция для main
     }
     
     console.log('Final active section:', finalActiveSection);
@@ -70,10 +70,10 @@ interface NavigationItem {
                   </div>
                 )}
                 <div className="flex items-center gap-1.5 ml-1.5">
-                  {isActive && !hideIndicator && (activeSection !== 'main' || isRecentlyClicked) && (
+                  {isActive && !hideIndicator && (
                     <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
                   )}
-                  {(!isActive || hideIndicator || (activeSection === 'main' && !isRecentlyClicked)) && (
+                  {(!isActive || hideIndicator) && (
                     <div className="w-1 h-1" />
                   )}
                   <a 
