@@ -40,7 +40,15 @@ export default function MobileMenu({ items, projectsCount = 0, isOpen, onClose }
                 <div className="flex-1  flex flex-col">
                     <nav className="flex flex-col h-full">
                         <div
-                            className="mb-3 ml-4 mt-4 cursor-pointer font-['Greed_VF-TRIAL'] font-black text-[25px] leading-[25px] align-bottom"
+                            className="cursor-pointer font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] font-[800] text-[12px]  leading-[12px] align-bottom
+                
+                
+                            fixed top-0 left-0 right-0 z-19 p-4 bg-[var(--background)] text-[var(--foreground)]"
+                           style={{
+                               fontStyle: 'Triple Bold',
+                               letterSpacing: '0%',
+                               verticalAlign: 'bottom'
+                           }}
                             onClick={() => {
                                 const mainElement = document.querySelector('main');
                                 if (mainElement) {

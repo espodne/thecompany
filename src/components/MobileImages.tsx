@@ -15,7 +15,7 @@ interface SupabaseImagesProps {
     className?: string;
 }
 
-function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, height = 600, className = "" }: SupabaseImagesProps) {
+function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 800, height = 600, className = "" }: SupabaseImagesProps) {
     const { images, error } = useSupabaseImages(bucketName, folderPath);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
@@ -27,16 +27,17 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
     useEffect(() => {
         if (images.length === 0) return;
 
-        // Создаем сетку 5x5 = 25 изображений
-        const GRID_SIZE = 5;
-        const TOTAL_IMAGES = GRID_SIZE * GRID_SIZE;
+        // Создаем сетку 3x4 = 12 изображений
+        const GRID_ROWS = 4;
+        const GRID_COLS = 3;
+        const TOTAL_IMAGES = GRID_ROWS * GRID_COLS;
 
-        // Повторяем изображения если их меньше 25
+        // Повторяем изображения если их меньше 12
         let imagesToUse: typeof images = [];
         if (images.length >= TOTAL_IMAGES) {
             imagesToUse = images.slice(0, TOTAL_IMAGES);
         } else {
-            // Повторяем изображения чтобы заполнить все 25 позиций
+            // Повторяем изображения чтобы заполнить все 12 позиций
             for (let i = 0; i < TOTAL_IMAGES; i++) {
                 imagesToUse.push(images[i % images.length]);
             }
@@ -49,23 +50,25 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
         if (imagesToUse.length === 0) return;
 
         const updatePositions = () => {
-            const GRID_SIZE = 5;
+            const GRID_ROWS = 3;
+            const GRID_COLS = 3;
             const containerWidth = typeof width === 'number' ? width : containerRef.current?.clientWidth || 800;
             const containerHeight = typeof height === 'number' ? height : containerRef.current?.clientHeight || 600;
  
-            const GAP = 10;
-            const LEFT_MARGIN = 20;
+            const GAP = 10; // Увеличил отступ между картинками
+            const SIDE_MARGIN = 10; // Отступы по бокам 10px
+            const SIZE_MULTIPLIER = 0.7; // Множитель размера картинок (0.7 = 70% от исходного размера)
             
-            const availableWidth = containerWidth - (GAP * (GRID_SIZE - 1)) - LEFT_MARGIN;
-            const availableHeight = containerHeight - (GAP * (GRID_SIZE - 1));
-            const imageSize = Math.min(availableWidth / GRID_SIZE, availableHeight / GRID_SIZE);
+            const availableWidth = containerWidth - (GAP * (GRID_COLS - 1)) - (SIDE_MARGIN * 2);
+            const availableHeight = containerHeight - (GAP * (GRID_ROWS - 1));
+            const imageSize = Math.min(availableWidth / GRID_COLS, availableHeight / GRID_ROWS) * SIZE_MULTIPLIER;
 
             const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
 
-            for (let row = 0; row < GRID_SIZE; row++) {
-                for (let col = 0; col < GRID_SIZE; col++) {
+            for (let row = 0; row < GRID_ROWS; row++) {
+                for (let col = 0; col < GRID_COLS; col++) {
                     const top = row * (imageSize + GAP);
-                    const left = col * (imageSize + GAP) + LEFT_MARGIN;
+                    const left = col * (imageSize + GAP) + SIDE_MARGIN;
                     const rotation = 0; // Убираем поворот
 
                     newPositions.push({ 
@@ -77,7 +80,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
                 }
             }
 
-            console.log('Grid created:', newPositions.length, 'positions (should be 25)');
+            console.log('Grid created:', newPositions.length, 'positions (should be 12)');
             console.log('Images to use:', imagesToUse.length);
             console.log('Container width:', containerWidth, 'Image size:', imageSize);
 
@@ -103,7 +106,9 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
     return (
         <div ref={containerRef} className={`relative w-full h-full ${className}`} style={{ 
             width: typeof width === 'string' ? width : '100%', 
-            height: typeof height === 'string' ? height : '100%' 
+            height: typeof height === 'string' ? height : '100%',
+            paddingLeft: '5px',
+            paddingRight: '5px'
         }}>
             {positions.map((pos, index) => {
                 const image = imagesToUse[index];
@@ -117,6 +122,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
                             top: pos.top,
                             left: pos.left,
                             width: pos.size,
+                            height: pos.size,
                             opacity: 0,
                             transform: `rotate(${pos.rotation})`,
                             animation: `fadeIn 2s forwards ${Math.random() * 5}s`
@@ -167,7 +173,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
                             width={500}
                             height={500}
                             priority={true}
-                            className="parallax-image object-cover w-full h-auto"
+                            className="parallax-image object-cover w-full h-full"
                             data-speed={Math.random() * 2 + 1}
                         />
                     </div>
@@ -177,4 +183,4 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
     );
 }
 
-export default SupabaseImages;
+export default MobileSupabaseImages;

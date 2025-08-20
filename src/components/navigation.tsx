@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface NavigationItem {
     id: string;
@@ -80,23 +81,57 @@ interface NavigationItem {
                     href={item.href}
                     onClick={(e) => handleClick(e, item.href, itemId)}
                     className={`
-                      font-[700]
+                      font-[800]
                       text-[12px]
                       leading-[20px]                     
-                      [letter-spacing:0em]
+                      
+                      [letter-spacing:0.05em]
                       [word-spacing:0.3em]     
                       uppercase
                       font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
                       transition-all duration-200 text-[#141414] cursor-pointer
                     `}
                   >
-                    {item.label} <span className="text-[#A6A6A6] ml-3">2024</span>
+                    {item.label} <span className="text-[#141414][letter-spacing: 0em] ml-1 font-[300] text-[12px]" style={{
+                      fontWeight: "Triple Regular",
+                      textTransform: "uppercase",
+                      letterSpacing: "-0.7px"
+                    }}>&apos;24</span>
                   </a>
                 </div>
               </li>
             );
           })}
         </ul>
+        
+        {/* Бордер и раздел "О нас / контакты" */}
+        <div className="mt-4 pt-4 border-t border-gray-300 ml-4">
+          <div className="flex items-center ">
+            <div className="w-1 h-1" />
+            <a 
+              href="#about"
+              className="
+                font-[700]
+                text-[12px]
+                leading-[20px]                     
+                [letter-spacing:0em]
+                [word-spacing:0.3em]     
+                uppercase
+                font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
+                transition-all duration-200 text-[#141414] cursor-pointer
+              "
+            >
+              О нас / контакты
+            </a>
+            <Image
+              src="/Vector.svg"
+              alt="Vector"
+              width={12}
+              height={12}
+              className="ml-2"
+            />
+          </div>
+        </div>
       </nav>
     );
   }

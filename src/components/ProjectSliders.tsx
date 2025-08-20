@@ -32,7 +32,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
             <Slider
               images={imageUrls}
               alt={project.label}
-              width={isSmallHeight ? "min(100vw, 665px)" : "min(100vw, 100vh)"}
+              width={isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)"}
               height={isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"}
               className={`w-screen h-full`}
             />
@@ -43,7 +43,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
           )}
         </div>
         <div className={`text-left flex justify-end`}>
-           <div className={`${isSmallHeight ? 'w-[665px]' : 'w-[min(100vw,100vh)]'}`}>
+           <div className={`${isSmallHeight ? 'w-[calc(665px-20px)]' : 'w-[calc(min(100vw,100vh)-20px)]'}`}>
             <h2 className="font-[800] text-[14px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">{project.title}</h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
               {project.description}

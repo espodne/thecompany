@@ -14,7 +14,7 @@ interface MobileNavigationProps {
 
 export default function MobileNavigation({ items, projectsCount = 0, onItemClick }: MobileNavigationProps) {
     return (
-        <div className="flex-1 overflow-y-auto min-h-0 max-h-[90vh] hide-scrollbar">
+        <div className="flex-1 overflow-y-auto mt-20 min-h-0 max-h-[90vh] hide-scrollbar">
             <nav className="mb-4">
                 <ul className="flex flex-col gap-2 mt-10 mb-10">
                     {items.map((item, index) => {
