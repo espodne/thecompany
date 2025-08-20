@@ -73,7 +73,7 @@ export default function Slider({
     setImageLoading(false);
   };
 
-  // Preload next and previous images
+
   React.useEffect(() => {
     const preloadImage = (src: string) => {
       if (!loadedImages.has(src)) {
@@ -85,11 +85,11 @@ export default function Slider({
       }
     };
 
-    // Preload next image
+
     const nextIndex = (currentIndex + 1) % images.length;
     preloadImage(images[nextIndex]);
 
-    // Preload previous image
+
     const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
     preloadImage(images[prevIndex]);
   }, [currentIndex, images, loadedImages]);
@@ -105,7 +105,7 @@ export default function Slider({
       onTouchMove={handleTouchMove}
       style={{ width, height }}
     >
-      {/* Blurred version of the same image as placeholder - only during loading */}
+
       {imageLoading && currentImage && (
         <div className="absolute inset-0">
           <Image
@@ -135,7 +135,7 @@ export default function Slider({
         loading="lazy"
       />
       
-      {/* Progress Indicator */}
+
       {images.length > 1 && (
         <div className="absolute bottom-4 left-0 right-0 mx-4 flex gap-1">
           {images.map((_, index) => (

@@ -55,7 +55,6 @@ export default function AboutSection() {
             </p>
           </div>
           
-          {/* Бордер и копирайт */}
           <div className="mt-4 pt-2 border-t-[2px] border-[#14141433]">
             <div className="flex items-center gap-6 mb-[20px]">
               <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[#141414]">

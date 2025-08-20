@@ -27,17 +27,17 @@ function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 80
     useEffect(() => {
         if (images.length === 0) return;
 
-        // Создаем сетку 3x4 = 12 изображений
+        
         const GRID_ROWS = 4;
         const GRID_COLS = 3;
         const TOTAL_IMAGES = GRID_ROWS * GRID_COLS;
 
-        // Повторяем изображения если их меньше 12
+        
         let imagesToUse: typeof images = [];
         if (images.length >= TOTAL_IMAGES) {
             imagesToUse = images.slice(0, TOTAL_IMAGES);
         } else {
-            // Повторяем изображения чтобы заполнить все 12 позиций
+
             for (let i = 0; i < TOTAL_IMAGES; i++) {
                 imagesToUse.push(images[i % images.length]);
             }
@@ -55,9 +55,9 @@ function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 80
             const containerWidth = typeof width === 'number' ? width : containerRef.current?.clientWidth || 800;
             const containerHeight = typeof height === 'number' ? height : containerRef.current?.clientHeight || 600;
  
-            const GAP = 10; // Увеличил отступ между картинками
-            const SIDE_MARGIN = 10; // Отступы по бокам 10px
-            const SIZE_MULTIPLIER = 0.7; // Множитель размера картинок (0.7 = 70% от исходного размера)
+            const GAP = 10;
+            const SIDE_MARGIN = 10; 
+            const SIZE_MULTIPLIER = 0.7;
             
             const availableWidth = containerWidth - (GAP * (GRID_COLS - 1)) - (SIDE_MARGIN * 2);
             const availableHeight = containerHeight - (GAP * (GRID_ROWS - 1));
@@ -69,7 +69,7 @@ function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 80
                 for (let col = 0; col < GRID_COLS; col++) {
                     const top = row * (imageSize + GAP);
                     const left = col * (imageSize + GAP) + SIDE_MARGIN;
-                    const rotation = 0; // Убираем поворот
+                    const rotation = 0;
 
                     newPositions.push({ 
                         top, 

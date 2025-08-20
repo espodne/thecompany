@@ -27,16 +27,16 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
     useEffect(() => {
         if (images.length === 0) return;
 
-        // Создаем сетку 5x5 = 25 изображений
+
         const GRID_SIZE = 5;
         const TOTAL_IMAGES = GRID_SIZE * GRID_SIZE;
 
-        // Повторяем изображения если их меньше 25
+
         let imagesToUse: typeof images = [];
         if (images.length >= TOTAL_IMAGES) {
             imagesToUse = images.slice(0, TOTAL_IMAGES);
         } else {
-            // Повторяем изображения чтобы заполнить все 25 позиций
+          
             for (let i = 0; i < TOTAL_IMAGES; i++) {
                 imagesToUse.push(images[i % images.length]);
             }
@@ -66,7 +66,7 @@ function SupabaseImages({ bucketName, folderPath, projectsData, width = 800, hei
                 for (let col = 0; col < GRID_SIZE; col++) {
                     const top = row * (imageSize + GAP);
                     const left = col * (imageSize + GAP) + LEFT_MARGIN;
-                    const rotation = 0; // Убираем поворот
+                    const rotation = 0; 
 
                     newPositions.push({ 
                         top, 
