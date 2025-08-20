@@ -106,7 +106,7 @@ interface NavigationItem {
         </ul>
         
         {/* Бордер и раздел "О нас / контакты" */}
-        <div className="mt-4 pt-2 border-t-[2px] border-[#14141433] ml-4">
+        <div className="mt-4 pt-4 border-t-[2px] border-[#14141433] ml-4">
           <div className="flex items-center gap-1.5 ml-[-10px]">
             {finalActiveSection === aboutSectionId && !hideIndicator && (
               <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />

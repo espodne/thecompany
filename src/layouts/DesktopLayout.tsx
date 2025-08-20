@@ -11,7 +11,7 @@ import { useScreenHeight } from '@/hooks/useScreenHeight';
 
 export const DesktopLayout = () => {
     const { activeSection, containerRef } = useActiveSection();
-    const [hideIndicator, setHideIndicator] = useState(false);
+    const [hideIndicator, setHideIndicator] = useState(true);
     const screenHeight = useScreenHeight();
     const isSmallHeight = screenHeight < 800;
 
