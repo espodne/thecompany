@@ -38,13 +38,13 @@ export default function AboutSection() {
           }}
         >
           <div className="mb-[300px]">
-            <h2 className="font-[800] text-[14px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">
+            <h2 className="font-[800] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">
               О нас
             </h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
             Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
             </p>
-            <h2 className="font-[800] my-4 text-[14px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">
+            <h2 className="font-[800] my-4 text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">
               Контакты
             </h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
@@ -58,10 +58,10 @@ export default function AboutSection() {
           {/* Бордер и копирайт */}
           <div className="mt-4 pt-2 border-t-[2px] border-[#14141433]">
             <div className="flex items-center gap-6 mb-[20px]">
-              <p className="font-[400] text-[10px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[#141414]">
+              <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[#141414]">
                 ©2025 Московская компания
               </p>
-              <p className="font-[400] text-[10px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[#141414]">
+              <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[#141414]">
                 hello@companymoscow.com
               </p>
             </div>
