@@ -6,6 +6,7 @@ import MenuButton from "@/components/MenuButton";
 import MobileMenu from "@/components/MobileMenu";
 import MobileProjectSliders from "@/components/MobileProjectSliders";
 import MobileSupabaseImages from "@/components/MobileImages";
+import AboutSection from "@/components/AboutSection";
 
 
 
@@ -16,6 +17,7 @@ export default function Home() {
         <main className="scroll-animation h-screen overflow-y-scroll snap-y snap-mandatory m-0 p-0">
             <Section1 isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <MobileProjectSliders />
+            <AboutSection />
         </main>
     );
 }
@@ -86,11 +88,18 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
 
             {/* Мобильное меню */}
             <MobileMenu
-                items={projectsData2.map(project => ({
-                    id: project.name,
-                    label: project.label,
-                    href: `#${project.name}`
-                }))}
+                items={[
+                    ...projectsData2.map(project => ({
+                        id: project.name,
+                        label: project.label,
+                        href: `#${project.name}`
+                    })),
+                    {
+                        id: 'about',
+                        label: 'О нас / контакты',
+                        href: '#about'
+                    }
+                ]}
                 projectsCount={projectsData2.length}
                 isOpen={isMenuOpen}
                 onClose={() => setIsMenuOpen(false)}

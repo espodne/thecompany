@@ -5,6 +5,7 @@ import { projectsData } from "@/data/projectsData"
 import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
 import SupabaseImages from "@/components/images"
+import AboutSection from "@/components/AboutSection"
 import { useActiveSection } from "@/hooks/useActiveSection"
 import { useScreenHeight } from '@/hooks/useScreenHeight';
 
@@ -74,6 +75,7 @@ export const DesktopLayout = () => {
                             projectsCount={projectsData.length}
                             hideIndicator={hideIndicator}
                             onNavigationClick={() => setHideIndicator(false)}
+                            aboutSectionId="about"
                         />
                     </div>
                 </div>
@@ -97,6 +99,9 @@ export const DesktopLayout = () => {
 
                     {/* Секции с проектами */}
                     <ProjectSliders />
+                    
+                    {/* Секция "О нас" */}
+                    <AboutSection />
                 </div>
             </div>
         </>

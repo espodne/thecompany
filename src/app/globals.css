@@ -77,6 +77,18 @@ body {
 
 }
 
+/* Мобильный snap scroll */
+.scroll-animation {
+  scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+}
+
 
 .text-style {
   font-size: 16px;

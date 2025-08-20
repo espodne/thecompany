@@ -14,9 +14,10 @@ interface NavigationItem {
     projectsCount?: number;
     hideIndicator?: boolean;
     onNavigationClick?: () => void;
+    aboutSectionId?: string;
   }
   
-  export default function Navigation({ items, className = '', activeSection = 'main', projectsCount = 0, hideIndicator = false, onNavigationClick }: NavigationProps) {
+  export default function Navigation({ items, className = '', activeSection = 'main', projectsCount = 0, hideIndicator = false, onNavigationClick, aboutSectionId = 'about' }: NavigationProps) {
     const [clickedSection, setClickedSection] = useState<string>('');
     const [lastClickTime, setLastClickTime] = useState<number>(0);
     
@@ -105,11 +106,33 @@ interface NavigationItem {
         </ul>
         
         {/* Бордер и раздел "О нас / контакты" */}
-        <div className="mt-4 pt-4 border-t border-gray-300 ml-4">
-          <div className="flex items-center ">
-            <div className="w-1 h-1" />
+        <div className="mt-4 pt-4 border-t-[2px] border-[#14141433] ml-4">
+          <div className="flex items-center gap-1.5">
+            {finalActiveSection === aboutSectionId && !hideIndicator && (
+              <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
+            )}
+            {finalActiveSection !== aboutSectionId || hideIndicator ? (
+              <div className="w-1 h-1" />
+            ) : null}
             <a 
-              href="#about"
+              href={`#${aboutSectionId}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setClickedSection(aboutSectionId);
+                setLastClickTime(Date.now());
+                
+                if (onNavigationClick) {
+                  onNavigationClick();
+                }
+                
+                const element = document.getElementById(aboutSectionId);
+                if (element) {
+                  element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }}
               className="
                 font-[700]
                 text-[12px]
