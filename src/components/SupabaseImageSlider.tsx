@@ -137,7 +137,7 @@ export default function SupabaseImageSlider({
         priority
       />
 
-      {/* Progress Indicator */}
+     
       {images.length > 1 && (
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
           <div className="flex gap-[5px] h-[1px] w-[90vw] max-w-[400px]">

@@ -23,16 +23,14 @@ interface NavigationItem {
     
     console.log('Navigation received activeSection:', activeSection);
     
-    // Используем clickedSection только если клик был недавно (1 секунда)
     const isRecentlyClicked = Date.now() - lastClickTime < 1000;
     
-    // Определяем финальную активную секцию
     let finalActiveSection = activeSection;
     
     if (isRecentlyClicked && clickedSection) {
       finalActiveSection = clickedSection;
     } else if (activeSection === 'main') {
-      finalActiveSection = 'glavstroy'; // дефолтная секция для main
+      finalActiveSection = 'glavstroy'; 
     }
     
     console.log('Final active section:', finalActiveSection);
@@ -105,7 +103,6 @@ interface NavigationItem {
           })}
         </ul>
         
-        {/* Бордер и раздел "О нас / контакты" */}
         <div className="mt-4 pt-4 border-t-[2px] border-[#14141433] ml-4">
           <div className="flex items-center gap-1.5 ml-[-10px]">
             {finalActiveSection === aboutSectionId && !hideIndicator && (
