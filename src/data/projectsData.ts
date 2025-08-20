@@ -160,4 +160,12 @@ export const projectsData = [
         href: '#tsum',
 
     },
+    {
+        id: 21,
+        name: 'lmd',
+        label: 'Lamoda',
+        title: 'Оформление, сет-дизайн, разработка концепции, флористическое оформление и мастер класс для ребрендинга компании Lamoda',
+        description: '',
+        href: '#lmd',
+    },
 ]
