@@ -13,9 +13,9 @@ export default function AboutSection() {
       className="snap-section snap-start pt-[10px]"
     >
       <div className="flex justify-end w-full mb-4">
-        <div 
+        <div
           className="relative overflow-hidden"
-          style={{ 
+          style={{
             width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)",
             height: isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"
           }}
@@ -29,11 +29,11 @@ export default function AboutSection() {
           />
         </div>
       </div>
-      
+
       <div className={`text-left flex justify-end`}>
-        <div 
+        <div
           className="flex flex-col"
-          style={{ 
+          style={{
             width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)"
           }}
         >
@@ -42,21 +42,21 @@ export default function AboutSection() {
               О нас
             </h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
-            Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
+              Московская помпания — союз Светы Мухиной и Даши Ледневой, основанный в начале 2024 года. Мы помогаем компаниям делать коллаборации и открытия, запускать рекламные акции, оформлять мероприятия, сцены и помещения, и самое главное — делать это красиво.
             </p>
             <h2 className="font-[800] my-4 text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">
               Контакты
             </h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
-            Света Мухина: Telegram; +79647603755; sveta@companymoscow.com
+              Света Мухина: Telegram; +79647603755; sveta@companymoscow.com
             </p>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
-            Даша леднева: Telegram; +79919649535; Dasha@companymoscow.com
+              Даша леднева: Telegram; +79919649535; Dasha@companymoscow.com
             </p>
           </div>
-          
-          <div className="pt-2 border-t-[1.5px] border-[#14141433]">
-            <div className="flex items-center gap-6 mb-[10px]">
+
+          <div className="pt-2 border-t-[1px] border-[#14141433]">
+            <div className="flex items-center gap-6 mb-[20px]">
               <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[#141414]">
                 ©2025 Московская компания
               </p>

@@ -44,7 +44,9 @@ function ProjectSlider({ project }: ProjectSliderProps) {
         </div>
         <div className={`text-left flex justify-end`}>
            <div className={`${isSmallHeight ? 'w-[calc(665px-20px)]' : 'w-[calc(min(100vw,100vh)-20px)]'}`}>
-            <h2 className="font-[800] text-[14px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">{project.title}</h2>
+            <h2 style={{
+              fontVariationSettings: 'TRIP 1'
+            }} className="font-[800] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer">{project.title}</h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[#141414] cursor-pointer mt-4 indent-12">
               {project.description}
             </p>
