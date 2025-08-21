@@ -11,6 +11,17 @@ interface ImageSliderProps {
   height?: number | string;
 }
 
+
+const getSupabaseImageUrl = (url: string, quality: number = 80, blur: number = 0) => {
+  if (!url.includes('supabase.co')) return url;
+  
+  const params = new URLSearchParams();
+  if (quality !== 80) params.append('quality', quality.toString());
+  if (blur > 0) params.append('blur', blur.toString());
+  
+  return params.toString() ? `${url}?${params.toString()}` : url;
+};
+
 export default function Slider({ 
   images, 
   alt, 
@@ -20,7 +31,6 @@ export default function Slider({
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(true);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
@@ -37,8 +47,7 @@ export default function Slider({
     
     if (clampedIndex !== currentIndex) {
       setCurrentIndex(clampedIndex);
-      const newImage = images[clampedIndex];
-      setImageLoading(!loadedImages.has(newImage));
+      setImageLoading(true);
     }
   };
 
@@ -59,14 +68,16 @@ export default function Slider({
 
     if (clampedIndex !== currentIndex) {
       setCurrentIndex(clampedIndex);
-      const newImage = images[clampedIndex];
-      setImageLoading(!loadedImages.has(newImage));
+      setImageLoading(true);
     }
   };
 
+  const currentImage = images[currentIndex] || images[0];
+  const blurImageUrl = getSupabaseImageUrl(currentImage, 20, 20);
+  const fullImageUrl = getSupabaseImageUrl(currentImage, 80, 0);
+
   const handleImageLoad = () => {
     setImageLoading(false);
-    setLoadedImages(prev => new Set(prev).add(currentImage));
   };
 
   const handleImageError = () => {
@@ -75,26 +86,8 @@ export default function Slider({
 
 
   React.useEffect(() => {
-    const preloadImage = (src: string) => {
-      if (!loadedImages.has(src)) {
-        const img = new window.Image();
-        img.onload = () => {
-          setLoadedImages(prev => new Set(prev).add(src));
-        };
-        img.src = src;
-      }
-    };
-
-
-    const nextIndex = (currentIndex + 1) % images.length;
-    preloadImage(images[nextIndex]);
-
-
-    const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    preloadImage(images[prevIndex]);
-  }, [currentIndex, images, loadedImages]);
-
-  const currentImage = images[currentIndex] || images[0];
+    setImageLoading(true);
+  }, [currentImage]);
 
   return (
     <div 
@@ -106,35 +99,29 @@ export default function Slider({
       style={{ width, height }}
     >
 
-      {imageLoading && currentImage && (
-        <div className="absolute inset-0">
-          <Image
-            src={currentImage}
-            alt={`${alt} placeholder`}
-            fill
-            priority={currentIndex === 0}
-            className="object-cover"
-            style={{
-              filter: 'blur(12px) contrast(1.1) saturate(0.9) brightness(0.95)',
-              transform: 'scale(1.2)',
-            }}
-          />
-        </div>
-      )}
-      
       <Image
-        src={currentImage}
+        src={blurImageUrl}
+        alt={`${alt} placeholder`}
+        fill
+        className="object-cover"
+        style={{
+          filter: 'blur(8px)',
+          
+        }}
+      />
+      
+
+      <Image
+        src={fullImageUrl}
         alt={alt}
-        width={1080}
-        height={1080}
-        className={`w-full h-full object-cover transition-opacity duration-500 ease-out ${
+        fill
+        className={`object-cover transition-opacity duration-300 ${
           imageLoading ? 'opacity-0' : 'opacity-100'
         }`}
         onLoad={handleImageLoad}
         onError={handleImageError}
         loading="lazy"
       />
-      
 
       {images.length > 1 && (
         <div className="absolute bottom-4 left-0 right-0 mx-4 flex gap-1">
