@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
+import { useProjectImages } from '@/hooks/useProjectImages';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useScreenHeight } from '@/hooks/useScreenHeight';
 
@@ -15,7 +15,7 @@ interface PocketbaseImagesProps {
 }
 
 function PocketbaseImages({ projectName, projectsData, width = 800, height = 600, className = "" }: PocketbaseImagesProps) {
-    const { images, error } = usePocketbaseImages(projectName);
+    const { images, error } = useProjectImages(projectName);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { projectsData } from "@/data/projectsData"
+import { useProjects } from "@/contexts/ProjectsContext";
 import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
 import PocketbaseImages from "@/components/images"
@@ -10,18 +10,27 @@ import { useActiveSection } from "@/hooks/useActiveSection"
 import { useScreenHeight } from '@/hooks/useScreenHeight';
 
 export const DesktopLayout = () => {
+    const { projects, loading, error } = useProjects();
     const { activeSection, containerRef } = useActiveSection();
     const [hideIndicator, setHideIndicator] = useState(true);
     const screenHeight = useScreenHeight();
     const isSmallHeight = screenHeight < 800;
 
     const navigationItems = [
-        ...projectsData.map(project => ({
+        ...projects.map(project => ({
             id: project.href.replace('#', ''), 
             label: project.label,
             href: project.href
         })),
     ];
+
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">Loading projects...</div>;
+    }
+
+    if (error) {
+        return <div className="flex items-center justify-center h-screen">Error: {error}</div>;
+    }
 
     return (
         <>
@@ -72,7 +81,7 @@ export const DesktopLayout = () => {
                         <Navigation
                             items={navigationItems}
                             activeSection={activeSection}
-                            projectsCount={projectsData.length}
+                            projectsCount={projects.length}
                             hideIndicator={hideIndicator}
                             onNavigationClick={() => setHideIndicator(false)}
                             aboutSectionId="about"
@@ -86,7 +95,7 @@ export const DesktopLayout = () => {
                         <div className="flex justify-end w-full h-full">
                             <div className="relative">
                                 <PocketbaseImages
-                                    projectsData={projectsData}
+                                    projectsData={projects}
                                     width={isSmallHeight ? "min(100vw, 665px)" : "min(100vw, 100vh)"}
                                     height={isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"}
                                

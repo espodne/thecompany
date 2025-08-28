@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
+import { useProjectImages } from '@/hooks/useProjectImages';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface PocketbaseImageSliderProps {
@@ -20,7 +20,7 @@ export default function PocketbaseImageSlider({
   width,
   height,
 }: PocketbaseImageSliderProps) {
-  const { images, loading, error } = usePocketbaseImages(projectName);
+  const { images, loading, error } = useProjectImages(projectName);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = useIsMobile();
   

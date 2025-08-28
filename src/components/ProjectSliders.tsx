@@ -1,16 +1,17 @@
 "use client";
 
-import { projectsData } from "@/data/projectsData";
+import { useProjects } from "@/contexts/ProjectsContext";
 import Slider from "./ImageSlider";
-import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
 import { useScreenHeight } from '@/hooks/useScreenHeight';
+import { useProjectImages } from "@/hooks/useProjectImages";
+import { Project } from "@/data/projectsData";
 
 interface ProjectSliderProps {
-  project: typeof projectsData[0];
+  project: Project;
 }
 
 function ProjectSlider({ project }: ProjectSliderProps) {
-  const { images, loading, error } = usePocketbaseImages(project.name);
+  const { images, loading, error } = useProjectImages(project.name);
   const screenHeight = useScreenHeight();
   const isSmallHeight = screenHeight < 800;
 
@@ -60,9 +61,11 @@ function ProjectSlider({ project }: ProjectSliderProps) {
 }
 
 export default function ProjectSliders() {
+  const { projects } = useProjects();
+
   return (
     <div className="snap-section">
-      {projectsData.map((project) => (
+      {projects.map((project) => (
         <ProjectSlider key={project.id} project={project} />
       ))}
     </div>

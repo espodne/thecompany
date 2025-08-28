@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { projectsData as projectsData2 } from "@/data/projectsData";
+import { useProjects } from "@/contexts/ProjectsContext";
 import MenuButton from "@/components/MenuButton";
 import MobileMenu from "@/components/MobileMenu";
 import MobileProjectSliders from "@/components/MobileProjectSliders";
@@ -28,6 +28,16 @@ interface Section1Props {
 }
 
 const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
+    const { projects, loading, error } = useProjects();
+    
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">Loading projects...</div>;
+    }
+
+    if (error) {
+        return <div className="flex items-center justify-center h-screen">Error: {error}</div>;
+    }
+    
     return (
         <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-2.5">
             {/* Заголовок - верхняя зона */}
@@ -79,7 +89,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
             <div className="flex items-center justify-center mb-8">
                 <div className="w-full h-[200px]">
                     <MobilePocketbaseImages
-                        projectsData={projectsData2}
+                        projectsData={projects}
                     />
                 </div>
             </div>
@@ -87,7 +97,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
             {/* Мобильное меню */}
             <MobileMenu
                 items={[
-                    ...projectsData2.map(project => ({
+                    ...projects.map(project => ({
                         id: project.name,
                         label: project.label,
                         href: `#${project.name}`
@@ -98,7 +108,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                         href: '#about'
                     }
                 ]}
-                projectsCount={projectsData2.length}
+                projectsCount={projects.length}
                 isOpen={isMenuOpen}
                 onClose={() => setIsMenuOpen(false)}
             />
