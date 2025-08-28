@@ -2,7 +2,7 @@
 
 import { projectsData } from "@/data/projectsData";
 import Slider from "./ImageSlider";
-import { useSupabaseImages } from '@/hooks/useSupabaseImages';
+import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
 import { useScreenHeight } from '@/hooks/useScreenHeight';
 
 interface ProjectSliderProps {
@@ -10,7 +10,7 @@ interface ProjectSliderProps {
 }
 
 function ProjectSlider({ project }: ProjectSliderProps) {
-  const { images, loading, error } = useSupabaseImages("project-images", project.name);
+  const { images, loading, error } = usePocketbaseImages(project.name);
   const screenHeight = useScreenHeight();
   const isSmallHeight = screenHeight < 800;
 

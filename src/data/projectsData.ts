@@ -1,171 +1,37 @@
-export const projectsData = [
-    {
-        id: 1,
-        name: '12Storeez',
-        label: 'магазины 12 Storeez',
-        title: 'Цветочные бары в магазинах 12storeez. 2025',
-        description: 'В честь 8 марта мы построили цветочные станции в 8 бутиках в 5 городах по всей России.\nКаждый покупатель бутика 12storeez мог получить в подарок букет мимозы в специально разработанной и произведенной для активации упаковке.\nПроект длился 10 дней и было задействовано более 50 сотрудников.\nТакже в рамках активации мы сделали весеннее оформление в бутиках и рассылку для более чем 100 блоггеров и инфлюенсеров.',
-        href: '#12Storeez',
-    },
-    {
-        id: 2,
-        name: '1811',
-        label: 'Сет дизайн 1811',
-        title: 'Сет-дизайн и декор мероприятия для бренда 18 11',
-        description: 'Для презентации новой коллекции бренда 1811 “Сад Живерни” в особняке Спиридонова мы воссоздали атмосферу цветущего европейского сада. Гостей встречала цветущая лестница с ароматными французскими розами, “зеленая комната” с холмами, тропинками и звуком поющих птиц, и лаунж-зона с качелями и мебелью как во французских парках.\nДля декора пространства мы использовали более 50 видов цветов и растений, а также трехметровые цветущие ветви деревьев.\nМы разработали и спроектировали особую конструкцию “невидимых” манекенов, что позволило акцентировать внимание гостей только на платьях из новой коллекции бренда.\nТакже мы спроектировали особый конструктив и разработали декор сцены, чтобы комфортно расположить в пространстве более 20 артистов хора и музыкальное оборудование.',
-        href: '#1811',
-    },
-    {
-        id: 3,
-        name: 'start-dff',
-        label: 'Вечеринка DFF & Start',
-        title: 'Start & DFF',
-        description: 'Оформление фотозоны в рамках мероприятия ресторана Deep Fried Friends и онлайн-кинотеатра START. Зона была украшена высокими композициями из роз в главном цвете партнеров. ',
-        href: '#start-dff',
-    },
-    {
-        id: 4,
-        name: 'finflare',
-        label: 'вечеринка Finflare x manneken',
-        title: 'Вечеринка в честь запуска коллаборации Finn Flare & Maneken brand',
-        description: 'Мы придумали концепцию мероприятия Apres-ski, нашли площадку\nСделали сет-дизайн и декор, разработали меню и всю программу мероприятия, организовали техническое обеспечение.',
-        href: '#finflare',
-    },
-    {
-        id: 5,
-        name: 'lamoda',
-        label: 'Летняя вечеринка La moda',
-        title: 'Летнее мероприятие LaModa в саду Рихтера',
-        description: '',
-        href: '#lamoda',
-    },
-    {
-        id: 6,
-        name: 'mela',
-        label: 'Открытие ресторана Mela',
-        title: 'Инсталляция в честь открытия ресторана Mela',
-        description: '',
-        href: '#mela',
-    },
-    {
-        id: 7,
-        name: 'blueprint',
-        label: 'юбилей блюпринта',
-        title: 'Оформление сцены театра "Геликон опера" в честь 10 летия The Blueprint',
-        description: 'Специально для оформления мы подготовили шестиметровые стволы деревьев, покрасили их в фирменный синий цвет The Blueprint и подвесили на сцене театра',
-        href: '#blueprint',
-    },
-    {
-        id: 8,
-        name: 'ostav',
-        label: 'VOLGA — Оставь это ветру',
-        title: 'Фотозоны и декор премьеры фильма "Оставь это ветру" ',
-        description: '',
-        href: '#ostav',
-    },
-    {
-        id: 9,
-        name: 'antiglyanec',
-        label: 'День рождения Антиглянца',
-        title: 'День рождения Telegram канала "Антиглянец" в ресторане "За Крышей"',
-        description: 'Для вечеринки в честь дня рождения Антиглянца мы превратили пространство ресторана "За крышей" в парижскую гостиную полностью преобразив сет ап ресторана.',
-        href: '#antiglyanec',
-    },
-    {
-        id: 10,
-        name: 'antyglyanecxlamoda',
-        label: 'Летняя вечеринка антиглянца',
-        title: 'Летняя вечеринка Telegram канала "Антиглянец" в пентхаусе Большая Дмитровка IX',
-        description: '',
-        href: '#antyglyanecxlamoda',
-    },
-    {
-        id: 11,
-        name: 'beluga',
-        label: 'Бранч Белуги в КМ20',
-        title: 'Бранч Beluga Botanicals в ресторане "КМ 20"',
-        description: '',
-        href: '#beluga',
-    },
-    {
-        id: 12,
-        name: 'glavstroy',
-        label: 'Новогодние подарки для главстрой',
-        title: 'Новогодние подарки для партнеров "Главстрой"',
-        description: "",
-        href: '#glavstroy',
-    },
-    {
-        id: 13,
-        name: 'kmkids',
-        label: 'Детский бранч в КМ20',
-        title: 'Детский бранч в ресторане "КМ 20"',
-        description: '',
-        href: '#kmkids',
-    },
-    {
-        id: 14,
-        name: 'beregovoy',
-        label: 'Детский день Береговой & Kenguru',
-        title: 'Детское мероприятие ЖК «Береговой»',
-        description: 'Организация мероприятия и декор для ЖК «Береговой»',
-        href: '#beregovoy',
-    },
-    {
-        id: 15,
-        name: 'newyear',
-        label: 'Новогоднее оформление ресторанов',
-        title: '',
-        description: '',
-        href: '#newyear',
-    },
-    {
-        id: 16,
-        name: 'lobby',
-        label: 'Попап корнер в LObBY',
-        title: 'Pop Up Цветочный корнер в честь 8 марта',
-        description: '',
-        href: '#lobby',
-    },
-    {
-        id: 17,
-        name: 'kmbd',
-        label: 'Частный др КМ (розовая вечеринка)',
-        title: 'День рождение в ресторане "КМ 20"',
-        description: 'Розовая вечеринка',
-        href: '#kmbd',
-    },
-    {
-        id: 18,
-        name: 'kmbd2',
-        label: 'Частный ДР КМ (поле)',
-        title: 'Свадебная вечеринка в ресторане "КМ 20"',
-        description: '',
-        href: '#kmbd2',
-    },
-    {
-        id: 19,
-        name: 'csum',
-        label: 'ЦУМ FS Елка',
-        title: 'ЦУМ Fashion Show в Малом театре',
-        description: 'Восьмиметровая елка из живой хвои на сцене Малого театра',
-        href: '#csum',
-    },
-    {
-        id: 20,
-        name: 'tsum',
-        label: 'ЦУМ Показы',
-        title: '',
-        description: '',
-        href: '#tsum',
+import pb from '@/lib/pocketbase'
 
-    },
-    {
-        id: 21,
-        name: 'lmd',
-        label: 'Lamoda',
-        title: 'Оформление, сет-дизайн, разработка концепции, флористическое оформление и мастер класс для ребрендинга компании Lamoda',
-        description: '',
-        href: '#lmd',
-    },
-]
+export interface Project {
+    id: string
+    name: string
+    label: string
+    title: string
+    description: string
+    images: string[]
+    href: string
+}
+
+export async function fetchProjects(): Promise<Project[]> {
+    try {
+        // Fetch all projects from PocketBase
+        const records = await pb.collection('projects').getFullList<Project>({
+            sort: 'name',
+        })
+
+        // Compose image URLs for each project
+        return records.map(project => ({
+            ...project,
+            // Images are stored as array of filenames in PocketBase
+            // We need to construct the full URL for each image
+            images: project.images?.map(filename =>
+                pb.files.getURL(project, filename, { thumb: '400x400' })
+            ) || []
+        }))
+    } catch (error) {
+        console.error('Error fetching projects:', error)
+        return []
+    }
+}
+
+// For backward compatibility, export a static array that will be populated
+// This can be removed once all components are updated to use the async function
+export const projectsData: Project[] = []

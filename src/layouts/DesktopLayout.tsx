@@ -4,7 +4,7 @@ import { useState } from "react";
 import { projectsData } from "@/data/projectsData"
 import Navigation from "@/components/navigation"
 import ProjectSliders from "@/components/ProjectSliders"
-import SupabaseImages from "@/components/images"
+import PocketbaseImages from "@/components/images"
 import AboutSection from "@/components/AboutSection"
 import { useActiveSection } from "@/hooks/useActiveSection"
 import { useScreenHeight } from '@/hooks/useScreenHeight';
@@ -85,9 +85,7 @@ export const DesktopLayout = () => {
                     <div className="snap-section" id="main">
                         <div className="flex justify-end w-full h-full">
                             <div className="relative">
-                                <SupabaseImages
-                                    bucketName="project-images"
-                                    folderPath="main"
+                                <PocketbaseImages
                                     projectsData={projectsData}
                                     width={isSmallHeight ? "min(100vw, 665px)" : "min(100vw, 100vh)"}
                                     height={isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"}

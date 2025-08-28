@@ -5,7 +5,7 @@ import { projectsData as projectsData2 } from "@/data/projectsData";
 import MenuButton from "@/components/MenuButton";
 import MobileMenu from "@/components/MobileMenu";
 import MobileProjectSliders from "@/components/MobileProjectSliders";
-import MobileSupabaseImages from "@/components/MobileImages";
+import MobilePocketbaseImages from "@/components/MobileImages";
 import AboutSection from "@/components/AboutSection";
 
 
@@ -78,10 +78,8 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
             {/* Картинки - средняя зона */}
             <div className="flex items-center justify-center mb-8">
                 <div className="w-full h-[200px]">
-                    <MobileSupabaseImages
-                        bucketName="project-images"
+                    <MobilePocketbaseImages
                         projectsData={projectsData2}
-                        folderPath="main"
                     />
                 </div>
             </div>

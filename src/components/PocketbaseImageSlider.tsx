@@ -2,27 +2,25 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { useSupabaseImages } from '@/hooks/useSupabaseImages';
+import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-interface SupabaseImageSliderProps {
-  bucketName: string;
-  folderPath: string;
+interface PocketbaseImageSliderProps {
+  projectName: string;
   alt: string;
   className?: string;
   width?: string;
   height?: string; 
 }
 
-export default function SupabaseImageSlider({
-  bucketName,
-  folderPath,
+export default function PocketbaseImageSlider({
+  projectName,
   alt,
   className = "",
   width,
   height,
-}: SupabaseImageSliderProps) {
-  const { images, loading, error } = useSupabaseImages(bucketName, folderPath);
+}: PocketbaseImageSliderProps) {
+  const { images, loading, error } = usePocketbaseImages(projectName);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = useIsMobile();
   

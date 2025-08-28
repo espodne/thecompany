@@ -3,13 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'lgrxjkwkjzwoqnwkdbmo.supabase.co',
+        hostname: 'thecompany.mxksimdev.com',
         port: '',
-        pathname: '/storage/v1/object/public/**',
+        pathname: '/api/files/**',
       },
     ],
   },

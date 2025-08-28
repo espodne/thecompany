@@ -12,14 +12,10 @@ interface ImageSliderProps {
 }
 
 
-const getSupabaseImageUrl = (url: string, quality: number = 80, blur: number = 0) => {
-  if (!url.includes('supabase.co')) return url;
-  
-  const params = new URLSearchParams();
-  if (quality !== 80) params.append('quality', quality.toString());
-  if (blur > 0) params.append('blur', blur.toString());
-  
-  return params.toString() ? `${url}?${params.toString()}` : url;
+const getImageUrl = (url: string) => {
+  // PocketBase doesn't support image transformations via URL params like Supabase
+  // Just return the original URL
+  return url;
 };
 
 export default function Slider({ 
@@ -73,8 +69,8 @@ export default function Slider({
   };
 
   const currentImage = images[currentIndex] || images[0];
-  const blurImageUrl = getSupabaseImageUrl(currentImage, 20, 20);
-  const fullImageUrl = getSupabaseImageUrl(currentImage, 80, 0);
+  const blurImageUrl = getImageUrl(currentImage);
+  const fullImageUrl = getImageUrl(currentImage);
 
   const handleImageLoad = () => {
     setImageLoading(false);

@@ -2,14 +2,14 @@
 
 import { projectsData } from "@/data/projectsData";
 import Slider from "./ImageSlider";
-import { useSupabaseImages } from '@/hooks/useSupabaseImages';
+import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
 
 interface ProjectSliderProps {
   project: typeof projectsData[0];
 }
 
 function MobileProjectSlider({ project }: ProjectSliderProps) {
-  const { images, loading, error } = useSupabaseImages("project-images", project.name);
+  const { images, loading, error } = usePocketbaseImages(project.name);
   
   if (loading) return <div className="flex items-center justify-center h-96">Загрузка изображений...</div>;
   if (error) return <div className="flex items-center justify-center h-96">Ошибка загрузки изображений</div>;

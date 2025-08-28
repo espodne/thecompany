@@ -2,21 +2,20 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { useSupabaseImages } from '@/hooks/useSupabaseImages';
+import { usePocketbaseImages } from '@/hooks/usePocketbaseImages';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useScreenHeight } from '@/hooks/useScreenHeight';
 
-interface SupabaseImagesProps {
-    bucketName: string;
-    folderPath?: string;
-    projectsData: { id: number, name: string, label: string, description?: string, href: string }[];
+interface PocketbaseImagesProps {
+    projectName?: string;
+    projectsData: { id: number | string, name: string, label: string, description?: string, href: string }[];
     width?: number | string;
     height?: number | string;
     className?: string;
 }
 
-function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 800, height = 600, className = "" }: SupabaseImagesProps) {
-    const { images, error } = useSupabaseImages(bucketName, folderPath);
+function MobilePocketbaseImages({ projectName, projectsData, width = 800, height = 600, className = "" }: PocketbaseImagesProps) {
+    const { images, error } = usePocketbaseImages(projectName);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();
@@ -44,7 +43,7 @@ function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 80
         }
 
         setImagesToUse(imagesToUse);
-    }, [images, isMobile, projectsData.length, folderPath]);
+    }, [images, isMobile, projectsData.length, projectName]);
 
     useEffect(() => {
         if (imagesToUse.length === 0) return;
@@ -130,7 +129,7 @@ function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 80
                         onClick={() => {
                             let targetProject;
                             
-                            if (folderPath === 'main') {
+                            if (!projectName) {
                      
                                 const fileName = image.name.replace(/\.[^/.]+$/, ""); 
                                 targetProject = projectsData.find(p => p.name === fileName);
@@ -183,4 +182,4 @@ function MobileSupabaseImages({ bucketName, folderPath, projectsData, width = 80
     );
 }
 
-export default MobileSupabaseImages;
+export default MobilePocketbaseImages;
