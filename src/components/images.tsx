@@ -95,7 +95,7 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
         return () => {
             window.removeEventListener('resize', updatePositions);
         };
-    }, [imagesToUse, isMobile, isSmallHeight]);
+    }, [imagesToUse, isMobile, isSmallHeight, height, width]);
 
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
 

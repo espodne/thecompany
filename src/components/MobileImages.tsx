@@ -98,7 +98,7 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
         return () => {
             window.removeEventListener('resize', updatePositions);
         };
-    }, [imagesToUse, isMobile, isSmallHeight]);
+    }, [imagesToUse, isMobile, isSmallHeight, height, width]);
 
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
 
