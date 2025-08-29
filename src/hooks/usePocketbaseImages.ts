@@ -47,7 +47,7 @@ export function usePocketbaseImages(projectName?: string) {
             if (project.images && project.images.length > 0) {
               const projectImages = project.images.map((filename) => ({
                 id: `${project.id}-${filename}`,
-                url: pb.files.getURL(project, filename, { thumb: '400x400' }),
+                url: pb.files.getURL(project, filename),
                 name: filename,
                 folderName: project.name
               }))

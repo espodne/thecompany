@@ -22,9 +22,7 @@ export async function fetchProjects(): Promise<Project[]> {
             ...project,
             // Images are stored as array of filenames in PocketBase
             // We need to construct the full URL for each image
-            images: project.images?.map(filename =>
-                pb.files.getURL(project, filename, { thumb: '400x400' })
-            ) || []
+            images: project.images?.map(filename => pb.files.getURL(project, filename)) || []
         }))
     } catch (error) {
         console.error('Error fetching projects:', error)

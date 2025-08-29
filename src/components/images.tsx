@@ -35,7 +35,7 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
         if (images.length >= TOTAL_IMAGES) {
             imagesToUse = images.slice(0, TOTAL_IMAGES);
         } else {
-          
+
             for (let i = 0; i < TOTAL_IMAGES; i++) {
                 imagesToUse.push(images[i % images.length]);
             }
@@ -51,10 +51,10 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
             const GRID_SIZE = 5;
             const containerWidth = typeof width === 'number' ? width : containerRef.current?.clientWidth || 800;
             const containerHeight = typeof height === 'number' ? height : containerRef.current?.clientHeight || 600;
- 
+
             const GAP = 10;
             const LEFT_MARGIN = 20;
-            
+
             const availableWidth = containerWidth - (GAP * (GRID_SIZE - 1)) - LEFT_MARGIN;
             const availableHeight = containerHeight - (GAP * (GRID_SIZE - 1));
             const imageSize = Math.min(availableWidth / GRID_SIZE, availableHeight / GRID_SIZE);
@@ -65,13 +65,13 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                 for (let col = 0; col < GRID_SIZE; col++) {
                     const top = row * (imageSize + GAP);
                     const left = col * (imageSize + GAP) + LEFT_MARGIN;
-                    const rotation = 0; 
+                    const rotation = 0;
 
-                    newPositions.push({ 
-                        top, 
-                        left, 
-                        size: imageSize, 
-                        rotation 
+                    newPositions.push({
+                        top,
+                        left,
+                        size: imageSize,
+                        rotation
                     });
                 }
             }
@@ -89,9 +89,9 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
         };
 
         updatePositions();
-        
+
         window.addEventListener('resize', updatePositions);
-        
+
         return () => {
             window.removeEventListener('resize', updatePositions);
         };
@@ -100,9 +100,9 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
     if (error) return <div className="flex items-center justify-center h-full">Ошибка: {error}</div>;
 
     return (
-        <div ref={containerRef} className={`relative w-full h-full ${className}`} style={{ 
-            width: typeof width === 'string' ? width : '100%', 
-            height: typeof height === 'string' ? height : '100%' 
+        <div ref={containerRef} className={`relative w-full h-full ${className}`} style={{
+            width: typeof width === 'string' ? width : '100%',
+            height: typeof height === 'string' ? height : '100%'
         }}>
             {positions.map((pos, index) => {
                 const image = imagesToUse[index];
@@ -122,27 +122,27 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                         }}
                         onClick={() => {
                             let targetProject;
-                            
+
                             if (!projectName) {
-                     
-                                const fileName = image.name.replace(/\.[^/.]+$/, ""); 
+
+                                const fileName = image.name.replace(/\.[^/.]+$/, "");
                                 targetProject = projectsData.find(p => p.name === fileName);
                             } else {
-                              
-                                targetProject = image.folderName 
+
+                                targetProject = image.folderName
                                     ? projectsData.find(p => p.name === image.folderName)
                                     : projectsData[index];
                             }
-                            
+
                             if (targetProject) {
-                               
+
                                 const id = targetProject.href.replace('#', '');
-                                
-                            
+
+
                                 let element = document.getElementById(id);
-                                
+
                                 if (!element) {
-                                 
+
                                     try {
                                         element = document.querySelector(targetProject.href);
                                     } catch (error) {
@@ -150,9 +150,9 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                                         return;
                                     }
                                 }
-                                
+
                                 if (element) {
-                                    element.scrollIntoView({ 
+                                    element.scrollIntoView({
                                         behavior: 'smooth',
                                         block: 'start'
                                     });
@@ -161,7 +161,7 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                         }}
                     >
                         <Image
-                            src={image.url}
+                            src={`${image.url}?thumb=400x400`}
                             alt={image.name}
                             width={500}
                             height={500}
