@@ -11,7 +11,6 @@ interface ImageSliderProps {
   height?: number | string;
 }
 
-
 const getImageUrl = (url: string) => {
   // PocketBase doesn't support image transformations via URL params like Supabase
   // Just return the original URL
@@ -69,6 +68,8 @@ export default function Slider({
   };
 
   const currentImage = images[currentIndex] || images[0];
+  
+  // Теперь используем ту же самую картинку для размытого фона
   const blurImageUrl = getImageUrl(currentImage);
   const fullImageUrl = getImageUrl(currentImage);
 
@@ -80,10 +81,9 @@ export default function Slider({
     setImageLoading(false);
   };
 
-
   React.useEffect(() => {
     setImageLoading(true);
-  }, [currentImage]);
+  }, [currentIndex]);
 
   return (
     <div 
@@ -94,7 +94,7 @@ export default function Slider({
       onTouchMove={handleTouchMove}
       style={{ width, height }}
     >
-
+      {/* Размытое изображение - ТА ЖЕ САМАЯ картинка */}
       <Image
         src={blurImageUrl}
         alt={`${alt} placeholder`}
@@ -102,11 +102,10 @@ export default function Slider({
         className="object-cover"
         style={{
           filter: 'blur(8px)',
-          
         }}
       />
-      
 
+      {/* Полное изображение - текущая картинка */}
       <Image
         src={fullImageUrl}
         alt={alt}
