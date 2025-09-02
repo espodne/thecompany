@@ -105,7 +105,7 @@ export default function Navigation({
           );
         })}
       </ul>
-      <div className="mt-6 pt-4 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20"></div>
+      <div className="mt-6 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20"></div>
       <div className="ml-4">
         <div className="flex items-center mt-[-10px] gap-1.5 ml-[-10px]">
           {finalActiveSection === aboutSectionId && !hideIndicator && (
@@ -142,6 +142,7 @@ export default function Navigation({
               uppercase
               font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
               transition-all duration-200 text-[var(--foreground)] cursor-pointer
+              mt-4
             "
           >
             О нас / контакты
