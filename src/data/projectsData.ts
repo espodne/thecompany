@@ -8,13 +8,14 @@ export interface Project {
     description: string
     images: string[]
     href: string
+    order: number
 }
 
 export async function fetchProjects(): Promise<Project[]> {
     try {
         // Fetch all projects from PocketBase
         const records = await pb.collection('projects').getFullList<Project>({
-            sort: 'name',
+            sort: 'Order',
         })
 
         // Compose image URLs for each project
