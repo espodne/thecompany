@@ -3,7 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-oracle: var(--font-oracle), Arial, sans-serif; }
+  --font-oracle: var(--font-oracle), Arial, sans-serif; 
+  
+}
 
   @font-face {
     font-family: 'ABC Oracle Cyrillic Plus Variable Unlicensed Trial';
