@@ -51,9 +51,9 @@ body {
   font-variation-settings: 'TRIP' 1;
 }
 
-/* Более мягкий snap scroll */
+
 .content-container {
-  scroll-snap-type: y proximity; /* Изменено с mandatory на proximity */
+  scroll-snap-type: y proximity;
   scroll-snap-stop: always;
   overflow-y: auto;
   height: 100vh;
@@ -61,18 +61,18 @@ body {
 }
 
 .snap-section {
-  scroll-snap-align: start; /* Изменено с center на start */
+  scroll-snap-align: start; 
   scroll-snap-stop: always;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Изменено с center на flex-start */
+  justify-content: flex-start; 
   padding-top: 10px
 }
 
-/* Мобильный snap scroll */
+
 .scroll-animation {
-  scroll-snap-type: y mandatory; /* Изменено с mandatory на proximity */
+  scroll-snap-type: y mandatory; 
   scroll-snap-stop: always;
 }
 
