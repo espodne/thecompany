@@ -72,7 +72,7 @@ export const DesktopLayout = () => {
                                 text-[#14141499]
                                 uppercase
                                 font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
-                                transition-all duration-200 ml-1 text-[#14141499] cursor-pointer
+                                transition-all duration-200 ml-1 text-[#14141499]
                             `}>        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
                     {/* Навигация и кнопки внизу */}

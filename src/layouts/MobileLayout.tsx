@@ -79,15 +79,16 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                                 ml-2
                                 mb-10
                                 mt-20
-                                text-[#14141499]
+                                text-[var(--foreground)]
+                                opacity-60
                                 uppercase
                                 font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
-                                transition-all duration-200 ml-1 text-[#14141499] cursor-pointer
+                                transition-all duration-200 ml-1 cursor-pointer
                             `}>        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
 
             {/* Картинки - средняя зона */}
-            <div className="flex items-center justify-center mb-8">
-                <div className="w-full h-[200px]">
+            <div className="flex items-center justify-center mb-[50px]">
+                <div className="w-full h-[200px] ">
                     <MobilePocketbaseImages
                         projectsData={projects}
                     />
