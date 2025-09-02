@@ -36,18 +36,18 @@ export const DesktopLayout = () => {
         <>
             <div className="flex p-2.5">
                 <div className="w-90 h-screen flex flex-col fixed left-0 top-0">
+                    {/* Логотип COMPANY MOSCOW как кнопка для перехода к главной секции */}
                     <div
                         className="mb-3 ml-4 mt-4 cursor-pointer font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] font-[800] text-[12px] text-[var(--foreground)] leading-[12px] align-bottom"
                         style={{
                             fontStyle: 'Triple Bold',
                             letterSpacing: '0%',
                             verticalAlign: 'bottom'
-
                         }}
                         onClick={() => {
-                            const firstSection = document.querySelector('.snap-section');
-                            if (firstSection) {
-                                firstSection.scrollIntoView({
+                            const mainSection = document.getElementById('main');
+                            if (mainSection) {
+                                mainSection.scrollIntoView({
                                     behavior: 'smooth',
                                     block: 'start'
                                 });
@@ -57,33 +57,34 @@ export const DesktopLayout = () => {
                     >
                         COMPANY MOSCOW
                     </div>
+                    
                     <p style={{
-                            fontStyle: 'Triple Regular',
-                            letterSpacing: '0%',
-                          
-                        }} className={`
-                                font-[500]
-                                text-[12px]
-                                leading-[16px]
-                                [letter-spacing:0.1em]
-                                w-[300px]
-                                indent-10
-                                ml-4
-                                mb-10
-                                 text-[var(--foreground)]
-                                opacity-60
-                                uppercase
-                                font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
-                                transition-all duration-200 ml-1 text-[#14141499]
-                            `}>        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы</p>
+                        fontStyle: 'Triple Regular',
+                        letterSpacing: '0%',
+                    }} className={`
+                        font-[500]
+                        text-[12px]
+                        leading-[16px]
+                        [letter-spacing:0.1em]
+                        w-[300px]
+                        indent-10
+                        ml-4
+                        mb-10
+                        text-[var(--foreground)]
+                        opacity-60
+                        uppercase
+                        font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
+                        transition-all duration-200 ml-1 text-[#14141499]
+                    `}>
+                        Мы помогаем брендам делать праздники и события атмосферными и запоминающимися на долгие годы
+                    </p>
 
                     {/* Навигация и кнопки внизу */}
                     <div className="mt-auto overflow-y-auto desktop-navigation">
-                        
                         <Navigation
                             items={navigationItems}
                             activeSection={activeSection}
-                            projectsCount={projects.length}
+                            projectsCount={0} // Проекты начинаются сразу
                             hideIndicator={hideIndicator}
                             onNavigationClick={() => setHideIndicator(false)}
                             aboutSectionId="about"
@@ -91,20 +92,23 @@ export const DesktopLayout = () => {
                     </div>
                 </div>
 
-                <div ref={containerRef} className="flex-1 ml-100 content-container">
+                <div 
+                    ref={containerRef} 
+                    className="flex-1 ml-100 content-container" 
+                    style={{ height: '100vh', overflowY: 'scroll', scrollSnapType: 'y mandatory' }}
+                >
                     {/* Главный экран с сеткой изображений */}
-                    <div className="snap-section" id="main">
+                    <section className="snap-section h-screen" id="main">
                         <div className="flex justify-end w-full h-full">
                             <div className="relative">
                                 <PocketbaseImages
                                     projectsData={projects}
                                     width={isSmallHeight ? "min(100vw, 665px)" : "min(100vw, 100vh)"}
                                     height={isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"}
-                               
                                 />
                             </div>
                         </div>
-                    </div>
+                    </section>
 
                     {/* Секции с проектами */}
                     <ProjectSliders />
