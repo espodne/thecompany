@@ -4,32 +4,23 @@
   --background: #ffffff;
   --foreground: #171717;
   --font-oracle: var(--font-oracle), Arial, sans-serif; 
-  
 }
 
-  @font-face {
-    font-family: 'ABC Oracle Cyrillic Plus Variable Unlicensed Trial';
-    src: url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2');
-    font-weight: 100 900; /* если variable font */
-    font-style: normal;
-
-    font-variation-settings: 'TRIP' 1;
-  }
-
-  /* @font-face {
-    font-family: 'Greed VF-TRIAL';
-    src: url('/fonts/greed.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-    font-stretch: condensed;
-  } */
+@font-face {
+  font-family: 'ABC Oracle Cyrillic Plus Variable Unlicensed Trial';
+  src: url('/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-variation-settings: 'TRIP' 1;
+}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-oracle: var(--font-oracle);}
+  --font-oracle: var(--font-oracle);
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -38,15 +29,13 @@
   }
 }
 
-
-
 html {
   scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
-  width: 0px; /* for vertical scrollbars */
-  height: 0px; /* for horizontal scrollbars */
+  width: 0px;
+  height: 0px;
 }
 
 body {
@@ -56,36 +45,34 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 12px;
-
   font-variation-settings: 'TRIP' 1;
 }
 
-/* Snap scroll для контентной части */
+/* Более мягкий snap scroll */
 .content-container {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity; /* Изменено с mandatory на proximity */
   scroll-snap-stop: always;
   overflow-y: auto;
   height: 100vh;
+  scroll-behavior: smooth;
 }
 
 .snap-section {
-  scroll-snap-align: center;
+  scroll-snap-align: start; /* Изменено с center на start */
   scroll-snap-stop: always;
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
+  justify-content: flex-start; /* Изменено с center на flex-start */
+  padding-top: 2rem; /* Добавлено пространство сверху */
 }
 
 /* Мобильный snap scroll */
 .scroll-animation {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity; /* Изменено с mandatory на proximity */
   scroll-snap-stop: always;
 }
 
@@ -94,7 +81,6 @@ body {
   scroll-snap-stop: always;
   min-height: 100vh;
 }
-
 
 .text-style {
   font-size: 16px;
@@ -115,7 +101,6 @@ body {
   line-height: 1;
   font-variation-settings: 'wght' 750;
   font-stretch: 75%;
-
 }
 
 .heading-style {
@@ -128,13 +113,12 @@ body {
 }
 
 .parallax-image {
-    height: auto;
-    will-change: transform;
+  height: auto;
+  will-change: transform;
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
-

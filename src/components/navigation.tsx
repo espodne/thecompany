@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Image from 'next/image';
 
 interface NavigationItem {
@@ -26,23 +25,9 @@ export default function Navigation({
   onNavigationClick, 
   aboutSectionId = 'about' 
 }: NavigationProps) {
-  const [clickedSection, setClickedSection] = useState<string>('');
-  const [lastClickTime, setLastClickTime] = useState<number>(0);
   
-  const isRecentlyClicked = Date.now() - lastClickTime < 1000;
-  
-  let finalActiveSection = activeSection;
-  
-  if (isRecentlyClicked && clickedSection) {
-    finalActiveSection = clickedSection;
-  } else if (activeSection === 'main') {
-    finalActiveSection = 'glavstroy'; 
-  }
-  
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, itemId: string) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    setClickedSection(itemId);
-    setLastClickTime(Date.now());
     
     if (onNavigationClick) {
       onNavigationClick();
@@ -64,13 +49,13 @@ export default function Navigation({
       <ul className="flex flex-col gap-2">
         {items.map((item, index) => {
           const itemId = item.href.replace('#', '');
-          const isActive = finalActiveSection === itemId;
+          const isActive = activeSection === itemId;
           
           return (
             <li key={itemId}>
               {index === projectsCount && (
                 <div className="mb-2 mt-6">
-                 
+                  
                 </div>
               )}
               <div className="flex items-center gap-1.5 ml-1.5">
@@ -82,7 +67,7 @@ export default function Navigation({
                 )}
                 <a 
                   href={item.href}
-                  onClick={(e) => handleClick(e, item.href, itemId)}
+                  onClick={(e) => handleClick(e, item.href)}
                   className={`
                     font-[700]
                     text-[12px]
@@ -105,21 +90,19 @@ export default function Navigation({
           );
         })}
       </ul>
-      <div className="mt-6 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20"></div>
+      <div className="mt-6 pt-4 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20"></div>
       <div className="ml-4">
         <div className="flex items-center mt-[-10px] gap-1.5 ml-[-10px]">
-          {finalActiveSection === aboutSectionId && !hideIndicator && (
+          {activeSection === aboutSectionId && !hideIndicator && (
             <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
           )}
-          {finalActiveSection !== aboutSectionId || hideIndicator ? (
+          {activeSection !== aboutSectionId || hideIndicator ? (
             <div className="w-1 h-1" />
           ) : null}
           <a 
             href={`#${aboutSectionId}`}
             onClick={(e) => {
               e.preventDefault();
-              setClickedSection(aboutSectionId);
-              setLastClickTime(Date.now());
               
               if (onNavigationClick) {
                 onNavigationClick();
@@ -142,7 +125,6 @@ export default function Navigation({
               uppercase
               font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
               transition-all duration-200 text-[var(--foreground)] cursor-pointer
-              mt-4
             "
           >
             О нас / контакты
