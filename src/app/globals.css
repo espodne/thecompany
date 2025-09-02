@@ -67,7 +67,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Изменено с center на flex-start */
-  padding-top: 2rem; /* Добавлено пространство сверху */
+  padding-top: 10px
 }
 
 /* Мобильный snap scroll */

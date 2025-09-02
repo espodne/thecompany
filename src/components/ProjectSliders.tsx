@@ -26,7 +26,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
 
       <section
         id={project.href.replace('#', '')}
-        className="snap-section pt-[10px]"
+        className="snap-section"
       >
         <div className="flex justify-end w-full mb-4">
           {imageUrls.length > 0 ? (

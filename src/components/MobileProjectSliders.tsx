@@ -38,7 +38,7 @@ function MobileProjectSlider({ project }: ProjectSliderProps) {
         )}
       </div>
 
-      <div className="text-left px-4">
+      <div className="text-left px-6">
         <h2 className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[800] text-[12px] uppercase cursor-pointer" style={{ color: 'var(--text-primary)' }}>{project.title}</h2>
         <p className="transition-all duration-200 [word-spacing:0.3em] tracking-widest font-[400] text-[12px] uppercase cursor-pointer mt-2 indent-8" style={{ color: 'var(--text-primary)' }}>
           {project.description}

@@ -43,7 +43,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
             {/* Заголовок - верхняя зона */}
             <div
                 className="cursor-pointer font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] font-[800] text-[12px] leading-[12px] align-bottom
-                 cursor-pointer fixed top-0 left-0 right-0 z-19 p-6 bg-[var(--background)] text-[var(--foreground)] flex justify-between items-center"
+                 cursor-pointer fixed top-0 left-0 right-0 z-19 pl-6 pr-4 pt-4 bg-[var(--background)] text-[var(--foreground)] flex justify-between items-center"
                 style={{
                     fontStyle: 'Triple Bold',
                     letterSpacing: '0%',
@@ -78,7 +78,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                                 indent-10
                                 ml-2
                                 mb-10
-                                mt-20
+                                mt-12
                                 text-[var(--foreground)]
                                 opacity-60
                                 uppercase
@@ -101,12 +101,14 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                     ...projects.map(project => ({
                         id: project.name,
                         label: project.label,
-                        href: `#${project.name}`
+                        href: `#${project.name}`,
+           
                     })),
                     {
                         id: 'about',
                         label: 'О нас / контакты',
-                        href: '#about'
+                        href: '#about',
+              
                     }
                 ]}
                 projectsCount={projects.length}

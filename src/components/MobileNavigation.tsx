@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface NavigationItem {
     id: string;
     label: string;
@@ -24,7 +26,7 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                             <li key={itemId}>
                                 {index === projectsCount && (
                                     <div className="mb-2 mt-6">
-                                        <p className="text-[8px] uppercase font-bold text-[#838383] indent-4">ПРОЕКТЫ</p>
+                                       
                                     </div>
                                 )}
                                 <div className="flex items-center gap-3">
@@ -43,11 +45,21 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                             transition-all duration-200 text-[#141414] dark:text-white cursor-pointer
                                           `}
                                     >
-                                        {item.label} <span className="text-[#141414][letter-spacing: 0em] ml-1 font-[300] text-[12px]" style={{
-                                            fontWeight: "Triple Regular",
-                                            textTransform: "uppercase",
-                                            letterSpacing: "-0.7px"
-                                        }}>&apos;24</span>
+                                        {item.label} {item.href === '#about' ? (
+                                            <Image
+                                                src="/Vector.svg"
+                                                alt="Vector"
+                                                width={12}
+                                                height={12}
+                                                className="ml-1 inline align-middle"
+                                            />
+                                        ) : (
+                                            <span className="text-[#141414][letter-spacing: 0em] ml-1 font-[300] text-[12px]" style={{
+                                                fontWeight: "Triple Regular",
+                                                textTransform: "uppercase",
+                                                letterSpacing: "-0.7px"
+                                            }}>&apos;24</span>
+                                        )}
                                     </a>
                                 </div>
                             </li>
