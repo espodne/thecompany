@@ -21,7 +21,7 @@ export function usePocketbaseImages(projectName?: string) {
         setLoading(true)
 
         if (projectName) {
-          // Fetch images for a specific project
+   
           const records = await pb.collection('projects').getList<Project>(1, 1, {
             filter: `name="${projectName}"`,
           })
@@ -38,7 +38,6 @@ export function usePocketbaseImages(projectName?: string) {
             setImages(imageUrls)
           }
         } else {
-          // Fetch all projects and their images
           const projects = await pb.collection('projects').getFullList<Project>()
 
           const allImages: ImageData[] = []

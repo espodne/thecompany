@@ -24,7 +24,7 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
-    // Отслеживаем размер контейнера
+
     useEffect(() => {
         const updateContainerSize = () => {
             if (containerRef.current) {
@@ -71,26 +71,26 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
             const GRID_ROWS = 3;
             const GRID_COLS = 3;
             
-            // Используем реальные размеры контейнера
+  
             const containerWidth = containerSize.width;
             const containerHeight = containerSize.height;
 
-            const SIDE_MARGIN = 10; // Отступы по краям 10px
+            const SIDE_MARGIN = 10; 
             const GAP = 10;
             const SIZE_MULTIPLIER = 1.9;
             
-            // Вычисляем доступную ширину с учетом отступов
+         
             const availableWidth = containerWidth - (GAP * (GRID_COLS - 1)) - (SIDE_MARGIN * 2);
             const availableHeight = containerHeight - (GAP * (GRID_ROWS - 1));
             
-            // Размер изображения - минимальное из доступной ширины/высоты
+           
             const imageSize = Math.min(availableWidth / GRID_COLS, availableHeight / GRID_ROWS) * SIZE_MULTIPLIER;
 
             const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
 
             for (let row = 0; row < GRID_ROWS; row++) {
                 for (let col = 0; col < GRID_COLS; col++) {
-                    // Центрируем сетку по горизонтали
+       
                     const totalGridWidth = (imageSize * GRID_COLS) + (GAP * (GRID_COLS - 1));
                     const horizontalOffset = (containerWidth - totalGridWidth) / 2;
                     

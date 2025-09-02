@@ -36,7 +36,7 @@ export default function MobileMenu({ items, projectsCount = 0, isOpen, onClose }
     return (
         <div className="fixed inset-0 bg-black dark:bg-white bg-opacity-90 dark:bg-opacity-90 z-50 flex items-center justify-center">
             <div className="bg-white dark:bg-black text-black dark:text-white w-full h-full flex flex-col">
-                {/* Навигация */}
+  
                 <div className="flex-1  flex flex-col">
                     <nav className="flex flex-col h-full">
                         <div

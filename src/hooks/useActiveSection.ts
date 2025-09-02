@@ -36,7 +36,7 @@ export const useActiveSection = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Вызываем сразу при монтировании
+
     updateActiveSection();
 
     const handleScroll = () => {
@@ -44,7 +44,7 @@ export const useActiveSection = () => {
     };
 
     
-    // Добавляем обработчик с requestAnimationFrame для производительности
+
     let ticking = false;
     
     const throttledScroll = () => {
