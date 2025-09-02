@@ -56,14 +56,15 @@ export default function AboutSection() {
           </div>
 
           <div className="pt-2 border-t-[1px] border-[var(--foreground)] opacity-20">
-            <div className="flex items-center gap-6 mb-[20px]">
-              <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
-                ©2025 Московская компания
-              </p>
-              <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
-                hello@companymoscow.com
-              </p>
-            </div>
+
+          </div>
+          <div className="flex items-center gap-6 mb-[20px]">
+            <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
+              ©2025 Московская компания
+            </p>
+            <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
+              hello@companymoscow.com
+            </p>
           </div>
         </div>
       </div>
