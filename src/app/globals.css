@@ -72,7 +72,7 @@ body {
 
 /* Мобильный snap scroll */
 .scroll-animation {
-  scroll-snap-type: y proximity; /* Изменено с mandatory на proximity */
+  scroll-snap-type: y mandatory; /* Изменено с mandatory на proximity */
   scroll-snap-stop: always;
 }
 
