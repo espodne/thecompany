@@ -37,11 +37,12 @@ export const DesktopLayout = () => {
             <div className="flex p-2.5">
                 <div className="w-90 h-screen flex flex-col fixed left-0 top-0">
                     <div
-                        className="mb-3 ml-4 mt-4 cursor-pointer font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] font-[800] text-[12px] text-[#000000] leading-[12px] align-bottom"
+                        className="mb-3 ml-4 mt-4 cursor-pointer font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] font-[800] text-[12px] text-[var(--foreground)] leading-[12px] align-bottom"
                         style={{
                             fontStyle: 'Triple Bold',
                             letterSpacing: '0%',
                             verticalAlign: 'bottom'
+
                         }}
                         onClick={() => {
                             const firstSection = document.querySelector('.snap-section');
@@ -69,7 +70,8 @@ export const DesktopLayout = () => {
                                 indent-10
                                 ml-4
                                 mb-10
-                                text-[#14141499]
+                                 text-[var(--foreground)]
+                                opacity-60
                                 uppercase
                                 font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
                                 transition-all duration-200 ml-1 text-[#14141499]

@@ -88,10 +88,10 @@ interface NavigationItem {
                       [word-spacing:0.3em]     
                       uppercase
                       font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
-                      transition-all duration-200 text-[#141414] cursor-pointer
+                      transition-all duration-200 text-[var(--foreground)] cursor-pointer
                     `}
                   >
-                    {item.label} <span className="text-[#141414][letter-spacing: 0em] ml-1 font-[300] text-[12px]" style={{
+                    {item.label} <span className="text-[var(--foreground)][letter-spacing: 0em] ml-1 font-[300] text-[12px]" style={{
                       fontWeight: "Triple Regular",
                       textTransform: "uppercase",
                       letterSpacing: "-0.7px"
@@ -103,7 +103,7 @@ interface NavigationItem {
           })}
         </ul>
         
-        <div className="mt-4  pt-4 border-t-[1px] border-[#14141433] ml-4">
+        <div className="mt-4  pt-4 border-t-[1px] border-[var(--foreground)] opacity-20 ml-4">
           <div className="flex items-center mt-[-10px] gap-1.5 ml-[-10px]">
             {finalActiveSection === aboutSectionId && !hideIndicator && (
               <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
@@ -138,7 +138,7 @@ interface NavigationItem {
                 [word-spacing:0.3em]  
                 uppercase
                 font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
-                transition-all duration-200 text-[#141414] cursor-pointer
+                transition-all duration-200 text-[var(--foreground)] cursor-pointer
               "
             >
               О нас / контакты

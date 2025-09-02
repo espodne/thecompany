@@ -19,7 +19,7 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                 <ul className="flex flex-col gap-2 mt-10 mb-10">
                     {items.map((item, index) => {
                         const itemId = item.href.replace('#', '');
-                        
+
                         return (
                             <li key={itemId}>
                                 {index === projectsCount && (
@@ -29,7 +29,7 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                 )}
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-1" />
-                                    <a 
+                                    <a
                                         href={item.href}
                                         onClick={(e) => onItemClick(e, item.href)}
                                         className={`
@@ -43,7 +43,11 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                             transition-all duration-200 text-[#141414] dark:text-white cursor-pointer
                                           `}
                                     >
-                                        {item.label} <span className="text-[#A6A6A6] ml-3">2024</span>
+                                        {item.label} <span className="text-[#141414][letter-spacing: 0em] ml-1 font-[300] text-[12px]" style={{
+                                            fontWeight: "Triple Regular",
+                                            textTransform: "uppercase",
+                                            letterSpacing: "-0.7px"
+                                        }}>&apos;24</span>
                                     </a>
                                 </div>
                             </li>
