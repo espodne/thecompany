@@ -133,7 +133,7 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
             style={{ 
                 width: typeof width === 'string' ? width : '100%', 
                 height: typeof height === 'string' ? height : '100%',
-                padding: '0 10px', // Добавляем отступы 10px по бокам
+                padding: '0 10px',
                 boxSizing: 'border-box'
             }}
         >
