@@ -129,12 +129,12 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
     return (
         <div 
             ref={containerRef} 
-            className={`relative mt-30 w-full h-full ${className}`} 
+            className={`relative mt-50 w-full h-full ${className}`} 
             style={{ 
                 width: typeof width === 'string' ? width : '100%', 
                 height: typeof height === 'string' ? height : '100%',
                 padding: '0 10px',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
             }}
         >
             {positions.map((pos, index) => {

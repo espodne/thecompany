@@ -89,7 +89,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
 
             {/* Картинки - средняя зона */}
             <div className="flex items-center justify-center mb-[50px]">
-                <div className="w-full h-[200px] p-1.5">
+                <div className="w-full h-[200px] p-1.5 mb-[300px]">
                     <MobilePocketbaseImages
                         projectsData={projects}
                     />

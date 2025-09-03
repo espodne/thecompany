@@ -58,7 +58,7 @@ body {
   scroll-snap-type: y proximity;
   scroll-snap-stop: always;
   overflow-y: auto;
-  height: 100vh;
+  height: 10vh;
   scroll-behavior: smooth;
 }
 
@@ -86,7 +86,7 @@ body {
 .snap-start {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  min-height: 100vh;
+  min-height: 10vh;
 }
 
 .text-style {
