@@ -12,23 +12,23 @@ export default function AboutSection() {
       id="about"
       className="snap-section snap-start pt-[10px] px-5"
     >
-      <div className="flex justify-end w-full mb-4">
-  <div
-    className="relative overflow-hidden"
-    style={{
-      width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)",
-      height: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)"
-    }}
-  >
-    <Image
-      src="/footer.jpg"
-      alt="О нас"
-      fill
-      className="object-cover"
-      priority
-    />
-  </div>
-</div>
+      <div className="flex justify-end w-full mb-4 ml-5">
+        <div
+          className="relative overflow-hidden"
+          style={{
+            width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)",
+            height: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)"
+          }}
+        >
+          <Image
+            src="/footer.jpg"
+            alt="О нас"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </div>
 
       <div className={`text-left flex justify-end`}>
         <div
@@ -37,7 +37,7 @@ export default function AboutSection() {
             width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)"
           }}
         >
-          <div className="mb-[300px]">
+          <div className="mb-[300px] ml-5">
             <h2 className="font-[800] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[var(--foreground)] cursor-pointer">
               О нас
             </h2>
@@ -55,9 +55,9 @@ export default function AboutSection() {
             </p>
           </div>
 
-          <div className="pt-2 border-t-[1px] border-[var(--foreground)] opacity-20" />
+          <div className="pt-2 ml-5 border-t-[1px] border-[var(--foreground)] opacity-20" />
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 mb-[10px]">
+          <div className="flex ml-5 flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 mb-[10px]">
             <p className="font-[400] text-[10px] sm:text-[12px] leading-[14px] sm:leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
               ©2025 Московская компания
             </p>

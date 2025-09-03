@@ -37,9 +37,9 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                         className={`
                                             font-[700]
                                             text-[12px]
-                                            leading-[20px]                     /* увеличенное межстрочное */
+                                            leading-[20px]        
                                             [letter-spacing:0em]
-                                            [word-spacing:0.3em]              /* увеличенное межсловное */
+                                            [word-spacing:0.3em]              
                                             uppercase
                                             font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
                                             transition-all duration-200 text-[#141414]  cursor-pointer
