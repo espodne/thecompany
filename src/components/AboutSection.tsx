@@ -10,25 +10,25 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="snap-section snap-start pt-[10px]"
+      className="snap-section snap-start pt-[10px] px-5"
     >
       <div className="flex justify-end w-full mb-4">
-        <div
-          className="relative overflow-hidden"
-          style={{
-            width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)",
-            height: isSmallHeight ? "min(97.5vh, 665px)" : "min(100vw, 97.5vh)"
-          }}
-        >
-          <Image
-            src="/footer.jpg"
-            alt="О нас"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      </div>
+  <div
+    className="relative overflow-hidden"
+    style={{
+      width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)",
+      height: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 20px)"
+    }}
+  >
+    <Image
+      src="/footer.jpg"
+      alt="О нас"
+      fill
+      className="object-cover"
+      priority
+    />
+  </div>
+</div>
 
       <div className={`text-left flex justify-end`}>
         <div
@@ -55,14 +55,13 @@ export default function AboutSection() {
             </p>
           </div>
 
-          <div className="pt-2 border-t-[1px] border-[var(--foreground)] opacity-20">
+          <div className="pt-2 border-t-[1px] border-[var(--foreground)] opacity-20" />
 
-          </div>
-          <div className="flex items-center gap-6 mb-[10px]">
-            <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 mb-[10px]">
+            <p className="font-[400] text-[10px] sm:text-[12px] leading-[14px] sm:leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
               ©2025 Московская компания
             </p>
-            <p className="font-[400] text-[12px] leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
+            <p className="font-[400] text-[10px] sm:text-[12px] leading-[14px] sm:leading-[16px] [letter-spacing:0em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] text-[var(--foreground)]">
               hello@companymoscow.com
             </p>
           </div>

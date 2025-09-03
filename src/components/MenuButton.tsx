@@ -7,7 +7,7 @@ interface MenuButtonProps {
 export default function MenuButton({ onClick }: MenuButtonProps) {
     return (
         <button 
-            className="w-10 h-10 flex items-center justify-center cursor-pointer"
+            className="w-10 h-10 flex items-center justify-end cursor-pointer"
             onClick={onClick}
         >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -26,7 +26,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
 
       <section
         id={project.href.replace('#', '')}
-        className="snap-section"
+        className="snap-section pt-[10px]"
       >
         <div className="flex justify-end w-full mb-4">
           {imageUrls.length > 0 ? (
@@ -48,7 +48,7 @@ function ProjectSlider({ project }: ProjectSliderProps) {
             <h2 style={{
               fontVariationSettings: 'TRIP 1'
             }} className="font-[800] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[var(--foreground)] cursor-pointer">{project.title}</h2>
-            <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[var(--foreground)] cursor-pointer mt-4 indent-12">
+            <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[var(--foreground)] cursor-pointer mt-4 indent-12 mb-10">
               {project.description}
             </p>
           </div>

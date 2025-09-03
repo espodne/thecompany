@@ -16,7 +16,7 @@ interface MobileNavigationProps {
 
 export default function MobileNavigation({ items, projectsCount = 0, onItemClick }: MobileNavigationProps) {
     return (
-        <div className="flex-1 overflow-y-auto mt-20 min-h-0 max-h-[90vh] hide-scrollbar">
+        <div className="flex-1 overflow-y-auto mt-20 min-h-0 max-h-[calc(100vh-80px)] pb-20 hide-scrollbar w-[95vw]">
             <nav className="mb-4">
                 <ul className="flex flex-col gap-2 mt-10 mb-10">
                     {items.map((item, index) => {
@@ -25,7 +25,7 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                         return (
                             <li key={itemId}>
                                 {index === projectsCount && (
-                                    <div className="mb-2 mt-6">
+                                    <div className="mb-2 mt-2 ml-4 border-b-[1px] border-[#14141433]">
                                        
                                     </div>
                                 )}
@@ -42,7 +42,7 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                             [word-spacing:0.3em]              /* увеличенное межсловное */
                                             uppercase
                                             font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial']
-                                            transition-all duration-200 text-[#141414] dark:text-white cursor-pointer
+                                            transition-all duration-200 text-[#141414]  cursor-pointer
                                           `}
                                     >
                                         {item.label} {item.href === '#about' ? (
