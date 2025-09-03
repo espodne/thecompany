@@ -65,13 +65,18 @@ body {
 .snap-section {
   scroll-snap-align: start; 
   scroll-snap-stop: always;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; 
-
 }
 
+@media (max-width: 768px) {
+  .snap-section {
+    min-height: auto;
+    height: auto;
+  }
+}
 
 .scroll-animation {
   scroll-snap-type: y mandatory; 

@@ -20,7 +20,7 @@ function MobileProjectSlider({ project }: ProjectSliderProps) {
   return (
     <section
       id={project.href.replace('#', '')}
-      className="min-h-screen snap-start flex flex-col justify-center"
+      className="snap-start flex flex-col justify-start  pt-14"
     >
       <div className="flex justify-center mb-4">
         {imageUrls.length > 0 ? (

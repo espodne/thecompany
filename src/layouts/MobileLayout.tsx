@@ -51,6 +51,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                 }}
             >
                 <div
+                    className="ml-[-5px]"
                     onClick={() => {
                         const mainElement = document.querySelector('main');
                         if (mainElement) {
