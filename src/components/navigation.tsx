@@ -12,7 +12,7 @@ interface NavigationProps {
   activeSection?: string;
   projectsCount?: number;
   hideIndicator?: boolean;
-  onNavigationClick?: () => void;
+  onNavigationClick?: (sectionId: string) => void;
   aboutSectionId?: string;
 }
 
@@ -29,11 +29,13 @@ export default function Navigation({
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
 
+    const id = href.replace('#', '');
+    
+    // Сразу обновляем активную секцию
     if (onNavigationClick) {
-      onNavigationClick();
+      onNavigationClick(id);
     }
 
-    const id = href.replace('#', '');
     const element = document.getElementById(id);
 
     if (element) {
@@ -59,12 +61,11 @@ export default function Navigation({
                 </div>
               )}
               <div className="flex items-center gap-1.5 ml-1.5">
-                {isActive && !hideIndicator && (
-                  <div className="w-1 h-1 rounded-full bg-[var(--foreground)] transition-all duration-300" />
-                )}
-                {(!isActive || hideIndicator) && (
-                  <div className="w-1 h-1" />
-                )}
+                <div className="w-1 h-1">
+                  {isActive && !hideIndicator && (
+                    <div className="w-1 h-1 rounded-full bg-[var(--foreground)]" />
+                  )}
+                </div>
                 <a
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
@@ -93,19 +94,19 @@ export default function Navigation({
       <div className="mt-4 pt-2 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20" />
       <div className="ml-4">
         <div className="flex items-center gap-1.5">
-          {activeSection === aboutSectionId && !hideIndicator && (
-            <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
-          )}
-          {activeSection !== aboutSectionId || hideIndicator ? (
-            <div className="w-1 h-1" />
-          ) : null}
+          <div className="w-1 h-1">
+            {activeSection === aboutSectionId && !hideIndicator && (
+              <div className="w-1 h-1 rounded-full bg-black" />
+            )}
+          </div>
           <a
             href={`#${aboutSectionId}`}
             onClick={(e) => {
               e.preventDefault();
 
+              // Сразу обновляем активную секцию
               if (onNavigationClick) {
-                onNavigationClick();
+                onNavigationClick(aboutSectionId);
               }
 
               const element = document.getElementById(aboutSectionId);
