@@ -6,7 +6,6 @@ import { useScreenHeight } from '@/hooks/useScreenHeight';
 export default function AboutSection() {
   const screenHeight = useScreenHeight();
   const isSmallHeight = screenHeight < 800;
-
   return (
     <section
       id="about"
@@ -16,7 +15,7 @@ export default function AboutSection() {
         <div
           className="relative overflow-hidden"
           style={{
-            width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 40px)",
+            width: isSmallHeight ? "calc(min(100vw, 685px) - 40px)" : "calc(min(100vw, 100vh) - 40px)",
             height: isSmallHeight ? "calc(min(100vw, 665px) - 40px)" : "calc(min(100vw, 100vh) - 40px)"
           }}
         >
@@ -34,7 +33,7 @@ export default function AboutSection() {
         <div
           className="flex flex-col"
           style={{
-            width: isSmallHeight ? "calc(min(100vw, 665px) - 20px)" : "calc(min(100vw, 100vh) - 40px)"
+            width: isSmallHeight ? "calc(min(100vw, 685px) - 40px)" : "calc(min(100vw, 100vh) - 40px)"
           }}
         >
           <div className="mb-[300px]">
