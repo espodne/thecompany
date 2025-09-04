@@ -16,28 +16,28 @@ interface NavigationProps {
   aboutSectionId?: string;
 }
 
-export default function Navigation({ 
-  items, 
-  className = '', 
-  activeSection = 'main', 
-  projectsCount = 0, 
-  hideIndicator = false, 
-  onNavigationClick, 
-  aboutSectionId = 'about' 
+export default function Navigation({
+  items,
+  className = '',
+  activeSection = 'main',
+  projectsCount = 0,
+  hideIndicator = false,
+  onNavigationClick,
+  aboutSectionId = 'about'
 }: NavigationProps) {
-  
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
+
     if (onNavigationClick) {
       onNavigationClick();
     }
-    
+
     const id = href.replace('#', '');
     const element = document.getElementById(id);
-    
+
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -50,12 +50,12 @@ export default function Navigation({
         {items.map((item, index) => {
           const itemId = item.href.replace('#', '');
           const isActive = activeSection === itemId;
-          
+
           return (
             <li key={itemId}>
               {index === projectsCount && (
                 <div className="mb-2 mt-6">
-                  
+
                 </div>
               )}
               <div className="flex items-center gap-1.5 ml-1.5">
@@ -65,7 +65,7 @@ export default function Navigation({
                 {(!isActive || hideIndicator) && (
                   <div className="w-1 h-1" />
                 )}
-                <a 
+                <a
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
                   className={`
@@ -90,34 +90,35 @@ export default function Navigation({
           );
         })}
       </ul>
-      <div className="mt-6 pt-2 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20"/>
-              <div className="ml-4">
-          <div className="flex items-center gap-1.5">
+      <div className="mt-4 pt-2 border-t-[1px] border-[var(--foreground)] ml-4 opacity-20" />
+      <div className="ml-4">
+        <div className="flex items-center gap-1.5">
           {activeSection === aboutSectionId && !hideIndicator && (
             <div className="w-1 h-1 rounded-full bg-black transition-all duration-300" />
           )}
           {activeSection !== aboutSectionId || hideIndicator ? (
             <div className="w-1 h-1" />
           ) : null}
-          <a 
+          <a
             href={`#${aboutSectionId}`}
             onClick={(e) => {
               e.preventDefault();
-              
+
               if (onNavigationClick) {
                 onNavigationClick();
               }
-              
-                      const element = document.getElementById(aboutSectionId);
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'end'
-          });
-        }
+
+              const element = document.getElementById(aboutSectionId);
+              if (element) {
+                element.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'end'
+                });
+              }
             }}
             className="
               font-[700]
+              ml-[-8px]
               text-[12px]
               leading-[20px]                     
               [letter-spacing:0em]
