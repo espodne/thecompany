@@ -75,6 +75,8 @@ body {
   .snap-section {
     min-height: auto;
     height: auto;
+    scroll-snap-align: start;
+    justify-content: flex-start; 
   }
 }
 
