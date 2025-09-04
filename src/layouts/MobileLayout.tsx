@@ -78,7 +78,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                                 w-[300px]
                                 indent-10
                                 ml-2
-                                mb-10
+                                
                                 mt-12
                                 text-[var(--foreground)]
                                 opacity-60
@@ -89,7 +89,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
 
             {/* Картинки - средняя зона */}
             <div className="flex items-center justify-center mb-[50px]">
-                <div className="w-full h-[200px] p-1.5 mb-[300px]">
+                <div className="w-full h-[215px] p-1.5 mb-[300px] mt-[-25px]">
                     <MobilePocketbaseImages
                         projectsData={projects}
                     />
