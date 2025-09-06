@@ -76,7 +76,7 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
             const containerHeight = containerSize.height;
 
             const SIDE_MARGIN = 10; 
-            const GAP = 10;
+            const GAP = 5;
             const SIZE_MULTIPLIER = 1.9;
             
          
