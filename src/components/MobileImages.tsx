@@ -48,8 +48,8 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
     useEffect(() => {
         if (images.length === 0) return;
 
-        const GRID_ROWS = 4;
-        const GRID_COLS = 3;
+        const GRID_ROWS = 5;
+        const GRID_COLS = 5;
         const TOTAL_IMAGES = GRID_ROWS * GRID_COLS;
 
         let imagesToUse: typeof images = [];
@@ -68,8 +68,8 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
         if (imagesToUse.length === 0 || containerSize.width === 0) return;
 
         const updatePositions = () => {
-            const GRID_ROWS = 3;
-            const GRID_COLS = 3;
+            const GRID_ROWS = 5;
+            const GRID_COLS = 5;
             
   
             const containerWidth = containerSize.width;
