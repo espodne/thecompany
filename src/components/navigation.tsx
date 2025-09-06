@@ -47,8 +47,14 @@ export default function Navigation({
   };
 
   return (
-    <nav className={`mb-4 ${className}`}>
-      <ul className="flex flex-col gap-2">
+    <div className="relative">
+      {/* Градиентные overlay для размытия границ */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-[var(--background)] to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--background)] to-transparent pointer-events-none z-10" />
+      
+      <div className="overflow-y-auto hide-scrollbar h-full">
+        <nav className={`mb-4 ${className}`}>
+          <ul className="flex flex-col gap-2">
         {items.map((item, index) => {
           const itemId = item.href.replace('#', '');
           const isActive = activeSection === itemId;
@@ -140,6 +146,8 @@ export default function Navigation({
           />
         </div>
       </div>
-    </nav>
+        </nav>
+      </div>
+    </div>
   );
 }

@@ -16,14 +16,14 @@ interface MobileNavigationProps {
 
 export default function MobileNavigation({ items, projectsCount = 0, onItemClick }: MobileNavigationProps) {
     return (
-        <div className="flex-1 overflow-y-auto mt-20 min-h-0 max-h-[calc(100vh-80px)] pb-20 hide-scrollbar w-[95vw]">
+        <div className="flex-1 overflow-y-auto mt-20 min-h-0 max-h-[calc(100vh-80px)] pb-20 hide-scrollbar w-[95vw] scroll-smooth [scroll-snap-type:y_mandatory]">
             <nav className="mb-4">
                 <ul className="flex flex-col gap-2 mt-10 mb-10">
                     {items.map((item, index) => {
                         const itemId = item.href.replace('#', '');
 
                         return (
-                            <li key={itemId}>
+                            <li key={itemId} className="[scroll-snap-align:start]">
                                 {index === projectsCount && (
                                     <div className="mb-2 mt-2 ml-4 border-b-[1px] border-[#14141433]">
                                        
