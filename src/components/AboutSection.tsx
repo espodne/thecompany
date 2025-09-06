@@ -47,10 +47,10 @@ export default function AboutSection() {
               Контакты
             </h2>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[var(--foreground)] cursor-pointer mt-4 indent-12">
-              Света Мухина: Telegram; +79647603755; sveta@companymoscow.com
+              Света Мухина: @mukhina; +79647603755; sveta@companymoscow.com
             </p>
             <p className="font-[400] text-[12px] leading-[20px] [letter-spacing:0em] [word-spacing:0.3em] uppercase font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] transition-all duration-200 text-[var(--foreground)] cursor-pointer mt-4 indent-12">
-              Даша леднева: Telegram; +79919649535; Dasha@companymoscow.com
+              Даша леднева: @imdarialed; +79919649535; Dasha@companymoscow.com
             </p>
           </div>
 

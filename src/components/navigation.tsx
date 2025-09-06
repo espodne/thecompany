@@ -96,7 +96,7 @@ export default function Navigation({
         <div className="flex items-center gap-1.5">
           <div className="w-1 h-1">
             {activeSection === aboutSectionId && !hideIndicator && (
-              <div className="w-1 h-1 rounded-full bg-black" />
+              <div className="w-1 h-1 rounded-full ml-[-8px] bg-black" />
             )}
           </div>
           <a
