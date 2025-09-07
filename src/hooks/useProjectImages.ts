@@ -13,14 +13,16 @@ export function useProjectImages(projectName?: string) {
   const { projects, loading, error } = useProjects()
 
   const images = useMemo(() => {
+    let resultImages: ImageData[] = []
+    
     if (projectName) {
       const project = projects.find(p => p.name === projectName)
       if (!project || !project.images) return []
       
-      return project.images.map((url, index) => ({
+      resultImages = project.images.map((url, index) => ({
         id: `${project.id}-${index}`,
         url,
-        name: `image-${index}`,
+        name: project.name, // Используем имя проекта, а не image-${index}
         folderName: project.name
       }))
     } else {
@@ -31,7 +33,7 @@ export function useProjectImages(projectName?: string) {
           const projectImages = project.images.map((url, index) => ({
             id: `${project.id}-${index}`,
             url,
-            name: `image-${index}`,
+            name: project.name, // Используем имя проекта
             folderName: project.name
           }))
           
@@ -39,8 +41,17 @@ export function useProjectImages(projectName?: string) {
         }
       }
       
-      return allImages
+      resultImages = allImages
     }
+    
+    // Тасуем изображения для рандомного порядка
+    const shuffled = [...resultImages]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    
+    return shuffled
   }, [projects, projectName])
 
   return { images, loading, error }

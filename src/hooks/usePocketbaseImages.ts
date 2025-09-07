@@ -31,7 +31,7 @@ export function usePocketbaseImages(projectName?: string) {
             const imageUrls = project.images?.map((filename) => ({
               id: `${project.id}-${filename}`,
               url: pb.files.getURL(project, filename),
-              name: filename,
+              name: project.name, // Используем имя проекта вместо filename
               folderName: project.name
             })) || []
 
@@ -47,7 +47,7 @@ export function usePocketbaseImages(projectName?: string) {
               const projectImages = project.images.map((filename) => ({
                 id: `${project.id}-${filename}`,
                 url: pb.files.getURL(project, filename),
-                name: filename,
+                name: project.name, // Используем имя проекта вместо filename
                 folderName: project.name
               }))
 
@@ -55,7 +55,14 @@ export function usePocketbaseImages(projectName?: string) {
             }
           }
 
-          setImages(allImages)
+          // Тасуем изображения для рандомного порядка
+          const shuffled = [...allImages]
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+          }
+
+          setImages(shuffled)
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Unknown error')

@@ -16,7 +16,7 @@ interface PocketbaseImagesProps {
 
 function PocketbaseImages({ projectName, projectsData, width = 800, height = 600, className = "" }: PocketbaseImagesProps) {
     const { images, error } = useProjectImages(projectName);
-    const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
+    const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string; delay: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();
     const screenHeight = useScreenHeight();
@@ -59,19 +59,28 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
             const availableHeight = containerHeight - (GAP * (GRID_SIZE - 1));
             const imageSize = Math.min(availableWidth / GRID_SIZE, availableHeight / GRID_SIZE);
 
-            const newPositions: { top: number; left: number; size: number; rotation: number }[] = [];
+            const newPositions: { top: number; left: number; size: number; rotation: number; delay: number }[] = [];
+
+            // Создаем массив задержек и перемешиваем их для рандомного появления
+            const delays = Array.from({ length: GRID_SIZE * GRID_SIZE }, (_, i) => i * 0.2);
+            for (let i = delays.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [delays[i], delays[j]] = [delays[j], delays[i]];
+            }
 
             for (let row = 0; row < GRID_SIZE; row++) {
                 for (let col = 0; col < GRID_SIZE; col++) {
                     const top = row * (imageSize + GAP);
                     const left = col * (imageSize + GAP) + LEFT_MARGIN;
                     const rotation = 0;
+                    const index = row * GRID_SIZE + col;
 
                     newPositions.push({
                         top,
                         left,
                         size: imageSize,
-                        rotation
+                        rotation,
+                        delay: delays[index]
                     });
                 }
             }
@@ -85,6 +94,7 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                 left: `${pos.left}px`,
                 size: `${pos.size}px`,
                 rotation: `${pos.rotation}deg`,
+                delay: `${pos.delay}s`,
             })));
         };
 
@@ -118,31 +128,26 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                             width: pos.size,
                             opacity: 0,
                             transform: `rotate(${pos.rotation})`,
-                            animation: `fadeIn 2s forwards ${Math.random() * 5}s`
+                            animation: `fadeIn 2s forwards ${pos.delay}`
                         }}
                         onClick={() => {
-                            let targetProject;
-
-                            if (!projectName) {
-
-                                const fileName = image.name.replace(/\.[^/.]+$/, "");
-                                targetProject = projectsData.find(p => p.name === fileName);
-                            } else {
-
-                                targetProject = image.folderName
-                                    ? projectsData.find(p => p.name === image.folderName)
-                                    : projectsData[index];
-                            }
+                            console.log('Clicked image:', image.name, 'folderName:', image.folderName);
+                            
+                            // Ищем проект по имени изображения (которое теперь равно имени проекта)
+                            const targetProject = projectsData.find(p => p.name === image.name);
+                            
+                            console.log('Found project:', targetProject);
 
                             if (targetProject) {
-
+                                // Получаем id элемента из href
                                 const id = targetProject.href.replace('#', '');
+                                console.log('Scrolling to element with id:', id);
 
-
+                                // Ищем элемент по id
                                 let element = document.getElementById(id);
 
                                 if (!element) {
-
+                                    // Если не нашли по id, пробуем как селектор
                                     try {
                                         element = document.querySelector(targetProject.href);
                                     } catch (error) {
@@ -156,7 +161,11 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                                         behavior: 'smooth',
                                         block: 'start'
                                     });
+                                } else {
+                                    console.error('Element not found:', id);
                                 }
+                            } else {
+                                console.error('Project not found for image:', image.name);
                             }
                         }}
                     >
