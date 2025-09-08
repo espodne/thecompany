@@ -211,6 +211,7 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
                             width={500}
                             height={500}
                             priority={index < 6} // Приоритет только для первых 6 изображений
+                            unoptimized={true}
                             className="parallax-image object-cover w-full h-full"
                             data-speed={Math.random() * 2 + 1}
                             onError={(e) => {

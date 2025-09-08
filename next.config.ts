@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
         pathname: '/api/files/**',
       },
     ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
   },
 };
 
