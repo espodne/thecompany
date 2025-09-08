@@ -16,16 +16,15 @@ interface MobileNavigationProps {
 }
 
 export default function MobileNavigation({ items, projectsCount = 0, onItemClick, activeSection }: MobileNavigationProps) {
-    // Разделяем элементы на проекты и "О нас / контакты"
     const projectItems = items.slice(0, projectsCount);
     const aboutItem = items.find(item => item.href === '#about');
 
     return (
         <div className="flex flex-col h-full mt-20 max-h-[calc(100vh-80px)]">
-            {/* Скроллируемая часть с проектами */}
+     
             <div className="flex-1 overflow-y-auto min-h-0 hide-scrollbar w-[95vw] scroll-smooth [scroll-snap-type:y_mandatory]">
-                <nav className="mb-4">
-                    <ul className="flex flex-col gap-2 mt-10 mb-10">
+                <nav>
+                    <ul className="flex flex-col gap-2 mt-10 ">
                         {projectItems.map((item) => {
                             const itemId = item.href.replace('#', '');
                             const isActive = activeSection === itemId;
@@ -67,7 +66,6 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                 </nav>
             </div>
 
-            {/* Фиксированная часть внизу - "О нас / контакты" */}
             {aboutItem && (
                 <div className="flex-shrink-0 pb-20">
                     <div className="mb-2 mt-2 ml-8 w-[85vw] border-b-[1px] border-[#14141433]">

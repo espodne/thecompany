@@ -24,7 +24,6 @@ export default function MobileMenu({ items, projectsCount = 0, isOpen, onClose, 
 
         const id = href.replace('#', '');
         
-        // Сразу обновляем активную секцию
         if (onNavigationClick) {
             onNavigationClick(id);
         }
