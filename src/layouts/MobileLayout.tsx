@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useProjects } from "@/contexts/ProjectsContext";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import MenuButton from "@/components/MenuButton";
 import MobileMenu from "@/components/MobileMenu";
 import MobileProjectSliders from "@/components/MobileProjectSliders";
@@ -12,10 +13,19 @@ import AboutSection from "@/components/AboutSection";
 
 export default function Home() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { activeSection, containerRef, setActiveSectionManually } = useActiveSection();
 
     return (
-        <main className="scroll-animation h-screen overflow-y-scroll snap-y snap-mandatory m-0 p-0">
-            <Section1 isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <main 
+            ref={containerRef}
+            className="scroll-animation h-screen overflow-y-scroll snap-y snap-mandatory m-0 p-0"
+        >
+            <Section1 
+                isMenuOpen={isMenuOpen} 
+                setIsMenuOpen={setIsMenuOpen}
+                activeSection={activeSection}
+                setActiveSectionManually={setActiveSectionManually}
+            />
             <MobileProjectSliders />
             <AboutSection />
         </main>
@@ -25,9 +35,11 @@ export default function Home() {
 interface Section1Props {
     isMenuOpen: boolean;
     setIsMenuOpen: (open: boolean) => void;
+    activeSection: string;
+    setActiveSectionManually: (sectionId: string) => void;
 }
 
-const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
+const Section1 = ({ isMenuOpen, setIsMenuOpen, activeSection, setActiveSectionManually }: Section1Props) => {
     const { projects, loading, error } = useProjects();
     
     if (loading) {
@@ -39,7 +51,7 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
     }
     
     return (
-        <div className="min-h-screen snap-start text-[3.5vw] flex flex-col p-2.5">
+        <div className="min-h-screen snap-start snap-section text-[3.5vw] flex flex-col p-2.5" id="main">
             {/* Заголовок - верхняя зона */}
             <div
                 className="cursor-pointer font-['ABC_Oracle_Cyrillic_Plus_Variable_Unlicensed_Trial'] font-[800] text-[12px] leading-[12px] align-bottom
@@ -100,9 +112,9 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
             <MobileMenu
                 items={[
                     ...projects.map(project => ({
-                        id: project.name,
+                        id: project.href.replace('#', ''),
                         label: project.label,
-                        href: `#${project.name}`,
+                        href: project.href,
            
                     })),
                     {
@@ -115,6 +127,8 @@ const Section1 = ({ isMenuOpen, setIsMenuOpen }: Section1Props) => {
                 projectsCount={projects.length}
                 isOpen={isMenuOpen}
                 onClose={() => setIsMenuOpen(false)}
+                activeSection={activeSection}
+                onNavigationClick={setActiveSectionManually}
             />
         </div>
     )

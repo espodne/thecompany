@@ -13,14 +13,22 @@ interface MobileMenuProps {
     projectsCount?: number;
     isOpen: boolean;
     onClose: () => void;
+    activeSection?: string;
+    onNavigationClick?: (sectionId: string) => void;
 }
 
-export default function MobileMenu({ items, projectsCount = 0, isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({ items, projectsCount = 0, isOpen, onClose, activeSection, onNavigationClick }: MobileMenuProps) {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
         onClose();
 
         const id = href.replace('#', '');
+        
+        // Сразу обновляем активную секцию
+        if (onNavigationClick) {
+            onNavigationClick(id);
+        }
+
         const element = document.getElementById(id);
 
         if (element) {
@@ -74,6 +82,7 @@ export default function MobileMenu({ items, projectsCount = 0, isOpen, onClose }
                             items={items}
                             projectsCount={projectsCount}
                             onItemClick={handleClick}
+                            activeSection={activeSection}
                         />
                     </nav>
                 </div>

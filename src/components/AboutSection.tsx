@@ -9,7 +9,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="snap-section snap-start pt-[10px]"
+      className="snap-section snap-start pt-[10px] min-h-screen"
     >
       <div className="flex justify-center sm:justify-end w-full mb-4">
         <div

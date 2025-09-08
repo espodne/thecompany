@@ -12,15 +12,17 @@ interface MobileNavigationProps {
     items: NavigationItem[];
     projectsCount?: number;
     onItemClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+    activeSection?: string;
 }
 
-export default function MobileNavigation({ items, projectsCount = 0, onItemClick }: MobileNavigationProps) {
+export default function MobileNavigation({ items, projectsCount = 0, onItemClick, activeSection }: MobileNavigationProps) {
     return (
         <div className="flex-1 overflow-y-auto mt-20 min-h-0 max-h-[calc(100vh-80px)] pb-20 hide-scrollbar w-[95vw] scroll-smooth [scroll-snap-type:y_mandatory]">
             <nav className="mb-4">
                 <ul className="flex flex-col gap-2 mt-10 mb-10">
                     {items.map((item, index) => {
                         const itemId = item.href.replace('#', '');
+                        const isActive = activeSection === itemId;
 
                         return (
                             <li key={itemId} className="[scroll-snap-align:start]">
@@ -29,8 +31,12 @@ export default function MobileNavigation({ items, projectsCount = 0, onItemClick
                                        
                                     </div>
                                 )}
-                                <div className="flex items-center gap-3">
-                                    <div className="w-1 h-1" />
+                                <div className="flex items-center gap-3 ml-4">
+                                    <div className="w-1 h-1">
+                                        {isActive && (
+                                            <div className="w-1 h-1 rounded-full bg-[#141414]" />
+                                        )}
+                                    </div>
                                     <a
                                         href={item.href}
                                         onClick={(e) => onItemClick(e, item.href)}
