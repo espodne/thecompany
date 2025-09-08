@@ -17,19 +17,6 @@ interface PocketbaseImagesProps {
 function MobilePocketbaseImages({ projectName, projectsData, width = 800, height = 600, className = "" }: PocketbaseImagesProps) {
     const { images, error } = useProjectImages(projectName);
     
-    // Диагностика загрузки изображений
-    useEffect(() => {
-        if (images.length > 0) {
-            console.log(`Loaded ${images.length} images for project: ${projectName || 'all projects'}`);
-            // Проверяем первые несколько URL
-            images.slice(0, 3).forEach((img, idx) => {
-                console.log(`Image ${idx}:`, img.url);
-            });
-        }
-        if (error) {
-            console.error('Error loading images:', error);
-        }
-    }, [images, error, projectName]);
     const [positions, setPositions] = useState<{ top: string; left: string; size: string; rotation: string }[]>([]);
     const [imagesToUse, setImagesToUse] = useState<typeof images>([]);
     const isMobile = useIsMobile();
@@ -191,8 +178,7 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
                                     try {
                                         element = document.querySelector(targetProject.href);
                                     } catch (error) {
-                                        console.error('Invalid selector:', targetProject.href, error);
-                                        return;
+                                        return error;
                                     }
                                 }
                                 
@@ -214,12 +200,8 @@ function MobilePocketbaseImages({ projectName, projectsData, width = 800, height
                             unoptimized={true}
                             className="parallax-image object-cover w-full h-full"
                             data-speed={Math.random() * 2 + 1}
-                            onError={(e) => {
-                                console.error('Failed to load image:', image.url, e);
-                            }}
-                            onLoad={() => {
-                                // console.log('Image loaded successfully:', image.url);
-                            }}
+                            onError={() => {}}
+                            onLoad={() => {}}
                         />
                     </div>
                 );

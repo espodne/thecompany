@@ -26,7 +26,6 @@ export async function fetchProjects(): Promise<Project[]> {
             images: project.images?.map(filename => pb.files.getURL(project, filename)) || []
         }))
     } catch (error) {
-        console.error('Error fetching projects:', error)
         return []
     }
 }

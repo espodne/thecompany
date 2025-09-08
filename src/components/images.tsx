@@ -85,9 +85,6 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                 }
             }
 
-            console.log('Grid created:', newPositions.length, 'positions (should be 25)');
-            console.log('Images to use:', imagesToUse.length);
-            console.log('Container width:', containerWidth, 'Image size:', imageSize);
 
             setPositions(newPositions.map(pos => ({
                 top: `${pos.top}px`,
@@ -131,28 +128,18 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                             animation: `fadeIn 2s forwards ${pos.delay}`
                         }}
                         onClick={() => {
-                            console.log('Clicked image:', image.name, 'folderName:', image.folderName);
-                            
-                            // Ищем проект по имени изображения (которое теперь равно имени проекта)
                             const targetProject = projectsData.find(p => p.name === image.name);
-                            
-                            console.log('Found project:', targetProject);
 
                             if (targetProject) {
-                                // Получаем id элемента из href
                                 const id = targetProject.href.replace('#', '');
-                                console.log('Scrolling to element with id:', id);
-
-                                // Ищем элемент по id
                                 let element = document.getElementById(id);
 
                                 if (!element) {
-                                    // Если не нашли по id, пробуем как селектор
                                     try {
                                         element = document.querySelector(targetProject.href);
                                     } catch (error) {
-                                        console.error('Invalid selector:', targetProject.href, error);
-                                        return;
+                                        
+                                        return error;
                                     }
                                 }
 
@@ -161,11 +148,7 @@ function PocketbaseImages({ projectName, projectsData, width = 800, height = 600
                                         behavior: 'smooth',
                                         block: 'start'
                                     });
-                                } else {
-                                    console.error('Element not found:', id);
                                 }
-                            } else {
-                                console.error('Project not found for image:', image.name);
                             }
                         }}
                     >
