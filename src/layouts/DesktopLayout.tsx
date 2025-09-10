@@ -44,9 +44,6 @@ export const DesktopLayout = () => {
     })),
   ]
 
-  if (loading) {
-    return <div className="flex items-center justify-center h-screen">Loading projects...</div>
-  }
 
   if (error) {
     return <div className="flex items-center justify-center h-screen">Error: {error}</div>

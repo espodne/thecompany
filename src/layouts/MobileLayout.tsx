@@ -40,11 +40,8 @@ interface Section1Props {
 }
 
 const Section1 = ({ isMenuOpen, setIsMenuOpen, activeSection, setActiveSectionManually }: Section1Props) => {
-    const { projects, loading, error } = useProjects();
+    const { projects, error } = useProjects();
     
-    if (loading) {
-        return <div className="flex items-center justify-center h-screen">Loading projects...</div>;
-    }
 
     if (error) {
         return <div className="flex items-center justify-center h-screen">Error: {error}</div>;
