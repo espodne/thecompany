@@ -3,9 +3,21 @@ import localFont from 'next/font/local'
 
 
 const oracle = localFont({
-  src: '../../public/fonts/ABCOracleCyrillicPlusVariable-Trial.woff',
+  src: [
+    {
+      path: '../../public/fonts/ABCOracleCyrillicPlusVariable-Trial.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/ABCOracleCyrillicPlusVariable-Trial.woff',
+      weight: '100 900', 
+      style: 'normal',
+    }
+  ],
   display: 'swap',
   variable: '--font-oracle',
+  fallback: ['Arial', 'Helvetica', 'sans-serif'],
 })
 
 export const metadata = {
@@ -16,9 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={oracle.variable}>
-      <body
-
-      >
+      <body className={oracle.className}>
         {children}
       </body>
     </html>
